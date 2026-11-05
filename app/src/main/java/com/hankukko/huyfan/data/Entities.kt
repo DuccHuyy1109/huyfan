@@ -41,8 +41,10 @@ data class VocabEntity(
     @ColumnInfo(defaultValue = "0") val lapses: Int = 0,
     /** Từ mượn nước ngoài: từ gốc (vd "computer") */
     @ColumnInfo(defaultValue = "") val loan: String = "",
+    /** Cách đọc từ gốc kiểu Việt (vd "cơm-piu-tơ") */
+    @ColumnInfo(defaultValue = "") val loanRead: String = "",
 ) {
-    fun toItem() = VocabItem(vi, ko, romaja, hanja, hanViet, pos, exampleKo, exampleVi, note, breakdown, loan)
+    fun toItem() = VocabItem(vi, ko, romaja, hanja, hanViet, pos, exampleKo, exampleVi, note, breakdown, loan, loanRead)
 
     fun toSheetJson(): JSONObject = JSONObject()
         .put("uid", uid)

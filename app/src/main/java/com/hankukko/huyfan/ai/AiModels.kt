@@ -17,12 +17,14 @@ data class VocabItem(
     val breakdown: String = "",
     /** Từ mượn nước ngoài: từ gốc, vd 컴퓨터 → "computer" */
     val loan: String = "",
+    /** Cách đọc từ gốc kiểu Việt, vd computer → "cơm-piu-tơ" */
+    val loanRead: String = "",
 ) {
     fun toJson(): JSONObject = JSONObject()
         .put("vi", vi).put("ko", ko).put("romaja", romaja)
         .put("hanja", hanja).put("han_viet", hanViet).put("pos", pos)
         .put("example_ko", exampleKo).put("example_vi", exampleVi).put("note", note)
-        .put("breakdown", breakdown).put("loan", loan)
+        .put("breakdown", breakdown).put("loan", loan).put("loan_read", loanRead)
 
     companion object {
         private fun JSONObject.str(vararg keys: String): String {
@@ -47,6 +49,7 @@ data class VocabItem(
             note = o.str("note", "notes", "tip"),
             breakdown = o.str("breakdown", "composition", "cau_tao"),
             loan = o.str("loan", "loanword", "english", "origin"),
+            loanRead = o.str("loan_read", "loanRead", "loan_reading"),
         )
 
         fun listFromJson(s: String): List<VocabItem> = runCatching {

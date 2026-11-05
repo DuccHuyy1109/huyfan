@@ -48,6 +48,7 @@ class VocabRepository(private val dao: VocabDao, private val lessons: LessonDao)
                     note = existing.note.ifBlank { it.note },
                     breakdown = existing.breakdown.ifBlank { it.breakdown },
                     loan = existing.loan.ifBlank { it.loan },
+                    loanRead = existing.loanRead.ifBlank { it.loanRead },
                     lookupCount = existing.lookupCount + 1,
                     synced = false,
                 )
@@ -58,7 +59,7 @@ class VocabRepository(private val dao: VocabDao, private val lessons: LessonDao)
                     vi = it.vi.trim(), ko = it.ko.trim(), romaja = it.romaja.trim(),
                     hanja = it.hanja.trim(), hanViet = it.hanViet.trim(), pos = it.pos.trim(),
                     exampleKo = it.exampleKo.trim(), exampleVi = it.exampleVi.trim(), note = it.note.trim(),
-                    breakdown = it.breakdown.trim(), loan = it.loan.trim(), day = day, createdAt = now,
+                    breakdown = it.breakdown.trim(), loan = it.loan.trim(), loanRead = it.loanRead.trim(), day = day, createdAt = now,
                 )
                 saved += e.copy(id = dao.insert(e))
             }
@@ -69,9 +70,9 @@ class VocabRepository(private val dao: VocabDao, private val lessons: LessonDao)
     suspend fun toggleStar(v: VocabEntity) = dao.update(v.copy(starred = !v.starred))
 
     /** Điền gốc từ mượn cho mọi mục cùng từ chưa có gốc. Trả về số mục đã điền. */
-    suspend fun setLoan(ko: String, loan: String): Int {
-        val list = dao.findAllByKey(keyOf(ko)).filter { it.hanja.isBlank() && it.loan.isBlank() }
-        list.forEach { dao.update(it.copy(loan = loan)) }
+    suspend fun setLoan(ko: String, loan: String, read: String = ""): Int {
+        val list = dao.findAllByKey(keyOf(ko)).filter { it.hanja.isBlank() && (it.loan.isBlank() || it.loanRead.isBlank()) }
+        list.forEach { dao.update(it.copy(loan = it.loan.ifBlank { loan }, loanRead = it.loanRead.ifBlank { read })) }
         return list.size
     }
 

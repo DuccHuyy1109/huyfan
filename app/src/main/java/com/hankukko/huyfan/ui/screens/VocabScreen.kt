@@ -78,6 +78,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hankukko.huyfan.data.GrammarEntity
 import com.hankukko.huyfan.data.Srs
 import com.hankukko.huyfan.data.VocabEntity
+import com.hankukko.huyfan.data.latestPerWord
 import com.hankukko.huyfan.data.grammarKeyOf
 import com.hankukko.huyfan.data.keyOf
 import com.hankukko.huyfan.ui.MainViewModel
@@ -106,7 +107,7 @@ fun shortDay(day: String): String = runCatching {
     java.time.LocalDate.parse(day).format(java.time.format.DateTimeFormatter.ofPattern("dd/MM"))
 }.getOrDefault(day)
 
-enum class BookTab(val label: String) { VOCAB("Từ vựng"), GRAMMAR("Ngữ pháp"), HANJA("Chữ Hán") }
+enum class BookTab(val label: String) { VOCAB("Từ vựng"), GRAMMAR("Ngữ pháp"), HANJA("Từ mượn") }
 
 fun List<VocabEntity>.filtered(f: VocabFilter): List<VocabEntity> {
     val today = Dates.todayKey()
@@ -163,6 +164,9 @@ fun VocabScreen(
     var hanjaOpen by remember { mutableStateOf<Pair<String, String>?>(null) }
     var ruleOpen by remember { mutableStateOf<String?>(null) }
     val hanjaIndex = remember(all) { HanjaIndex.build(all) }
+    val hanjaWordCount = remember(hanjaIndex) { hanjaIndex.flatMap { it.words }.distinctBy { it.id }.size }
+    // Từ mượn ngoại lai (tiếng Anh, Đức, Pháp…): mỗi từ lấy bản mới nhất
+    val loanWords = remember(all) { all.latestPerWord().filter { it.hanja.isBlank() && it.loan.isNotBlank() } }
     val selecting = selVocab.isNotEmpty() || selGrammar.isNotEmpty()
     val selCount = selVocab.size + selGrammar.size
 
@@ -240,7 +244,7 @@ fun VocabScreen(
                 when (t) {
                     BookTab.VOCAB -> "${t.label} (${all.size})"
                     BookTab.GRAMMAR -> "${t.label} (${allGrammar.size})"
-                    BookTab.HANJA -> "${t.label} (${hanjaIndex.size})"
+                    BookTab.HANJA -> "${t.label} (${hanjaWordCount + loanWords.size})"
                 }
             },
             { tab = it },
@@ -249,7 +253,15 @@ fun VocabScreen(
         AnimatedVisibility(searching) {
             TextField(
                 value = query, onValueChange = { query = it },
-                placeholder = { Text(if (tab == BookTab.VOCAB) "Tìm tiếng Việt, tiếng Hàn, Hán Việt…" else "Tìm đuôi câu, nghĩa, dạng…") },
+                placeholder = {
+                    Text(
+                        when (tab) {
+                            BookTab.VOCAB -> "Tìm tiếng Việt, tiếng Hàn, Hán Việt…"
+                            BookTab.GRAMMAR -> "Tìm đuôi câu, nghĩa, dạng…"
+                            BookTab.HANJA -> "Tìm chữ Hán, Hán Việt, từ gốc…"
+                        }
+                    )
+                },
                 leadingIcon = { Icon(Icons.Rounded.Search, null) },
                 singleLine = true,
                 modifier = Modifier
@@ -275,7 +287,7 @@ fun VocabScreen(
 
         val empty = if (tab == BookTab.VOCAB) vocabList.isEmpty() else grammarList.isEmpty()
         if (tab == BookTab.HANJA) {
-            HanjaTab(hanjaIndex, query) { ch -> hanjaOpen = ch to "" }
+            HanjaTab(hanjaIndex, loanWords, query, onSpeak = { vm.speakKorean(it) }) { ch -> hanjaOpen = ch to "" }
         } else if (empty) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 EmptyHint(
@@ -521,7 +533,7 @@ private fun WordCard(
                     modifier = Modifier.clip(CircleShape).clickable(onClick = onHanja),
                 )
             }
-            if (w.hanja.isBlank() && w.loan.isNotBlank()) Pill("từ mượn · ${w.loan}", color = Brand.Cyan)
+            if (w.hanja.isBlank() && w.loan.isNotBlank()) Pill("từ mượn · ${w.loan}" + (if (w.loanRead.isNotBlank()) " · ${w.loanRead}" else ""), color = Brand.Cyan)
             if (w.pos.isNotBlank()) Pill(w.pos, color = Brand.Violet)
             if (w.lookupCount > 1) Pill("tra ${w.lookupCount} lần", color = Brand.Red)
             DuePill(w.dueAt, w.createdAt)

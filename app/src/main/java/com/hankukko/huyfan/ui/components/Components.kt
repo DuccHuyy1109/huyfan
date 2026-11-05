@@ -315,7 +315,7 @@ fun VocabTable(
                         } else if (it.loan.isNotBlank()) {
                             // Từ mượn: từ gốc + nhãn nhỏ
                             Text(it.loan, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
-                            Text("từ mượn", style = MaterialTheme.typography.labelSmall, color = Brand.Cyan, fontStyle = FontStyle.Italic)
+                            Text(it.loanRead.ifBlank { "từ mượn" }, style = MaterialTheme.typography.labelSmall, color = Brand.Cyan, fontStyle = FontStyle.Italic)
                         } else {
                             Text("—", color = x.muted, style = MaterialTheme.typography.bodySmall)
                         }
@@ -646,7 +646,10 @@ private fun copyText(m: ChatMessage): String = buildString {
         if (v.romaja.isNotBlank()) append(" (").append(v.romaja).append(")")
         if (v.breakdown.isNotBlank()) append(" [").append(v.breakdown).append("]")
         if (v.hanja.isNotBlank()) append(" · ").append(v.hanja).append(" ").append(v.hanViet)
-        else if (v.loan.isNotBlank()) append(" · ").append(v.loan)
+        else if (v.loan.isNotBlank()) {
+            append(" · ").append(v.loan)
+            if (v.loanRead.isNotBlank()) append(" (đọc ").append(v.loanRead).append(")")
+        }
         append('\n')
         if (v.exampleKo.isNotBlank()) append("  ").append(v.exampleKo).append(" – ").append(v.exampleVi).append('\n')
     }

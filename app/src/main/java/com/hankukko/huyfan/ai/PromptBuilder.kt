@@ -22,7 +22,7 @@ Người dùng thường hỏi bằng giọng nói nên câu chữ có thể b�
 CÁCH TRẢ LỜI
 1. Hỏi từ vựng (vd "rửa bát tiếng Hàn là gì", "설거지 nghĩa là gì"): reply 1 câu ngắn kiểu "Rửa bát là 설거지하다 nha ông!" – từ tiếng Hàn trong reply luôn viết bằng chữ Hangul. vocab CHỈ gồm từ được hỏi trong tin nhắn mới nhất (thêm tối đa 1–2 từ đồng nghĩa trực tiếp nếu thật sự hữu ích); tuyệt đối không đưa lại từ của các câu trước hay từ không liên quan. save = true.
 2. Hán Hàn: nếu từ có gốc Hán thì ghi chữ Hán phồn thể vào hanja và âm Hán Việt vào han_viet (vd 학생 → 學生 / học sinh; 사랑 → để trống vì thuần Hàn). Không chắc chắn thì để trống – tuyệt đối không bịa.
-2a. Từ mượn (ngoại lai): nếu từ mượn từ tiếng nước ngoài thì ghi từ gốc vào loan (vd 컴퓨터 → computer, 아이스크림 → ice cream, 아르바이트 → Arbeit (tiếng Đức)); tiếng Anh chỉ ghi từ, tiếng khác ghi kèm tên tiếng trong ngoặc. Từ mượn thì hanja để trống. Từ thuần Hàn / Hán Hàn thì loan để trống.
+2a. Từ mượn (ngoại lai): nếu từ mượn từ tiếng nước ngoài thì ghi từ gốc vào loan (vd 컴퓨터 → computer, 아이스크림 → ice cream, 아르바이트 → Arbeit (tiếng Đức)); tiếng Anh chỉ ghi từ, tiếng khác ghi kèm tên tiếng trong ngoặc. loan_read = cách đọc từ gốc phiên âm kiểu Việt cho dễ hiểu (vd computer → cơm-piu-tơ, Arbeit → ác-bai). Từ mượn thì hanja để trống. Từ thuần Hàn / Hán Hàn thì loan để trống.
 2b. Cấu tạo (breakdown): nếu từ là từ ghép/phái sinh từ 2+ thành phần có nghĩa riêng thì phân tích ngắn gọn, vd 여자친구 → "여자 (phụ nữ) + 친구 (bạn) → bạn gái", 설거지하다 → "설거지 (việc rửa bát) + 하다 (làm)". Từ đơn thì để trống. Các thành phần cấu tạo CHỈ ghi trong breakdown, KHÔNG tách thành mục vocab riêng (hỏi "bạn gái" thì vocab chỉ có 여자친구).
 3. Câu mẫu: 1 câu tự nhiên, đời thường, trình độ sơ–trung cấp, đuôi lịch sự 요 (trừ khi được yêu cầu khác), kèm nghĩa tiếng Việt.
 4. Động từ/tính từ ghi ở dạng nguyên thể (-다). romaja theo chuẩn Romanization quốc gia Hàn Quốc.
@@ -44,7 +44,7 @@ CÁCH TRẢ LỜI
     /** Hợp đồng định dạng – app luôn tự thêm vào cuối, người dùng không sửa được. */
     val OUTPUT_CONTRACT = """
 ĐỊNH DẠNG ĐẦU RA (bắt buộc): chỉ trả về đúng 1 object JSON hợp lệ, không thêm chữ nào ngoài JSON:
-{"intent":"vocab|translate|grammar|quiz|chat|command","vocab":[{"vi":"","ko":"","romaja":"","hanja":"","han_viet":"","loan":"","pos":"","example_ko":"","example_vi":"","note":"","breakdown":""}],"grammar":[{"pattern":"","meaning":"","form":"","combine":"","example_ko":"","example_vi":"","note":"","breakdown":""}],"reply":"","save":false,"action":"none|show_vocab_today|show_vocab_all|start_review|open_history|end_conversation"}
+{"intent":"vocab|translate|grammar|quiz|chat|command","vocab":[{"vi":"","ko":"","romaja":"","hanja":"","han_viet":"","loan":"","loan_read":"","pos":"","example_ko":"","example_vi":"","note":"","breakdown":""}],"grammar":[{"pattern":"","meaning":"","form":"","combine":"","example_ko":"","example_vi":"","note":"","breakdown":""}],"reply":"","save":false,"action":"none|show_vocab_today|show_vocab_all|start_review|open_history|end_conversation"}
 - vocab chỉ chứa từ của tin nhắn mới nhất; = [] nếu không có từ vựng. pos: danh từ/động từ/tính từ/phó từ/cụm từ...
 - grammar chỉ khi người dùng hỏi ngữ pháp/đuôi câu/tiểu từ; = [] trong các trường hợp khác.
 - note: mẹo nhớ hoặc lưu ý dùng từ (ngắn, có thể để trống).
@@ -136,12 +136,12 @@ CHẾ ĐỘ TRẢ LỜI CHI TIẾT (người dùng đang bật – ưu tiên hơ
                     .put("vi", str()).put("ko", str()).put("romaja", str())
                     .put("hanja", str()).put("han_viet", str()).put("pos", str())
                     .put("example_ko", str()).put("example_vi", str()).put("note", str())
-                    .put("breakdown", str()).put("loan", str())
+                    .put("breakdown", str()).put("loan", str()).put("loan_read", str())
             )
             .put("required", JSONArray(listOf("vi", "ko", "romaja", "example_ko", "example_vi")))
             .put(
                 "propertyOrdering",
-                JSONArray(listOf("vi", "ko", "romaja", "hanja", "han_viet", "loan", "pos", "breakdown", "example_ko", "example_vi", "note"))
+                JSONArray(listOf("vi", "ko", "romaja", "hanja", "han_viet", "loan", "loan_read", "pos", "breakdown", "example_ko", "example_vi", "note"))
             )
         val grammarItem = JSONObject()
             .put("type", "OBJECT")

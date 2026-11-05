@@ -692,7 +692,7 @@ fun StudyConfigEditor(config: StudyConfig, onChange: (StudyConfig) -> Unit) {
 
 /** Gốc từ trên thẻ ôn: "HÁN HÀN 學生 · học sinh" hoặc "TỪ MƯỢN ice cream". */
 @Composable
-private fun OriginBadge(hanja: String, hanViet: String, loan: String) {
+private fun OriginBadge(hanja: String, hanViet: String, loan: String, loanRead: String = "") {
     val isHan = hanja.isNotBlank()
     val color = if (isHan) Brand.Amber else Brand.Cyan
     Row(
@@ -715,6 +715,9 @@ private fun OriginBadge(hanja: String, hanViet: String, loan: String) {
             }
         } else {
             Text(loan, fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.titleMedium)
+            if (loanRead.isNotBlank()) {
+                Text("  ·  $loanRead", color = color, fontStyle = FontStyle.Italic, style = MaterialTheme.typography.bodyMedium)
+            }
         }
     }
 }
@@ -968,7 +971,7 @@ private fun ColumnScope.StudyCardView(
                     if (!koFront && v.romaja.isNotBlank()) Text(v.romaja, color = x.muted, fontStyle = FontStyle.Italic)
                     if (v.hanja.isNotBlank() || v.loan.isNotBlank()) {
                         Spacer(Modifier.height(10.dp))
-                        OriginBadge(v.hanja, v.hanViet, v.loan)
+                        OriginBadge(v.hanja, v.hanViet, v.loan, v.loanRead)
                     }
                     if (v.breakdown.isNotBlank()) {
                         Spacer(Modifier.height(6.dp))

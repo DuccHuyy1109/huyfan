@@ -232,9 +232,9 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             f.writeText(buildString {
                 // BOM để Excel nhận đúng UTF-8 (tiếng Hàn)
                 append(0xFEFF.toChar())
-                append("Ngày,Tiếng Việt,Tiếng Hàn,Phiên âm,Hán Hàn,Hán Việt,Từ mượn,Từ loại,Cấu tạo,Câu mẫu,Nghĩa câu mẫu,Ghi chú\n")
+                append("Ngày,Tiếng Việt,Tiếng Hàn,Phiên âm,Hán Hàn,Hán Việt,Từ mượn,Cách đọc từ mượn,Từ loại,Cấu tạo,Câu mẫu,Nghĩa câu mẫu,Ghi chú\n")
                 list.sortedWith(compareBy({ it.day }, { it.createdAt })).forEach {
-                    append(listOf(it.day, it.vi, it.ko, it.romaja, it.hanja, it.hanViet, it.loan, it.pos, it.breakdown, it.exampleKo, it.exampleVi, it.note)
+                    append(listOf(it.day, it.vi, it.ko, it.romaja, it.hanja, it.hanViet, it.loan, it.loanRead, it.pos, it.breakdown, it.exampleKo, it.exampleVi, it.note)
                         .joinToString(",") { s -> esc(s) }).append('\n')
                 }
             })
