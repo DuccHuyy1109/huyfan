@@ -30,6 +30,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.isImeVisible
+import com.hankukko.huyfan.ui.components.hideKeyboardOnTap
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -128,6 +130,8 @@ class AssistActivity : ComponentActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         }
         androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
+        // Bảng tự đệm bàn phím bằng imePadding() → cửa sổ không tự co nữa (tránh chừa chỗ 2 lần)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
         onBackPressedDispatcher.addCallback(this) { close() }
 
         startedAt.longValue = System.currentTimeMillis() - 1500
@@ -295,10 +299,16 @@ private fun AssistSheet(
         Brush.verticalGradient(listOf(androidx.compose.ui.graphics.Color.White, androidx.compose.ui.graphics.Color(0xFFF2F4FB)))
     }
 
+    @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+    val imeOpen = androidx.compose.foundation.layout.WindowInsets.isImeVisible
+    val focusManager = androidx.compose.ui.platform.LocalFocusManager.current
     Box(
         Modifier
             .fillMaxSize()
-            .clickable(interactionSource = noRipple, indication = null) { onClose() }
+            // Chạm ra ngoài: đang gõ → chỉ ẩn bàn phím; không gõ → đóng bảng
+            .clickable(interactionSource = noRipple, indication = null) {
+                if (imeOpen) { focusManager.clearFocus(); keyboard?.hide() } else onClose()
+            }
     ) {
         Column(
             Modifier
@@ -346,8 +356,10 @@ private fun AssistSheet(
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .heightIn(max = 430.dp)
+                    // Bàn phím mở → thu vùng tin nhắn để ô nhập luôn nằm trong màn hình
+                    .heightIn(max = if (imeOpen) 220.dp else 430.dp)
                     .verticalScroll(rememberScrollState())
+                    .hideKeyboardOnTap()
             ) {
                 if (lastUser == null && lastAi == null) {
                     Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {

@@ -1,6 +1,11 @@
 package com.hankukko.huyfan.service
 
+import android.Manifest
+import android.accessibilityservice.AccessibilityButtonController
 import android.accessibilityservice.AccessibilityService
+import android.content.pm.PackageManager
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
@@ -30,13 +35,39 @@ class BubbleAccessibilityService : AccessibilityService() {
         }
     }
 
+    private var buttonCallback: AccessibilityButtonController.AccessibilityButtonCallback? = null
+
     override fun onServiceConnected() {
         super.onServiceConnected()
         instance = this
         _connected.value = true
+        // Nút Trợ năng (hình người trên thanh điều hướng) = công tắc bật/tắt nghe "HUY FAN"
+        val cb = object : AccessibilityButtonController.AccessibilityButtonCallback() {
+            override fun onClicked(controller: AccessibilityButtonController) = toggleListening()
+        }
+        accessibilityButtonController.registerAccessibilityButtonCallback(cb)
+        buttonCallback = cb
+    }
+
+    /** Bật/tắt chế độ chờ nghe "HUY FAN" – giống mở/tắt app, vẫn tự tắt khi hết giờ như thường. */
+    private fun toggleListening() {
+        val msg = when {
+            StandbyService.running.value -> {
+                StandbyService.stop(this)
+                "HUY FAN: đã tắt nghe"
+            }
+            ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED -> {
+                StandbyService.start(this)
+                "HUY FAN: đang nghe – gọi “HUY FAN” để hỏi"
+            }
+            else -> "HUY FAN cần quyền micro – mở app để cấp quyền"
+        }
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun onUnbind(intent: Intent?): Boolean {
+        buttonCallback?.let { runCatching { accessibilityButtonController.unregisterAccessibilityButtonCallback(it) } }
+        buttonCallback = null
         instance = null
         _connected.value = false
         return super.onUnbind(intent)

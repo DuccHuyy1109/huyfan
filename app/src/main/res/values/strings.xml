@@ -18,6 +18,6 @@
     <string name="sc_review_short">Ôn tập</string>
     <string name="sc_review_long">Ôn tập bằng flashcard</string>
     <string name="a11y_label">HUY FAN – Bong bóng trên màn hình khoá</string>
-    <string name="a11y_summary">Hiện bong bóng HUY FAN cả khi máy đang khoá</string>
-    <string name="a11y_desc">Android chỉ cho dịch vụ Trợ năng hiện lên trên màn hình khoá. HUY FAN dùng quyền này DUY NHẤT để vẽ bong bóng chat nổi, chạm vào là hỏi ngay mà không cần mở khoá. Không đọc nội dung màn hình, không thao tác thay bạn.</string>
+    <string name="a11y_summary">Bong bóng HUY FAN cả khi máy khoá · nút hình người để bật/tắt nghe</string>
+    <string name="a11y_desc">Android chỉ cho dịch vụ Trợ năng hiện lên trên màn hình khoá. HUY FAN dùng quyền này DUY NHẤT để vẽ bong bóng chat nổi (chạm vào là hỏi ngay mà không cần mở khoá) và để nút Trợ năng hình người bật/tắt chế độ nghe “HUY FAN”. Không đọc nội dung màn hình, không thao tác thay bạn.</string>
 </resources>

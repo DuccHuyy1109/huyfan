@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Chỉ dùng để vẽ bong bóng HUY FAN lên cả màn hình khoá. Không đọc nội dung màn hình. -->
+<!-- Vẽ bong bóng HUY FAN lên cả màn hình khoá + nút Trợ năng (hình người) để bật/tắt nghe. Không đọc nội dung màn hình. -->
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeAnnouncement"
     android:accessibilityFeedbackType="feedbackGeneric"
-    android:accessibilityFlags="flagDefault"
+    android:accessibilityFlags="flagDefault|flagRequestAccessibilityButton"
     android:canRetrieveWindowContent="false"
     android:description="@string/a11y_desc"
     android:notificationTimeout="1000"
