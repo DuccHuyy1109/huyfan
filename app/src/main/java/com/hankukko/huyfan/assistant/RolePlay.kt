@@ -9,7 +9,21 @@ object RolePlay {
 
     data class Scenario(val id: String, val emoji: String, val title: String, val aiRole: String, val setting: String)
 
-    val SCENARIOS = listOf(
+    val SCENARIOS: List<Scenario> get() = if (com.hankukko.huyfan.Lang.isEn) SCENARIOS_EN else SCENARIOS_KO
+
+    private val SCENARIOS_EN = listOf(
+        Scenario("restaurant", "🍔", "Gọi món ở nhà hàng", "nhân viên phục vụ nhà hàng ở Mỹ", "Khách vào nhà hàng, hỏi món, gọi món, gọi thêm, xin hoá đơn, tip."),
+        Scenario("cafe", "☕", "Quán cà phê", "barista quán cà phê", "Khách gọi đồ uống, chọn size, nóng/đá, uống tại chỗ hay mang đi, thanh toán."),
+        Scenario("shopping", "🛍️", "Mua sắm quần áo", "nhân viên cửa hàng quần áo", "Khách hỏi giá, size/màu, thử đồ, hỏi giảm giá, thanh toán."),
+        Scenario("airport", "✈️", "Làm thủ tục sân bay", "nhân viên quầy check-in", "Hành khách check-in, gửi hành lý, chọn chỗ ngồi, hỏi cổng ra máy bay."),
+        Scenario("direction", "🧭", "Hỏi đường", "người đi đường ở London", "Khách du lịch hỏi đường tới ga tàu điện ngầm và địa điểm gần đó."),
+        Scenario("friend", "🙋", "Làm quen bạn mới", "một người bạn nước ngoài mới quen, cùng tuổi, thân thiện", "Hai người làm quen: tên, quê, công việc/học, sở thích, hẹn đi chơi."),
+        Scenario("hospital", "🏥", "Đi khám bệnh", "bác sĩ phòng khám", "Bệnh nhân mô tả triệu chứng, bác sĩ hỏi thêm, dặn dò, kê thuốc."),
+        Scenario("interview", "💼", "Phỏng vấn xin việc", "người phỏng vấn của công ty", "Phỏng vấn: giới thiệu bản thân, kinh nghiệm, điểm mạnh, câu hỏi cho công ty."),
+        Scenario("hotel", "🏨", "Nhận phòng khách sạn", "lễ tân khách sạn", "Nhận phòng, hỏi giờ ăn sáng, wifi, gửi hành lý, trả phòng."),
+    )
+
+    private val SCENARIOS_KO = listOf(
         Scenario("restaurant", "🍜", "Gọi món ở quán ăn", "nhân viên phục vụ quán ăn Hàn Quốc", "Khách vào quán, hỏi món, gọi món, gọi thêm, thanh toán."),
         Scenario("cafe", "☕", "Quán cà phê", "nhân viên quán cà phê", "Khách gọi đồ uống, chọn nóng/đá, size, uống tại chỗ hay mang đi, thanh toán."),
         Scenario("shopping", "🛍️", "Mua sắm quần áo", "nhân viên cửa hàng quần áo", "Khách hỏi giá, hỏi size/màu, thử đồ, xin giảm giá, thanh toán."),
@@ -21,9 +35,11 @@ object RolePlay {
         Scenario("hotel", "🏨", "Nhận phòng khách sạn", "lễ tân khách sạn", "Nhận phòng, hỏi giờ ăn sáng, mật khẩu wifi, gửi hành lý, trả phòng."),
     )
 
-    enum class Level(val label: String, val desc: String) {
-        BEGINNER("Sơ cấp", "sơ cấp (TOPIK 1–2): câu rất ngắn, từ thông dụng, ngữ pháp cơ bản"),
-        INTERMEDIATE("Trung cấp", "trung cấp (TOPIK 3–4): câu tự nhiên như người bản xứ, ngữ pháp trung cấp"),
+    enum class Level(val label: String, private val descKo: String, private val descEn: String) {
+        BEGINNER("Sơ cấp", "sơ cấp (TOPIK 1–2): câu rất ngắn, từ thông dụng, ngữ pháp cơ bản", "sơ cấp (A1–A2): câu rất ngắn, từ thông dụng, thì đơn giản"),
+        INTERMEDIATE("Trung cấp", "trung cấp (TOPIK 3–4): câu tự nhiên như người bản xứ, ngữ pháp trung cấp", "trung cấp (B1–B2): câu tự nhiên như người bản xứ, có thành ngữ thông dụng");
+
+        val desc: String get() = if (com.hankukko.huyfan.Lang.isEn) descEn else descKo
     }
 
     data class Phrase(val ko: String, val vi: String)
@@ -39,7 +55,31 @@ object RolePlay {
         val done: Boolean,
     )
 
-    fun system(sc: Scenario, level: Level, userName: String): String = """
+    fun system(sc: Scenario, level: Level, userName: String): String = if (com.hankukko.huyfan.Lang.isEn) systemEn(sc, level, userName) else systemKo(sc, level, userName)
+
+    /** Tiếng Anh: giữ nguyên khoá JSON (reply_ko = câu tiếng Anh) để dùng chung màn hình. */
+    private fun systemEn(sc: Scenario, level: Level, userName: String): String = """
+Bạn là bạn diễn giúp ${userName.ifBlank { "người học" }} (người Việt) luyện NÓI tiếng Anh qua đóng vai.
+Tình huống: ${sc.title}. ${sc.setting}
+Vai của bạn: ${sc.aiRole}. Người học đóng vai còn lại (khách / người đối diện).
+Trình độ: ${level.desc}.
+
+QUY TẮC TRẢ LỜI (chỉ trả JSON):
+- reply_ko: lời thoại tiếp theo của bạn bằng TIẾNG ANH (khoá tên "ko" nhưng ghi tiếng Anh), 1–2 câu ngắn, tự nhiên, đúng vai. Thường kết thúc bằng 1 câu hỏi để người học nói tiếp.
+- reply_vi: dịch reply_ko sang tiếng Việt tự nhiên.
+- Câu của người học có thể do máy nghe giọng nói (có thể sai chính tả nhẹ, thiếu dấu câu) – chỉ sửa lỗi ngữ pháp/từ vựng/cách nói chưa tự nhiên thật sự.
+- Nếu người học nói/viết bằng tiếng Việt: hiểu ý, vẫn đáp lại theo vai, và đưa câu tiếng Anh tương ứng vào fixed_ko (has_error = true, explain_vi: "Câu này nói bằng tiếng Anh là…").
+- has_error: true nếu câu tiếng Anh vừa rồi của người học sai hoặc không tự nhiên. fixed_ko: cách nói đúng và tự nhiên (tiếng Anh). explain_vi: giải thích 1 câu ngắn bằng tiếng Việt. Lượt mở đầu thì has_error = false.
+- suggestions: đúng 2 câu mẫu ngắn người học có thể nói tiếp (ko = tiếng Anh, vi = nghĩa), đúng trình độ.
+- vocab: 0–2 từ/cụm từ đáng học trong lượt này (ko = tiếng Anh, vi = nghĩa).
+- done: true khi cuộc hội thoại đã xong một cách tự nhiên (thường sau 8–12 lượt) – khi đó reply_ko là lời chào kết thúc, suggestions để trống.
+- Không viết IPA, không giải thích dài.
+
+ĐỊNH DẠNG JSON (đúng các khoá sau):
+{"has_error":false,"fixed_ko":"","explain_vi":"","reply_ko":"","reply_vi":"","suggestions":[{"ko":"","vi":""},{"ko":"","vi":""}],"vocab":[{"ko":"","vi":""}],"done":false}
+""".trim()
+
+    private fun systemKo(sc: Scenario, level: Level, userName: String): String = """
 Bạn là bạn diễn giúp ${userName.ifBlank { "người học" }} (người Việt) luyện NÓI tiếng Hàn qua đóng vai.
 Tình huống: ${sc.title}. ${sc.setting}
 Vai của bạn: ${sc.aiRole}. Người học đóng vai còn lại (khách / người đối diện).

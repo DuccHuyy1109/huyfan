@@ -259,7 +259,7 @@ fun AutoInterpreterDialog(onDismiss: () -> Unit) {
                     IconButton(onClick = onDismiss) { Icon(Icons.AutoMirrored.Rounded.ArrowBack, "Quay lại") }
                     Column(Modifier.weight(1f)) {
                         Text("Dịch tự động", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                        Text("🇻🇳 ⇄ 🇰🇷 · tự nhận ngôn ngữ", style = MaterialTheme.typography.labelMedium, color = x.muted)
+                        Text("🇻🇳 ⇄ ${com.hankukko.huyfan.Lang.current.flag} · tự nhận ngôn ngữ", style = MaterialTheme.typography.labelMedium, color = x.muted)
                     }
                     if (lines.isNotEmpty()) {
                         IconButton(onClick = { lines.clear() }) { Icon(Icons.Rounded.DeleteSweep, "Xoá màn hình", tint = x.muted) }
@@ -294,7 +294,7 @@ fun AutoInterpreterDialog(onDismiss: () -> Unit) {
                                     color = Color.White.copy(alpha = 0.92f), style = MaterialTheme.typography.bodySmall,
                                 )
                                 Spacer(Modifier.height(6.dp))
-                                Text("편하게 말씀하세요. 자동으로 번역해 드려요.", color = Color.White, fontWeight = FontWeight.SemiBold)
+                                Text(if (com.hankukko.huyfan.Lang.isEn) "Just speak naturally – I’ll translate for you." else "편하게 말씀하세요. 자동으로 번역해 드려요.", color = Color.White, fontWeight = FontWeight.SemiBold)
                             }
                         }
                     }
@@ -449,12 +449,12 @@ private fun BlockCard(b: Block, onSpeak: () -> Unit, onCopy: () -> Unit, onBig: 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Row(Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    when (b.side) { Side.VI -> "Việt"; Side.KO -> "Hàn"; null -> "…" },
+                    when (b.side) { Side.VI -> "Việt"; Side.KO -> if (com.hankukko.huyfan.Lang.isEn) "Anh" else "Hàn"; null -> "…" },
                     style = MaterialTheme.typography.labelLarge, color = x.muted,
                 )
                 Text("  →  ", style = MaterialTheme.typography.labelLarge, color = color, fontWeight = FontWeight.Bold)
                 Text(
-                    when (b.side) { Side.VI -> "Hàn"; Side.KO -> "Việt"; null -> "…" },
+                    when (b.side) { Side.VI -> if (com.hankukko.huyfan.Lang.isEn) "Anh" else "Hàn"; Side.KO -> "Việt"; null -> "…" },
                     style = MaterialTheme.typography.labelLarge, color = color, fontWeight = FontWeight.Bold,
                 )
             }

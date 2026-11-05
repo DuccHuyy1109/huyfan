@@ -412,8 +412,7 @@ private fun NeonNavBar(current: Tab, onSelect: (Tab) -> Unit) {
             .padding(horizontal = 2.dp, vertical = 7.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // Tiếng Anh: Phiên dịch & Nguyên tắc làm ở đợt sau → tạm ẩn
-        Tab.entries.filter { it.inBar && !(com.hankukko.huyfan.Lang.isEn && (it == Tab.TRANSLATE || it == Tab.RULES)) }.forEach { t ->
+        Tab.entries.filter { it.inBar }.forEach { t ->
             NeonNavItem(t, current == t || (t == Tab.CHAT && current == Tab.HISTORY), Modifier.weight(1f)) { onSelect(t) }
         }
     }

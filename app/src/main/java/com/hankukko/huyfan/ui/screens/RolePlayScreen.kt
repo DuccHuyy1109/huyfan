@@ -171,7 +171,7 @@ fun RolePlayDialog(vm: MainViewModel, onDismiss: () -> Unit) {
                             style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, maxLines = 1,
                         )
                         Text(
-                            if (sc == null) "Chọn tình huống để luyện nói tiếng Hàn" else "HUY FAN đóng vai ${sc.aiRole} · ${level.label}",
+                            if (sc == null) "Chọn tình huống để luyện nói ${com.hankukko.huyfan.Lang.current.nameVi}" else "HUY FAN đóng vai ${sc.aiRole} · ${level.label}",
                             style = MaterialTheme.typography.labelMedium, color = x.muted, maxLines = 1,
                         )
                     }
@@ -246,7 +246,7 @@ fun RolePlayDialog(vm: MainViewModel, onDismiss: () -> Unit) {
                             TextField(
                                 value = if (listening) engine.partial else input,
                                 onValueChange = { input = it },
-                                placeholder = { Text(if (listening) "Đang nghe tiếng Hàn…" else "Nói hoặc gõ câu tiếng Hàn…") },
+                                placeholder = { Text(if (listening) "Đang nghe ${com.hankukko.huyfan.Lang.current.nameVi}…" else "Nói hoặc gõ câu ${com.hankukko.huyfan.Lang.current.nameVi}…") },
                                 modifier = Modifier.weight(1f).clip(RoundedCornerShape(20.dp)),
                                 colors = TextFieldDefaults.colors(
                                     focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent,
@@ -300,7 +300,7 @@ private fun ScenarioPicker(
             ) {
                 Text("Luyện nói như thật 🎭", color = Color.White, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
                 Text(
-                    "HUY FAN đóng vai nói tiếng Hàn – nói sai được sửa ngay.",
+                    "HUY FAN đóng vai nói ${com.hankukko.huyfan.Lang.current.nameVi} – nói sai được sửa ngay.",
                     color = Color.White.copy(alpha = 0.9f), style = MaterialTheme.typography.bodySmall,
                 )
             }

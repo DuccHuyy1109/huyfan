@@ -1,0 +1,560 @@
+[
+  {
+    "id": "en-cau-truc",
+    "icon": "structure",
+    "title": "Cấu trúc câu & cách dịch",
+    "subtitle": "S–V–O, câu hỏi, phủ định, dịch Việt → Anh",
+    "rules": [
+      {
+        "id": "en-svo",
+        "title": "Trật tự câu: Chủ ngữ – Động từ – Tân ngữ",
+        "summary": "Giống tiếng Việt, nhưng tiếng Anh BẮT BUỘC có chủ ngữ và động từ phải chia.",
+        "body": "• Tiếng Anh: Chủ ngữ + Động từ + Tân ngữ (I eat rice) – giống tiếng Việt.\n• Khác biệt lớn: câu tiếng Anh luôn cần CHỦ NGỮ (kể cả “trời mưa” → It is raining) và động từ phải CHIA theo ngôi và thì.\n• Tính từ đứng TRƯỚC danh từ (a red car – một chiếc xe đỏ), ngược tiếng Việt.\n• Trạng từ thời gian thường đặt cuối câu: I met him yesterday.",
+        "table": [["Tiếng Việt", "Tiếng Anh"], ["Tôi ăn cơm", "I eat rice"], ["Trời đang mưa", "It is raining"], ["Một chiếc xe đỏ", "A red car"], ["Hôm qua tôi gặp anh ấy", "I met him yesterday"]],
+        "examples": [
+          {"ko": "She drinks coffee every morning.", "vi": "Cô ấy uống cà phê mỗi sáng."},
+          {"ko": "It is very hot today.", "vi": "Hôm nay trời rất nóng."}
+        ]
+      },
+      {
+        "id": "en-cau-hoi",
+        "title": "Câu hỏi Yes/No và câu hỏi Wh-",
+        "summary": "Đảo trợ động từ (do/does/did, be, can…) lên trước chủ ngữ.",
+        "body": "• Câu hỏi Yes/No: đưa trợ động từ lên đầu. Không có trợ động từ thì mượn do / does / did.\n• Câu hỏi Wh-: Từ để hỏi + trợ động từ + chủ ngữ + động từ.\n• Sau do/does/did, động từ chính trở về NGUYÊN THỂ (Does she like…? – không phải likes).",
+        "table": [["Câu khẳng định", "Câu hỏi"], ["You are tired.", "Are you tired?"], ["She likes tea.", "Does she like tea?"], ["They went home.", "Did they go home?"], ["You live here.", "Where do you live?"]],
+        "examples": [
+          {"ko": "Do you speak English?", "vi": "Bạn có nói tiếng Anh không?"},
+          {"ko": "What time does the store open?", "vi": "Cửa hàng mở cửa lúc mấy giờ?"}
+        ]
+      },
+      {
+        "id": "en-phu-dinh",
+        "title": "Câu phủ định: not đi sau trợ động từ",
+        "summary": "be + not · do/does/did + not + V nguyên thể · can + not.",
+        "body": "• Với be và động từ khuyết thiếu: thêm not ngay sau (I am not, she can’t).\n• Với động từ thường: mượn don’t / doesn’t / didn’t + động từ nguyên thể.\n• Dạng rút gọn hay dùng khi nói: isn’t, aren’t, don’t, doesn’t, didn’t, won’t, can’t.",
+        "table": [["Khẳng định", "Phủ định"], ["I am busy.", "I’m not busy."], ["He works here.", "He doesn’t work here."], ["We saw it.", "We didn’t see it."], ["I will go.", "I won’t go."]],
+        "examples": [
+          {"ko": "I don’t like spicy food.", "vi": "Tôi không thích đồ cay."},
+          {"ko": "She didn’t come yesterday.", "vi": "Hôm qua cô ấy không đến."}
+        ]
+      },
+      {
+        "id": "en-dich-5-buoc",
+        "title": "5 bước dịch câu Việt → Anh",
+        "summary": "Chủ ngữ → thì → động từ chia → tân ngữ → nơi chốn / thời gian.",
+        "body": "1) Tìm chủ ngữ (câu không có thì thêm It / There).\n2) Xác định THÌ: đang xảy ra, thói quen, đã xong, sắp tới…\n3) Chia động từ theo thì và ngôi (he/she/it thêm -s ở hiện tại đơn).\n4) Thêm tân ngữ, nhớ mạo từ a/an/the trước danh từ đếm được số ít.\n5) Cuối câu: nơi chốn trước, thời gian sau (at the library tomorrow).",
+        "table": [["Bước", "Câu: “Ngày mai tôi sẽ học tiếng Anh ở thư viện”"], ["1. Chủ ngữ", "tôi → I"], ["2. Thì", "ngày mai, dự định → will / be going to"], ["3. Động từ", "học → study"], ["4. Tân ngữ", "tiếng Anh → English"], ["5. Nơi chốn + thời gian", "at the library tomorrow"]],
+        "examples": [
+          {"ko": "I will study English at the library tomorrow.", "vi": "Ngày mai tôi sẽ học tiếng Anh ở thư viện."},
+          {"ko": "There is a cat under the table.", "vi": "Có một con mèo dưới gầm bàn."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-thi",
+    "icon": "verb",
+    "title": "Các thì quan trọng",
+    "subtitle": "Hiện tại, quá khứ, hoàn thành, tương lai",
+    "rules": [
+      {
+        "id": "en-hien-tai-don",
+        "title": "Hiện tại đơn – thói quen, sự thật",
+        "summary": "S + V(s/es). He/She/It thêm -s / -es.",
+        "body": "• Dùng cho thói quen (every day, usually, often), sự thật hiển nhiên, lịch trình.\n• Ngôi he / she / it: thêm -s (works), -es sau s, x, ch, sh, o (watches, goes), phụ âm + y → -ies (studies).\n• Phủ định / câu hỏi mượn do / does.",
+        "table": [["Chủ ngữ", "Khẳng định", "Phủ định", "Câu hỏi"], ["I / You / We / They", "work", "don’t work", "Do … work?"], ["He / She / It", "works", "doesn’t work", "Does … work?"]],
+        "examples": [
+          {"ko": "He usually goes to work by bus.", "vi": "Anh ấy thường đi làm bằng xe buýt."},
+          {"ko": "Water boils at 100 degrees.", "vi": "Nước sôi ở 100 độ."}
+        ]
+      },
+      {
+        "id": "en-hien-tai-tiep-dien",
+        "title": "Hiện tại tiếp diễn – đang xảy ra",
+        "summary": "S + am/is/are + V-ing.",
+        "body": "• Việc đang diễn ra lúc nói (now, right now, at the moment), hoặc kế hoạch đã sắp xếp gần (I’m meeting her tonight).\n• Thêm -ing: bỏ e cuối (make → making), nhân đôi phụ âm cuối khi trước là 1 nguyên âm (run → running).\n• Động từ chỉ trạng thái (know, like, want, need) thường KHÔNG dùng tiếp diễn.",
+        "table": [["Chủ ngữ", "Công thức"], ["I", "am + V-ing"], ["He / She / It", "is + V-ing"], ["You / We / They", "are + V-ing"]],
+        "examples": [
+          {"ko": "I’m cooking dinner right now.", "vi": "Tôi đang nấu bữa tối."},
+          {"ko": "We are meeting our teacher tomorrow.", "vi": "Ngày mai bọn tôi gặp thầy giáo."}
+        ]
+      },
+      {
+        "id": "en-qua-khu-don",
+        "title": "Quá khứ đơn – việc đã xong",
+        "summary": "S + V-ed / V2 (bất quy tắc). Đi với yesterday, ago, last…",
+        "body": "• Việc đã xảy ra và kết thúc tại thời điểm xác định trong quá khứ.\n• Động từ có quy tắc thêm -ed (worked, studied, stopped); bất quy tắc dùng cột 2 (go → went, see → saw).\n• Phủ định / câu hỏi: didn’t / Did + động từ NGUYÊN THỂ.",
+        "table": [["Dạng", "Ví dụ"], ["Khẳng định", "I visited Hanoi last year."], ["Phủ định", "I didn’t visit Hanoi."], ["Câu hỏi", "Did you visit Hanoi?"]],
+        "examples": [
+          {"ko": "I bought a new phone two days ago.", "vi": "Tôi mua điện thoại mới hai ngày trước."},
+          {"ko": "Did you sleep well last night?", "vi": "Tối qua bạn ngủ ngon không?"}
+        ]
+      },
+      {
+        "id": "en-hien-tai-hoan-thanh",
+        "title": "Hiện tại hoàn thành – kết quả còn tới giờ",
+        "summary": "S + have/has + V3. Đi với already, yet, ever, never, since, for.",
+        "body": "• Việc đã xảy ra nhưng không nói rõ lúc nào, kết quả còn liên quan tới hiện tại (I have lost my key → giờ vẫn chưa có chìa).\n• Trải nghiệm: Have you ever been to Japan?\n• Kéo dài tới giờ: since + mốc (since 2020), for + khoảng (for 3 years).\n• Có thời điểm cụ thể (yesterday, last week) → dùng QUÁ KHỨ ĐƠN, không dùng hoàn thành.",
+        "table": [["Chủ ngữ", "Công thức"], ["I / You / We / They", "have + V3"], ["He / She / It", "has + V3"], ["So sánh", "I have finished. (đã xong – giờ rảnh) ≠ I finished at 5. (lúc 5 giờ)"]],
+        "examples": [
+          {"ko": "I have lived here for five years.", "vi": "Tôi đã sống ở đây được năm năm."},
+          {"ko": "Have you ever eaten kimchi?", "vi": "Bạn đã từng ăn kim chi chưa?"}
+        ]
+      },
+      {
+        "id": "en-tuong-lai",
+        "title": "Tương lai: will và be going to",
+        "summary": "will = quyết định ngay lúc nói / dự đoán · be going to = dự định có sẵn.",
+        "body": "• will + V: quyết định ngay lúc nói, lời hứa, dự đoán chung (I’ll help you).\n• be going to + V: kế hoạch đã có từ trước, hoặc dự đoán có dấu hiệu rõ (Look at the clouds – it’s going to rain).\n• Hiện tại tiếp diễn cũng dùng cho lịch hẹn đã chốt (I’m flying to Seoul on Monday).",
+        "table": [["Tình huống", "Câu"], ["Quyết định ngay", "The phone is ringing. I’ll get it."], ["Dự định sẵn", "I’m going to learn Korean next year."], ["Lịch hẹn chốt", "We’re having a party on Saturday."]],
+        "examples": [
+          {"ko": "I think it will be sunny tomorrow.", "vi": "Tôi nghĩ mai trời nắng."},
+          {"ko": "She is going to buy a new car.", "vi": "Cô ấy định mua xe mới."}
+        ]
+      },
+      {
+        "id": "en-qua-khu-tiep-dien",
+        "title": "Quá khứ tiếp diễn – đang làm thì…",
+        "summary": "S + was/were + V-ing. Hay đi với when / while.",
+        "body": "• Việc đang diễn ra tại 1 thời điểm trong quá khứ (At 8 pm I was watching TV).\n• Việc đang làm thì việc khác xen vào: quá khứ tiếp diễn + when + quá khứ đơn.\n• Hai việc song song: while + quá khứ tiếp diễn.",
+        "table": [["Chủ ngữ", "Công thức"], ["I / He / She / It", "was + V-ing"], ["You / We / They", "were + V-ing"]],
+        "examples": [
+          {"ko": "I was taking a shower when you called.", "vi": "Tôi đang tắm thì bạn gọi."},
+          {"ko": "While she was cooking, he was cleaning.", "vi": "Trong lúc cô ấy nấu ăn thì anh ấy dọn dẹp."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-mao-tu",
+    "icon": "particle",
+    "title": "Mạo từ & từ chỉ lượng",
+    "subtitle": "a / an / the, some / any, much / many",
+    "rules": [
+      {
+        "id": "en-a-an",
+        "title": "a / an – “một” cái chưa xác định",
+        "summary": "a trước ÂM phụ âm, an trước ÂM nguyên âm (xét theo cách đọc, không theo chữ).",
+        "body": "• Chỉ dùng với danh từ đếm được SỐ ÍT, nhắc tới lần đầu hoặc không cụ thể.\n• Xét theo ÂM đầu: an hour (h câm), an umbrella, nhưng a university (đọc /ju/), a European.\n• Nói nghề nghiệp: She is a doctor (không bỏ a như tiếng Việt).",
+        "table": [["Danh từ", "Mạo từ"], ["book, car, university", "a"], ["apple, egg, hour, umbrella", "an"], ["water, money (không đếm được)", "không dùng a/an"]],
+        "examples": [
+          {"ko": "I need an umbrella.", "vi": "Tôi cần một cái ô."},
+          {"ko": "He is a teacher.", "vi": "Anh ấy là giáo viên."}
+        ]
+      },
+      {
+        "id": "en-the",
+        "title": "the – cái đã xác định",
+        "summary": "Người nghe biết là cái nào: đã nhắc trước, duy nhất, đã rõ ngữ cảnh.",
+        "body": "• Nhắc lại lần 2: I saw a dog. The dog was big.\n• Thứ duy nhất: the sun, the moon, the internet.\n• So sánh nhất, số thứ tự: the best, the first.\n• Không dùng the với: tên người, đa số tên nước/thành phố (Vietnam, Seoul), bữa ăn (have lunch), môn học, nói chung chung (I like cats).",
+        "table": [["Dùng the", "Không dùng the"], ["the USA, the UK (có States/Kingdom)", "Vietnam, Korea"], ["the river, the sea", "breakfast, lunch"], ["the cats in my house (cụ thể)", "I love cats. (nói chung)"]],
+        "examples": [
+          {"ko": "Can you close the door, please?", "vi": "Bạn đóng giúp cái cửa nhé?"},
+          {"ko": "This is the best coffee in town.", "vi": "Đây là cà phê ngon nhất thị trấn."}
+        ]
+      },
+      {
+        "id": "en-some-any",
+        "title": "some / any",
+        "summary": "some cho câu khẳng định & lời mời · any cho phủ định & câu hỏi.",
+        "body": "• some: khẳng định (I have some money), lời mời / đề nghị (Would you like some tea?).\n• any: phủ định (I don’t have any money), câu hỏi (Do you have any questions?).\n• Dùng được với cả danh từ đếm được số nhiều và không đếm được.",
+        "table": [["Câu", "Từ dùng"], ["Khẳng định", "some"], ["Phủ định", "any"], ["Câu hỏi thường", "any"], ["Mời / xin", "some"]],
+        "examples": [
+          {"ko": "Would you like some water?", "vi": "Bạn uống chút nước không?"},
+          {"ko": "We don’t have any milk.", "vi": "Nhà mình hết sữa rồi."}
+        ]
+      },
+      {
+        "id": "en-much-many",
+        "title": "much / many / a lot of",
+        "summary": "many + đếm được số nhiều · much + không đếm được · a lot of dùng cho cả hai.",
+        "body": "• many books, many people – đếm được.\n• much time, much water – không đếm được, hay dùng trong phủ định / câu hỏi.\n• a lot of / lots of: dùng được cho cả hai, tự nhiên trong câu khẳng định.\n• Hỏi số lượng: How many…? / How much…? (How much cũng dùng để hỏi giá).",
+        "table": [["Loại danh từ", "Ít", "Nhiều"], ["Đếm được (apples)", "a few", "many / a lot of"], ["Không đếm được (water)", "a little", "much / a lot of"]],
+        "examples": [
+          {"ko": "How much is this shirt?", "vi": "Cái áo này bao nhiêu tiền?"},
+          {"ko": "There are a lot of people here.", "vi": "Ở đây đông người quá."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-gioi-tu",
+    "icon": "link",
+    "title": "Giới từ",
+    "subtitle": "in / on / at, giới từ đi kèm động từ",
+    "rules": [
+      {
+        "id": "en-in-on-at-time",
+        "title": "in / on / at với thời gian",
+        "summary": "at giờ · on ngày · in tháng / năm / mùa / buổi.",
+        "body": "• at: giờ cụ thể, thời điểm (at 7 o’clock, at night, at the weekend – Anh Anh).\n• on: ngày, thứ, ngày lễ cụ thể (on Monday, on 5th May, on my birthday).\n• in: tháng, năm, mùa, buổi, khoảng dài (in May, in 2024, in summer, in the morning).\n• Không dùng giới từ trước this / next / last / every (next week, every day).",
+        "table": [["Giới từ", "Đi với", "Ví dụ"], ["at", "giờ", "at 9 am, at noon"], ["on", "ngày, thứ", "on Friday, on 2nd June"], ["in", "tháng, năm, buổi", "in July, in 2025, in the evening"]],
+        "examples": [
+          {"ko": "The meeting starts at 9 on Monday.", "vi": "Cuộc họp bắt đầu lúc 9 giờ thứ Hai."},
+          {"ko": "I was born in 2004.", "vi": "Tôi sinh năm 2004."}
+        ]
+      },
+      {
+        "id": "en-in-on-at-place",
+        "title": "in / on / at với nơi chốn",
+        "summary": "in bên trong · on trên bề mặt · at tại một điểm.",
+        "body": "• in: bên trong không gian (in the room, in Hanoi, in a car).\n• on: trên bề mặt, phương tiện công cộng (on the table, on the wall, on the bus).\n• at: tại một điểm / địa chỉ / sự kiện (at home, at work, at the bus stop, at a party).",
+        "table": [["Giới từ", "Ví dụ"], ["in", "in the kitchen, in Vietnam, in a taxi"], ["on", "on the floor, on the second floor, on the train"], ["at", "at school, at the door, at 25 Le Loi Street"]],
+        "examples": [
+          {"ko": "My keys are on the table.", "vi": "Chìa khoá của tôi ở trên bàn."},
+          {"ko": "I’m at home now.", "vi": "Giờ tôi đang ở nhà."}
+        ]
+      },
+      {
+        "id": "en-dong-tu-gioi-tu",
+        "title": "Động từ + giới từ hay gặp",
+        "summary": "Học theo cụm: listen to, wait for, depend on, look after…",
+        "body": "• Nhiều động từ BẮT BUỘC đi với giới từ riêng, dịch sát tiếng Việt dễ sai (nghe nhạc → listen TO music, không phải listen music).\n• Cụm động từ (phrasal verb) đổi nghĩa hẳn: look for (tìm), look after (chăm sóc), give up (bỏ cuộc).",
+        "table": [["Cụm", "Nghĩa"], ["listen to", "nghe"], ["wait for", "chờ"], ["depend on", "phụ thuộc vào"], ["look for / look after", "tìm / chăm sóc"], ["be good at", "giỏi về"], ["be interested in", "thích, quan tâm"]],
+        "examples": [
+          {"ko": "I’m waiting for the bus.", "vi": "Tôi đang chờ xe buýt."},
+          {"ko": "She is good at math.", "vi": "Cô ấy giỏi toán."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-khuyet-thieu",
+    "icon": "polite",
+    "title": "Động từ khuyết thiếu & lịch sự",
+    "subtitle": "can, must, should, could, would…",
+    "rules": [
+      {
+        "id": "en-modal-co-ban",
+        "title": "Động từ khuyết thiếu: + V nguyên thể",
+        "summary": "can / could / must / should / may / might + V (không to, không chia).",
+        "body": "• Sau modal luôn là động từ NGUYÊN THỂ không “to”: She can swim (không phải can swims / can to swim).\n• Không thêm -s cho he/she/it: He must go.\n• Phủ định thêm not: can’t, shouldn’t, mustn’t.",
+        "table": [["Modal", "Nghĩa"], ["can / could", "có thể (khả năng, xin phép)"], ["must", "phải (bắt buộc từ người nói)"], ["have to", "phải (do quy định, hoàn cảnh)"], ["should", "nên"], ["may / might", "có lẽ, có thể"]],
+        "examples": [
+          {"ko": "You should drink more water.", "vi": "Bạn nên uống thêm nước."},
+          {"ko": "I have to work tomorrow.", "vi": "Mai tôi phải đi làm."}
+        ]
+      },
+      {
+        "id": "en-lich-su",
+        "title": "Nói lịch sự: Could you…? Would you…?",
+        "summary": "Dùng could / would / may thay cho mệnh lệnh trực tiếp.",
+        "body": "• Nhờ vả: Could you help me? / Would you mind + V-ing? (Would you mind opening the window?)\n• Xin phép: May I…? / Can I…? (May I sit here?)\n• Gọi món, mua đồ: I’d like… (= I would like) lịch sự hơn I want…\n• Thêm please ở cuối và cảm ơn: Thank you / Thanks a lot.",
+        "table": [["Thô / trực tiếp", "Lịch sự"], ["Give me water.", "Could I have some water, please?"], ["I want a coffee.", "I’d like a coffee, please."], ["Open the door.", "Would you mind opening the door?"]],
+        "examples": [
+          {"ko": "Could you speak more slowly, please?", "vi": "Bạn nói chậm hơn được không?"},
+          {"ko": "I’d like a table for two.", "vi": "Cho tôi bàn cho hai người."}
+        ]
+      },
+      {
+        "id": "en-must-have-to",
+        "title": "must và have to khác nhau thế nào",
+        "summary": "must = tự thấy cần · have to = do quy định · mustn’t = cấm · don’t have to = không cần.",
+        "body": "• must: người nói tự thấy cần (I must call my mom).\n• have to: bên ngoài bắt buộc (I have to wear a uniform at work).\n• Phủ định khác hẳn nghĩa: mustn’t = KHÔNG ĐƯỢC; don’t have to = KHÔNG CẦN.",
+        "table": [["Câu", "Nghĩa"], ["You mustn’t smoke here.", "Không được hút thuốc ở đây."], ["You don’t have to come.", "Bạn không cần đến."]],
+        "examples": [
+          {"ko": "You mustn’t park here.", "vi": "Không được đỗ xe ở đây."},
+          {"ko": "We don’t have to hurry.", "vi": "Mình không cần vội."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-bat-quy-tac",
+    "icon": "irregular",
+    "title": "Động từ bất quy tắc",
+    "subtitle": "go – went – gone, 30 động từ hay dùng",
+    "rules": [
+      {
+        "id": "en-bqt-y-nghia",
+        "title": "3 cột: nguyên thể – quá khứ – phân từ",
+        "summary": "V1 dùng hiện tại · V2 dùng quá khứ đơn · V3 dùng hoàn thành & bị động.",
+        "body": "• Động từ có quy tắc: V2 = V3 = thêm -ed (work – worked – worked).\n• Bất quy tắc phải học thuộc 3 dạng. Mẹo: học theo nhóm có cùng mẫu biến đổi.\n• V2: I went home. · V3: I have gone / It was written.",
+        "table": [["Nguyên thể (V1)", "Quá khứ (V2)", "Phân từ (V3)", "Nghĩa"], ["be", "was / were", "been", "thì, là"], ["go", "went", "gone", "đi"], ["have", "had", "had", "có"], ["do", "did", "done", "làm"], ["see", "saw", "seen", "thấy"], ["eat", "ate", "eaten", "ăn"], ["take", "took", "taken", "lấy, mang"], ["give", "gave", "given", "cho"], ["write", "wrote", "written", "viết"], ["speak", "spoke", "spoken", "nói"]],
+        "examples": [
+          {"ko": "I have seen this movie twice.", "vi": "Tôi đã xem phim này hai lần."},
+          {"ko": "She wrote me a letter.", "vi": "Cô ấy viết cho tôi một lá thư."}
+        ]
+      },
+      {
+        "id": "en-bqt-nhom",
+        "title": "Nhóm theo mẫu cho dễ nhớ",
+        "summary": "Cả 3 giống nhau · V2 = V3 · đổi i – a – u…",
+        "body": "• Ba dạng giống nhau: cut, put, let, hit, cost, set.\n• V2 = V3: buy – bought, bring – brought, think – thought, teach – taught, sleep – slept, keep – kept, make – made, find – found, sell – sold, tell – told.\n• Mẫu i – a – u: begin – began – begun, drink – drank – drunk, swim – swam – swum, sing – sang – sung.\n• Mẫu V3 thêm -n/-en: drive – drove – driven, ride – rode – ridden, forget – forgot – forgotten.",
+        "table": [["Mẫu", "Ví dụ"], ["A – A – A", "cut – cut – cut, put – put – put"], ["A – B – B", "buy – bought – bought, sleep – slept – slept"], ["i – a – u", "drink – drank – drunk, swim – swam – swum"], ["A – B – A(+n)", "drive – drove – driven, take – took – taken"]],
+        "examples": [
+          {"ko": "I bought this bag last week.", "vi": "Tuần trước tôi mua cái túi này."},
+          {"ko": "Have you ever swum in the sea?", "vi": "Bạn đã bơi ở biển bao giờ chưa?"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-cau-phuc",
+    "icon": "structure",
+    "title": "Câu điều kiện, bị động, tường thuật",
+    "subtitle": "If…, be + V3, mệnh đề quan hệ",
+    "rules": [
+      {
+        "id": "en-dieu-kien",
+        "title": "Câu điều kiện loại 0, 1, 2, 3",
+        "summary": "Loại 1 có thể xảy ra · loại 2 không có thật ở hiện tại · loại 3 không có thật ở quá khứ.",
+        "body": "• Loại 0 – sự thật: If + hiện tại đơn, hiện tại đơn.\n• Loại 1 – có thể xảy ra: If + hiện tại đơn, will + V.\n• Loại 2 – giả định trái hiện tại: If + quá khứ đơn, would + V (If I were you…).\n• Loại 3 – tiếc nuối quá khứ: If + had + V3, would have + V3.",
+        "table": [["Loại", "Mệnh đề If", "Mệnh đề chính"], ["0", "If you heat ice,", "it melts."], ["1", "If it rains,", "I will stay home."], ["2", "If I had money,", "I would travel."], ["3", "If I had studied,", "I would have passed."]],
+        "examples": [
+          {"ko": "If I were you, I would take the job.", "vi": "Nếu tôi là bạn, tôi sẽ nhận việc đó."},
+          {"ko": "If you hurry, you will catch the bus.", "vi": "Nếu bạn nhanh lên thì sẽ kịp xe buýt."}
+        ]
+      },
+      {
+        "id": "en-bi-dong",
+        "title": "Câu bị động: be + V3",
+        "summary": "Nhấn vào đối tượng chịu tác động; người làm thêm by… (có thể bỏ).",
+        "body": "• Công thức: tân ngữ cũ làm chủ ngữ + be (chia theo thì) + V3 (+ by người làm).\n• Hay dùng khi không biết / không cần nói ai làm: My phone was stolen.\n• Chia be theo thì: is made, was made, has been made, will be made.",
+        "table": [["Thì", "Chủ động", "Bị động"], ["Hiện tại đơn", "They make cars here.", "Cars are made here."], ["Quá khứ đơn", "Someone stole my bike.", "My bike was stolen."], ["Hoàn thành", "They have built a bridge.", "A bridge has been built."]],
+        "examples": [
+          {"ko": "This house was built in 1990.", "vi": "Ngôi nhà này được xây năm 1990."},
+          {"ko": "English is spoken all over the world.", "vi": "Tiếng Anh được nói khắp thế giới."}
+        ]
+      },
+      {
+        "id": "en-quan-he",
+        "title": "Mệnh đề quan hệ: who / which / that / where",
+        "summary": "Nối 2 câu, bổ nghĩa cho danh từ đứng trước.",
+        "body": "• who: chỉ người (the man who lives next door).\n• which: chỉ vật (the book which I bought).\n• that: thay who / which trong mệnh đề xác định.\n• where: nơi chốn (the city where I was born); whose: sở hữu (the girl whose dad is a doctor).",
+        "table": [["Từ", "Dùng cho", "Ví dụ"], ["who", "người", "The woman who called you is my aunt."], ["which / that", "vật", "The phone that I bought is broken."], ["where", "nơi chốn", "This is the café where we met."]],
+        "examples": [
+          {"ko": "I have a friend who speaks five languages.", "vi": "Tôi có một người bạn nói được năm thứ tiếng."},
+          {"ko": "This is the restaurant where we had dinner.", "vi": "Đây là nhà hàng nơi bọn mình ăn tối."}
+        ]
+      },
+      {
+        "id": "en-tuong-thuat",
+        "title": "Câu tường thuật: lùi thì",
+        "summary": "said (that) + lùi 1 thì: am → was, will → would, đổi đại từ.",
+        "body": "• Kể lại lời người khác với said / told: thường lùi thì 1 bậc.\n• Hiện tại → quá khứ, quá khứ / hiện tại hoàn thành → quá khứ hoàn thành, will → would, can → could.\n• Đổi đại từ và trạng từ: I → he/she, today → that day, tomorrow → the next day.",
+        "table": [["Lời nói trực tiếp", "Tường thuật"], ["“I am tired.”", "She said she was tired."], ["“I will call you.”", "He said he would call me."], ["“I can swim.”", "She said she could swim."]],
+        "examples": [
+          {"ko": "He told me he was busy.", "vi": "Anh ấy bảo tôi là anh ấy bận."},
+          {"ko": "She said she would come later.", "vi": "Cô ấy nói lát nữa sẽ đến."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-tu-loai",
+    "icon": "alphabet",
+    "title": "Từ loại & so sánh",
+    "subtitle": "Hậu tố, tính từ – trạng từ, so sánh hơn / nhất",
+    "rules": [
+      {
+        "id": "en-hau-to",
+        "title": "Nhận diện từ loại qua hậu tố",
+        "summary": "-tion, -ment, -ness → danh từ · -ful, -ous, -able → tính từ · -ly → trạng từ.",
+        "body": "• Danh từ: -tion (information), -ment (development), -ness (happiness), -er/-or (teacher, actor), -ity (ability).\n• Tính từ: -ful (useful), -less (useless), -ous (famous), -able (comfortable), -al (national), -ive (active).\n• Động từ: -ize (organize), -en (widen), -ify (simplify).\n• Trạng từ: tính từ + -ly (quick → quickly, happy → happily).",
+        "table": [["Gốc", "Danh từ", "Tính từ", "Trạng từ"], ["success", "success", "successful", "successfully"], ["care", "care", "careful / careless", "carefully"], ["danger", "danger", "dangerous", "dangerously"]],
+        "examples": [
+          {"ko": "Please drive carefully.", "vi": "Làm ơn lái xe cẩn thận."},
+          {"ko": "This chair is very comfortable.", "vi": "Cái ghế này rất thoải mái."}
+        ]
+      },
+      {
+        "id": "en-tien-to",
+        "title": "Tiền tố đổi nghĩa",
+        "summary": "un-, in-, im-, dis- = không · re- = lại · pre- = trước · over- = quá.",
+        "body": "• Phủ định: un- (unhappy), in- (incorrect), im- trước p/m (impossible), il- trước l (illegal), ir- trước r (irregular), dis- (dislike).\n• re-: làm lại (rewrite, replay). pre-: trước (preview). over-: quá mức (oversleep). mis-: sai (misunderstand).",
+        "table": [["Tiền tố", "Ví dụ", "Nghĩa"], ["un-", "unhappy", "không vui"], ["im-", "impossible", "không thể"], ["re-", "rewrite", "viết lại"], ["mis-", "misunderstand", "hiểu lầm"]],
+        "examples": [
+          {"ko": "Sorry, I misunderstood you.", "vi": "Xin lỗi, tôi hiểu nhầm ý bạn."},
+          {"ko": "It’s impossible to finish today.", "vi": "Không thể xong trong hôm nay."}
+        ]
+      },
+      {
+        "id": "en-so-sanh",
+        "title": "So sánh hơn và so sánh nhất",
+        "summary": "Tính từ ngắn + -er / the -est · tính từ dài: more / the most.",
+        "body": "• Tính từ 1 âm tiết (và 2 âm tiết tận cùng -y): -er / -est (tall – taller – the tallest, happy – happier – the happiest).\n• Tính từ dài: more / the most (beautiful – more beautiful – the most beautiful).\n• Bất quy tắc: good – better – the best, bad – worse – the worst, far – farther – the farthest.\n• So sánh bằng: as + tính từ + as (as tall as).",
+        "table": [["Tính từ", "So sánh hơn", "So sánh nhất"], ["cheap", "cheaper", "the cheapest"], ["big", "bigger", "the biggest"], ["expensive", "more expensive", "the most expensive"], ["good", "better", "the best"]],
+        "examples": [
+          {"ko": "This phone is cheaper than that one.", "vi": "Điện thoại này rẻ hơn cái kia."},
+          {"ko": "She is the best student in my class.", "vi": "Cô ấy là học sinh giỏi nhất lớp tôi."}
+        ]
+      },
+      {
+        "id": "en-trat-tu-tinh-tu",
+        "title": "Trật tự nhiều tính từ",
+        "summary": "Ý kiến – kích thước – tuổi – hình dạng – màu – nguồn gốc – chất liệu + danh từ.",
+        "body": "• Mẹo nhớ OSASCOMP: Opinion (ý kiến), Size, Age, Shape, Color, Origin, Material, Purpose.\n• Ví dụ: a beautiful small old round red Korean wooden table – thực tế chỉ dùng 2–3 tính từ.",
+        "table": [["Đúng", "Sai"], ["a nice big house", "a big nice house"], ["a small black bag", "a black small bag"], ["an old Korean song", "a Korean old song"]],
+        "examples": [
+          {"ko": "She has long black hair.", "vi": "Cô ấy có mái tóc đen dài."},
+          {"ko": "I bought a beautiful leather jacket.", "vi": "Tôi mua một chiếc áo khoác da đẹp."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-phat-am",
+    "icon": "sound",
+    "title": "Phát âm",
+    "subtitle": "Đuôi -s, -ed, trọng âm, âm câm, nối âm",
+    "rules": [
+      {
+        "id": "en-duoi-s",
+        "title": "Đọc đuôi -s / -es",
+        "summary": "/s/ sau âm vô thanh · /ɪz/ sau âm gió · /z/ còn lại.",
+        "body": "• /s/ sau p, t, k, f, θ: books, cats, stops.\n• /ɪz/ sau s, z, ʃ, tʃ, dʒ (âm gió): buses, watches, oranges.\n• /z/ sau nguyên âm và phụ âm hữu thanh còn lại: dogs, plays, phones.\n• Người Việt hay bỏ âm cuối – nhớ bật rõ âm s / z.",
+        "table": [["Âm", "Ví dụ"], ["/s/", "books, maps, laughs"], ["/ɪz/", "boxes, washes, pages"], ["/z/", "bags, cars, sees"]],
+        "examples": [
+          {"ko": "She watches two movies every week.", "vi": "Mỗi tuần cô ấy xem hai bộ phim."},
+          {"ko": "My dogs like to play.", "vi": "Mấy con chó của tôi thích chơi."}
+        ]
+      },
+      {
+        "id": "en-duoi-ed",
+        "title": "Đọc đuôi -ed",
+        "summary": "/ɪd/ sau t, d · /t/ sau âm vô thanh · /d/ còn lại.",
+        "body": "• /ɪd/ sau t, d: wanted, needed, visited.\n• /t/ sau âm vô thanh p, k, f, s, ʃ, tʃ: stopped, worked, laughed, washed, watched.\n• /d/ còn lại: played, cleaned, lived.\n• Lỗi hay gặp: đọc worked thành “uốc-kệt” – đúng là /wɜːkt/, chỉ 1 âm tiết.",
+        "table": [["Âm", "Ví dụ"], ["/ɪd/", "wanted, decided"], ["/t/", "helped, looked, finished"], ["/d/", "called, opened, studied"]],
+        "examples": [
+          {"ko": "I worked late and watched a movie.", "vi": "Tôi làm muộn rồi xem phim."},
+          {"ko": "She decided to stay.", "vi": "Cô ấy quyết định ở lại."}
+        ]
+      },
+      {
+        "id": "en-trong-am",
+        "title": "Trọng âm từ",
+        "summary": "Đọc sai trọng âm người nghe khó hiểu hơn cả sai âm.",
+        "body": "• Danh từ / tính từ 2 âm tiết: thường nhấn âm 1 (TAble, HAPpy).\n• Động từ 2 âm tiết: thường nhấn âm 2 (reLAX, beGIN).\n• Có từ đổi nghĩa theo trọng âm: REcord (danh từ – bản ghi) / reCORD (động từ – ghi lại), PREsent / preSENT.\n• Từ có -tion, -sion, -ic: nhấn ngay âm trước nó (inforMAtion, ecoNOmic).",
+        "table": [["Từ", "Trọng âm"], ["PHOtograph", "âm 1"], ["phoTOgrapher", "âm 2"], ["photoGRAphic", "âm 3"]],
+        "examples": [
+          {"ko": "I need more information.", "vi": "Tôi cần thêm thông tin."},
+          {"ko": "Please relax and enjoy.", "vi": "Cứ thư giãn và tận hưởng nhé."}
+        ]
+      },
+      {
+        "id": "en-am-cam-noi-am",
+        "title": "Âm câm và nối âm",
+        "summary": "Chữ viết mà không đọc · phụ âm cuối nối sang nguyên âm đầu từ sau.",
+        "body": "• Âm câm hay gặp: k trong know, knife · w trong write, answer · b trong comb, climb · h trong hour, honest · l trong talk, walk, half · t trong listen, castle.\n• Nối âm: phụ âm cuối + nguyên âm đầu đọc liền: turn off → “tơ-nóp”, pick it up → “pi-ki-tắp”.\n• Nghe người bản xứ nói nhanh khó vì nối âm – luyện bắt chước cả cụm.",
+        "table": [["Từ", "Đọc"], ["know", "/noʊ/ – k câm"], ["hour", "/aʊər/ – h câm"], ["listen", "/ˈlɪsən/ – t câm"], ["an apple", "nối: “ơ-náp-pồ”"]],
+        "examples": [
+          {"ko": "Turn it off, please.", "vi": "Tắt nó đi giúp mình."},
+          {"ko": "I know the answer.", "vi": "Tôi biết câu trả lời."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-so-dem",
+    "icon": "number",
+    "title": "Số, giờ & ngày tháng",
+    "subtitle": "Số đếm, số thứ tự, giờ giấc, năm",
+    "rules": [
+      {
+        "id": "en-so",
+        "title": "Số đếm và số thứ tự",
+        "summary": "1st, 2nd, 3rd, còn lại thêm -th. Chú ý -teen và -ty.",
+        "body": "• Số thứ tự: first, second, third, rồi thêm -th (fourth, fifth – đổi ve → f, twelfth, twentieth – y → ie).\n• Phân biệt -teen (nhấn sau: fifTEEN) và -ty (nhấn trước: FIFty).\n• Số lớn: 1,000 = one thousand · 1,000,000 = one million · 250 = two hundred and fifty (Anh Anh có and).",
+        "table": [["Số", "Đếm", "Thứ tự"], ["1", "one", "first (1st)"], ["2", "two", "second (2nd)"], ["3", "three", "third (3rd)"], ["5", "five", "fifth (5th)"], ["20", "twenty", "twentieth (20th)"]],
+        "examples": [
+          {"ko": "My office is on the fifth floor.", "vi": "Văn phòng tôi ở tầng năm."},
+          {"ko": "It costs fifteen dollars, not fifty.", "vi": "Nó giá mười lăm đô, không phải năm mươi."}
+        ]
+      },
+      {
+        "id": "en-gio",
+        "title": "Nói giờ",
+        "summary": "Cách dễ nhất: đọc giờ rồi phút (seven thirty). Cách truyền thống: past / to.",
+        "body": "• Cách dễ: 7:30 = seven thirty, 9:45 = nine forty-five.\n• past (hơn) / to (kém): 7:15 = a quarter past seven, 7:30 = half past seven, 7:45 = a quarter to eight.\n• Giờ chẵn: o’clock (eight o’clock). Sáng a.m., chiều tối p.m.",
+        "table": [["Giờ", "Cách nói"], ["8:00", "eight o’clock"], ["8:15", "eight fifteen / a quarter past eight"], ["8:30", "eight thirty / half past eight"], ["8:50", "eight fifty / ten to nine"]],
+        "examples": [
+          {"ko": "What time is it? It’s half past six.", "vi": "Mấy giờ rồi? Sáu rưỡi."},
+          {"ko": "The train leaves at ten to nine.", "vi": "Tàu chạy lúc chín giờ kém mười."}
+        ]
+      },
+      {
+        "id": "en-ngay-thang",
+        "title": "Ngày tháng và năm",
+        "summary": "Ngày dùng số thứ tự · năm đọc theo cặp 2 số.",
+        "body": "• Anh Mỹ: May 5th (May fifth) · Anh Anh: 5th May (the fifth of May).\n• Năm: 1998 = nineteen ninety-eight · 2004 = two thousand and four · 2025 = twenty twenty-five.\n• Tháng, thứ luôn viết HOA: Monday, January.",
+        "table": [["Viết", "Đọc"], ["July 4th", "July fourth"], ["1990", "nineteen ninety"], ["2010", "twenty ten / two thousand and ten"]],
+        "examples": [
+          {"ko": "My birthday is on March 21st.", "vi": "Sinh nhật tôi là ngày 21 tháng Ba."},
+          {"ko": "I graduated in twenty twenty-two.", "vi": "Tôi tốt nghiệp năm 2022."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-giao-tiep",
+    "icon": "link",
+    "title": "Mẫu câu giao tiếp",
+    "subtitle": "Chào hỏi, nhờ vả, đồng ý, từ chối",
+    "rules": [
+      {
+        "id": "en-chao-hoi",
+        "title": "Chào hỏi & giới thiệu",
+        "summary": "Hi / Hello, Nice to meet you, How’s it going?",
+        "body": "• Chào: Hi / Hello / Hey (thân mật) / Good morning (trang trọng).\n• Hỏi thăm: How are you? / How’s it going? → Good, thanks. And you?\n• Gặp lần đầu: Nice to meet you. → Nice to meet you too.\n• Giới thiệu: I’m Huy. I’m from Vietnam. I work as a…",
+        "table": [["Câu", "Đáp"], ["How are you?", "I’m good, thanks. And you?"], ["Nice to meet you.", "Nice to meet you too."], ["Where are you from?", "I’m from Vietnam."]],
+        "examples": [
+          {"ko": "Hi, I’m Huy. Nice to meet you.", "vi": "Chào, mình là Huy. Rất vui được gặp bạn."},
+          {"ko": "How’s it going?", "vi": "Dạo này thế nào?"}
+        ]
+      },
+      {
+        "id": "en-dong-y-tu-choi",
+        "title": "Đồng ý, từ chối, xin lỗi",
+        "summary": "Sure / No problem · I’m afraid… · Sorry, my bad.",
+        "body": "• Đồng ý: Sure. / Of course. / No problem. / Sounds good.\n• Từ chối nhẹ nhàng: I’m afraid I can’t. / Thanks, but I’m busy.\n• Xin lỗi: Sorry. / I’m so sorry. / My bad (thân mật) → No worries. / That’s okay.\n• Không nghe rõ: Sorry? / Could you say that again?",
+        "table": [["Ý", "Câu"], ["Đồng ý", "Sure, no problem."], ["Từ chối", "I’m afraid I can’t make it."], ["Đáp lời xin lỗi", "No worries."], ["Nhờ nhắc lại", "Could you repeat that, please?"]],
+        "examples": [
+          {"ko": "Sounds good, see you at seven.", "vi": "Được đó, hẹn bảy giờ nhé."},
+          {"ko": "I’m afraid I can’t come tonight.", "vi": "Tiếc là tối nay mình không đến được."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "en-loi-sai",
+    "icon": "mistake",
+    "title": "Lỗi người Việt hay mắc",
+    "subtitle": "Quên -s, quên chia thì, dịch từng chữ",
+    "rules": [
+      {
+        "id": "en-loi-chia",
+        "title": "Quên chia động từ",
+        "summary": "He go ❌ → He goes ✅ · Yesterday I go ❌ → went ✅.",
+        "body": "• Tiếng Việt không chia động từ nên rất hay quên: thêm -s cho he/she/it ở hiện tại đơn, đổi sang quá khứ khi kể chuyện đã qua.\n• Sau do/does/did và modal, động từ về nguyên thể: Does he goes ❌ → Does he go ✅.",
+        "table": [["Sai", "Đúng"], ["She like music.", "She likes music."], ["Yesterday I buy a book.", "Yesterday I bought a book."], ["Did you went?", "Did you go?"], ["He can speaks English.", "He can speak English."]],
+        "examples": [
+          {"ko": "My brother works in a bank.", "vi": "Anh trai tôi làm ở ngân hàng."},
+          {"ko": "Last night I watched a movie.", "vi": "Tối qua tôi xem phim."}
+        ]
+      },
+      {
+        "id": "en-loi-dich-sat",
+        "title": "Dịch từng chữ từ tiếng Việt",
+        "summary": "I very like ❌ · I am agree ❌ · People is ❌.",
+        "body": "• “Tôi rất thích” → I really like / I like it very much (KHÔNG nói I very like).\n• “Tôi đồng ý” → I agree (agree là động từ, không cần am).\n• “Mọi người” → people là số nhiều: People are…\n• “Tôi đang làm việc ở…” cho công việc lâu dài → I work at… (hiện tại đơn).\n• “Mở / tắt đèn” → turn on / turn off (không dùng open / close).",
+        "table": [["Sai", "Đúng"], ["I very like it.", "I really like it."], ["I am agree.", "I agree."], ["People is friendly.", "People are friendly."], ["Open the light.", "Turn on the light."]],
+        "examples": [
+          {"ko": "I really like this song.", "vi": "Tôi rất thích bài hát này."},
+          {"ko": "Can you turn off the TV?", "vi": "Bạn tắt TV được không?"}
+        ]
+      },
+      {
+        "id": "en-loi-tu-de-nham",
+        "title": "Cặp từ dễ nhầm",
+        "summary": "borrow / lend, say / tell, bored / boring, fun / funny…",
+        "body": "• borrow = mượn (của ai) · lend = cho mượn.\n• say something · tell somebody something.\n• -ed: cảm xúc của người (I’m bored) · -ing: tính chất gây ra cảm xúc (The movie is boring).\n• fun = vui (trải nghiệm) · funny = buồn cười.\n• make (tạo ra: make a cake) · do (làm việc: do homework).",
+        "table": [["Từ", "Ví dụ"], ["borrow / lend", "Can I borrow your pen? / Can you lend me your pen?"], ["bored / boring", "I’m bored. This class is boring."], ["make / do", "make a mistake / do the dishes"]],
+        "examples": [
+          {"ko": "Can you lend me some money?", "vi": "Bạn cho mình mượn ít tiền được không?"},
+          {"ko": "I’m so tired after work.", "vi": "Sau giờ làm tôi mệt quá."}
+        ]
+      }
+    ]
+  }
+]

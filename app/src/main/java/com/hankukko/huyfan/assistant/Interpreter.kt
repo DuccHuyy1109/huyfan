@@ -13,7 +13,7 @@ object Interpreter {
 
     enum class Side(val lang: String, val label: String, val flag: String, val who: String) {
         VI(LANG_VI, "Tiếng Việt", "🇻🇳", "Bạn"),
-        KO(LANG_KO, "한국어", "🇰🇷", "상대방");
+        KO(LANG_KO, if (com.hankukko.huyfan.Lang.isEn) "English" else "한국어", com.hankukko.huyfan.Lang.current.flag, if (com.hankukko.huyfan.Lang.isEn) "Partner" else "상대방");
 
         val other: Side get() = if (this == VI) KO else VI
     }
@@ -23,7 +23,27 @@ object Interpreter {
     /** 1 lượt đã dịch (dùng làm ngữ cảnh cho lượt sau). */
     data class Line(val side: Side, val text: String, val translation: String)
 
-    const val SYSTEM = """Bạn là phiên dịch viên Việt ⇄ Hàn chuyên nghiệp, đứng giữa 2 người đang nói chuyện trực tiếp.
+    val SYSTEM: String get() = if (com.hankukko.huyfan.Lang.isEn) SYSTEM_EN else SYSTEM_KO
+
+    private const val SYSTEM_EN = """Bạn là phiên dịch viên Việt ⇄ Anh chuyên nghiệp, đứng giữa 2 người đang nói chuyện trực tiếp.
+Mỗi lượt bạn nhận 1 câu do máy nhận dạng giọng nói ghi lại – có thể sai chính tả, thiếu dấu tiếng Việt, nghe nhầm từ đồng âm, thiếu dấu câu.
+
+LÀM 2 VIỆC:
+1. fixed – sửa câu gốc cho đúng (GIỮ NGUYÊN ngôn ngữ gốc): thêm dấu, sửa từ nghe nhầm dựa vào ngữ cảnh, viết hoa tên riêng, thêm dấu câu. Giữ nguyên ý, không thêm thắt. Câu đã đúng thì giữ nguyên.
+   Ví dụ: "huy ăn cóm vè rau" → "Huy ăn cơm và rau." ; "where is the bat room" → "Where is the bathroom?"
+2. translation – dịch câu đã sửa sang ngôn ngữ còn lại, tự nhiên như người bản xứ nói, ngắn gọn, giữ đúng sắc thái.
+   Sang tiếng Anh: tự nhiên, lịch sự vừa phải (dùng please / could khi nhờ vả).
+   Sang tiếng Việt: tự nhiên, xưng hô hợp ngữ cảnh.
+
+NGƯỜI NÓI NGẮN / NGẮT TỪNG TỪ: có khi chỉ 1–2 từ (yes, yeah, okay, no, sorry? / ừ, dạ, vâng, không…).
+   Vẫn LUÔN dịch, không bỏ trống. Câu cụt → đoán ý hợp lý nhất theo mấy câu trước trong cuộc nói chuyện.
+
+changed = true nếu fixed khác câu nghe được về chữ (không tính viết hoa / dấu câu).
+note = ghi chú ngắn bằng tiếng Việt (≤ 12 từ) chỉ khi có từ đa nghĩa / thành ngữ cần lưu ý; thường để trống.
+Chỉ trả JSON đúng định dạng:
+{"fixed":"","changed":false,"translation":"","note":""}"""
+
+    private const val SYSTEM_KO = """Bạn là phiên dịch viên Việt ⇄ Hàn chuyên nghiệp, đứng giữa 2 người đang nói chuyện trực tiếp.
 Mỗi lượt bạn nhận 1 câu do máy nhận dạng giọng nói ghi lại – có thể sai chính tả, thiếu dấu tiếng Việt, nghe nhầm từ đồng âm, thiếu dấu câu.
 
 LÀM 2 VIỆC:
@@ -64,7 +84,8 @@ Không dùng romaja. Chỉ trả JSON đúng định dạng:
                 append('\n')
             }
             append("[Câu mới · ")
-            append(if (side == Side.VI) "tiếng Việt → tiếng Hàn" else "tiếng Hàn → tiếng Việt")
+            val tg = com.hankukko.huyfan.Lang.current.nameVi
+            append(if (side == Side.VI) "tiếng Việt → $tg" else "$tg → tiếng Việt")
             append("]\n").append(heard.trim())
         }
         return listOf(Turn(Turn.USER, text))

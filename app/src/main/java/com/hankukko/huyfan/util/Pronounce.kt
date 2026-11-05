@@ -63,7 +63,40 @@ object Pronounce {
         return ((1.0 - lev(a, b).toDouble() / m) * 100).toInt().coerceIn(0, 100)
     }
 
+    /** Tiếng Anh (câu mẫu không có Hangul): chấm theo từng từ, tô màu cả từ. */
+    private fun scoreWords(target: String, heard: String): Result {
+        fun norm(s: String) = s.lowercase().replace('’', '\'').filter { it.isLetterOrDigit() || it == '\'' }
+        val tWords = Regex("[A-Za-z0-9’']+").findAll(target).toList()
+        val hWords = heard.split(Regex("[^A-Za-z0-9’']+")).map(::norm).filter { it.isNotBlank() }
+        if (tWords.isEmpty() || hWords.isEmpty()) return Result(0, target.map { it to Mark.NEUTRAL }, heard)
+        val marks = Array(target.length) { Mark.NEUTRAL }
+        var total = 0
+        var used = 0
+        tWords.forEach { m ->
+            val w = norm(m.value)
+            // Tìm từ khớp nhất trong câu nghe được (ưu tiên theo thứ tự)
+            var best = 0
+            var bestAt = -1
+            for (k in used until hWords.size) {
+                val r = ratio(w, hWords[k])
+                if (r > best) { best = r; bestAt = k }
+                if (r == 100) break
+            }
+            if (bestAt >= 0 && best >= 60) used = bestAt + 1
+            total += best
+            val mark = when {
+                best == 100 -> Mark.OK
+                best >= 60 -> Mark.CLOSE
+                else -> Mark.MISS
+            }
+            for (i in m.range) marks[i] = mark
+        }
+        val score = (total / tWords.size).coerceIn(0, 100)
+        return Result(score, target.mapIndexed { i, c -> c to marks[i] }, heard)
+    }
+
     fun score(target: String, heard: String): Result {
+        if (target.none(::isSyl)) return scoreWords(target, heard)
         val tSyl = target.filter(::isSyl)
         val hSyl = heard.filter(::isSyl)
         val score = when {

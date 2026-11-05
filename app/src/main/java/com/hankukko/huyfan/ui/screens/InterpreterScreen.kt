@@ -179,7 +179,7 @@ fun InterpreterDialog(onDismiss: () -> Unit) {
                     IconButton(onClick = onDismiss) { Icon(Icons.Rounded.Close, "Đóng") }
                     Column(Modifier.weight(1f)) {
                         Text("Phiên dịch hội thoại", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                        Text("🇻🇳 ⇄ 🇰🇷 · tự sửa câu nghe nhầm", style = MaterialTheme.typography.labelMedium, color = x.muted)
+                        Text("🇻🇳 ⇄ ${com.hankukko.huyfan.Lang.current.flag} · tự sửa câu nghe nhầm", style = MaterialTheme.typography.labelMedium, color = x.muted)
                     }
                     if (turns.isNotEmpty()) {
                         IconButton(onClick = { engine.cancel(); c.speaker.stop(); listening = null; turns.clear() }) {
@@ -262,16 +262,16 @@ private fun IntroCard() {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(Icons.Rounded.Translate, null, tint = Color.White)
             Spacer(Modifier.width(8.dp))
-            Text("Nói chuyện với người Hàn", color = Color.White, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+            Text(if (com.hankukko.huyfan.Lang.isEn) "Nói chuyện với người nước ngoài" else "Nói chuyện với người Hàn", color = Color.White, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
         }
         Spacer(Modifier.height(8.dp))
         Text(
-            "Bấm 🇻🇳 rồi nói · ⛶ để phóng to cho người Hàn đọc.",
+            if (com.hankukko.huyfan.Lang.isEn) "Bấm 🇻🇳 rồi nói · ⛶ để phóng to cho người đối diện đọc." else "Bấm 🇻🇳 rồi nói · ⛶ để phóng to cho người Hàn đọc.",
             color = Color.White.copy(alpha = 0.93f), style = MaterialTheme.typography.bodySmall,
         )
         Spacer(Modifier.height(8.dp))
         Text(
-            "한국어로 말씀하시려면 🇰🇷 버튼을 눌러 주세요.",
+            if (com.hankukko.huyfan.Lang.isEn) "To speak English, tap the ${com.hankukko.huyfan.Lang.current.flag} button." else "한국어로 말씀하시려면 🇰🇷 버튼을 눌러 주세요.",
             color = Color.White, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold,
         )
     }
@@ -323,7 +323,7 @@ private fun TurnBubble(t: ITurn, onSpeak: (String) -> Unit, onBig: () -> Unit) {
                     }
                     Row(Modifier.padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         SmallAction(Icons.AutoMirrored.Rounded.VolumeUp, "Nghe lại", color) { onSpeak(t.translation) }
-                        SmallAction(Icons.Rounded.Fullscreen, if (mine) "Cho người Hàn xem" else "Phóng to", color, onBig)
+                        SmallAction(Icons.Rounded.Fullscreen, if (mine) (if (com.hankukko.huyfan.Lang.isEn) "Cho người kia xem" else "Cho người Hàn xem") else "Phóng to", color, onBig)
                     }
                 }
             }
@@ -360,7 +360,7 @@ private fun LiveBubble(side: Side, partial: String) {
             Box(Modifier.size(8.dp).clip(CircleShape).background(Brand.Red.copy(alpha = pulse)))
             Spacer(Modifier.width(6.dp))
             Text(
-                if (mine) "Đang nghe tiếng Việt…" else "한국어를 듣고 있어요…",
+                if (mine) "Đang nghe tiếng Việt…" else (if (com.hankukko.huyfan.Lang.isEn) "Listening to English…" else "한국어를 듣고 있어요…"),
                 style = MaterialTheme.typography.labelMedium, color = color, fontWeight = FontWeight.Bold,
             )
         }
@@ -372,7 +372,7 @@ private fun LiveBubble(side: Side, partial: String) {
                 .padding(14.dp)
         ) {
             Text(
-                partial.ifBlank { if (mine) "Nói đi, tui đang nghe…" else "말씀하세요…" },
+                partial.ifBlank { if (mine) "Nói đi, tui đang nghe…" else (if (com.hankukko.huyfan.Lang.isEn) "Please speak…" else "말씀하세요…") },
                 style = MaterialTheme.typography.bodyLarge, fontStyle = if (partial.isBlank()) FontStyle.Italic else FontStyle.Normal,
                 color = if (partial.isBlank()) x.muted else MaterialTheme.colorScheme.onBackground,
             )
@@ -401,7 +401,7 @@ private fun SideMic(side: Side, color: Color, active: Boolean, modifier: Modifie
         Column {
             Text("${side.flag} ${side.label}", color = Color.White, fontWeight = FontWeight.Bold)
             Text(
-                if (active) (if (side == Side.VI) "Đang nghe…" else "듣는 중…") else (if (side == Side.VI) "Bạn nói" else "상대방 말하기"),
+                if (active) (if (side == Side.VI) "Đang nghe…" else (if (com.hankukko.huyfan.Lang.isEn) "Listening…" else "듣는 중…")) else (if (side == Side.VI) "Bạn nói" else (if (com.hankukko.huyfan.Lang.isEn) "Partner speaks" else "상대방 말하기")),
                 color = Color.White.copy(alpha = 0.85f), style = MaterialTheme.typography.labelSmall, maxLines = 1,
             )
         }
@@ -446,7 +446,7 @@ fun BigTranslation(translation: String, original: String, toKorean: Boolean, onS
                     .padding(bottom = 24.dp),
                 horizontalArrangement = Arrangement.spacedBy(14.dp),
             ) {
-                BigAction(Icons.AutoMirrored.Rounded.VolumeUp, if (toKorean) "다시 듣기" else "Nghe lại", onSpeak)
+                BigAction(Icons.AutoMirrored.Rounded.VolumeUp, if (toKorean) (if (com.hankukko.huyfan.Lang.isEn) "Play again" else "다시 듣기") else "Nghe lại", onSpeak)
                 BigAction(Icons.Rounded.ScreenRotation, "Lật", { flipped = !flipped })
                 BigAction(Icons.Rounded.Close, "Đóng", onDismiss)
             }

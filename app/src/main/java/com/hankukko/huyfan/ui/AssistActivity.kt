@@ -508,7 +508,7 @@ private fun AssistSheet(
                     onClick = onMic, size = 64.dp,
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                if (!com.hankukko.huyfan.Lang.isEn) {
+                run {
                     com.hankukko.huyfan.ui.screens.TranslateModeButton(
                         onConversation = { engine.cancel(); interpreter = true },
                         onAuto = { engine.cancel(); autoInterpreter = true },

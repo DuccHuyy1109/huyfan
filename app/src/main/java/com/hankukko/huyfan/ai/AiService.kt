@@ -113,11 +113,17 @@ class AiService(private val httpClient: OkHttpClient, private val settings: Sett
     }
 
     /** Whisper chỉ được hiểu là Việt hoặc Hàn: "vi" / "ko", ngôn ngữ khác (Anh, Nhật…) → null. */
+    private val vietMark = Regex("[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]", RegexOption.IGNORE_CASE)
+
+    /** Mã Whisper của ngôn ngữ đang học. Kết quả trả về app vẫn ghi "ko" = ngôn ngữ đang học. */
+    private val target: String get() = if (com.hankukko.huyfan.Lang.isEn) "en" else "ko"
+
     private fun whisperLang(r: OpenAiCompatClient.Transcript): String? {
         val l = r.language.lowercase()
         val h = hangulRatio(r.text)
         return when {
-            (l.contains("korean") || l == "ko") && h >= 0.5 -> "ko"
+            com.hankukko.huyfan.Lang.isEn && (l.contains("english") || l == "en") && h == 0.0 && !vietMark.containsMatchIn(r.text) -> "ko"
+            !com.hankukko.huyfan.Lang.isEn && (l.contains("korean") || l == "ko") && h >= 0.5 -> "ko"
             (l.contains("vietnamese") || l == "vi") && h < 0.2 -> "vi"
             else -> null
         }
@@ -145,6 +151,11 @@ class AiService(private val httpClient: OkHttpClient, private val settings: Sett
                     if (r.text.isNotBlank()) Log.i("HuyFanAI", "bỏ ($tag): '${r.text.take(40)}'")
                     return Heard("", "", "whisper")
                 }
+                // Tiếng Anh: "Thank you." trên nền ồn mà Whisper không chắc = câu bịa
+                if (com.hankukko.huyfan.Lang.isEn && isNoiseThanks(r.text) && r.logprob < -0.6) {
+                    Log.i("HuyFanAI", "bỏ ($tag): '${r.text.take(40)}' – câu cảm ơn nghi bịa")
+                    return Heard("", "", "whisper")
+                }
                 val lang = whisperLang(r)
                 if (lang != null) {
                     Log.i("HuyFanAI", "nghe [$lang] ($tag): '${r.text.take(40)}'")
@@ -152,21 +163,27 @@ class AiService(private val httpClient: OkHttpClient, private val settings: Sett
                 }
                 Log.i("HuyFanAI", "whisper đoán '${r.language}' (${r.text.take(40)}) → không phải Việt/Hàn")
                 // "Thank you." / "Спасибо." / "ありがとう" trên tiếng ồn = Whisper bịa, không phải lời nói
-                if (isNoiseThanks(r.text)) return Heard("", "", "whisper")
+                if (!com.hankukko.huyfan.Lang.isEn && isNoiseThanks(r.text)) return Heard("", "", "whisper")
                 // Chữ tạm: thà không hiện còn hơn hiện sai ngôn ngữ
                 if (quick) return Heard("", "", "whisper")
                 // Nghe lại, ép lần lượt tiếng Việt và tiếng Hàn → lấy bản Whisper tự tin hơn
                 if (takeWhisper(2, keep = 0)) {
                     val (vi, ko) = coroutineScope {
                         val a = async { whisper(s, wav, "vi") }
-                        val b = async { whisper(s, wav, "ko") }
+                        val b = async { whisper(s, wav, target) }
                         a.await() to b.await()
                     }
                     fun score(t: OpenAiCompatClient.Transcript?, korean: Boolean): Double {
                         if (t == null || t.text.isBlank() || isHallucination(t.text) || t.compression > 2.4 || tooLong(t.text) || t.noSpeech > 0.9) return Double.NEGATIVE_INFINITY
                         val h = hangulRatio(t.text)
                         // Ép Hàn mà ra toàn chữ Latin (hoặc ngược lại) = đang dịch/bịa → trừ điểm nặng
-                        val penalty = if (korean) (if (h < 0.5) 2.0 else 0.0) else (if (h > 0.2 || !looksVietnamese(t.text)) 2.0 else 0.0)
+                        val words = t.text.split(Regex("\\s+")).count { w -> w.any { it.isLetter() } }
+                        val penalty = when {
+                            com.hankukko.huyfan.Lang.isEn && korean -> if (h > 0.0 || vietMark.containsMatchIn(t.text)) 2.0 else 0.0
+                            com.hankukko.huyfan.Lang.isEn -> if (h > 0.2 || !looksVietnamese(t.text) || (words >= 2 && !vietMark.containsMatchIn(t.text))) 2.0 else 0.0
+                            korean -> if (h < 0.5) 2.0 else 0.0
+                            else -> if (h > 0.2 || !looksVietnamese(t.text)) 2.0 else 0.0
+                        }
                         return t.logprob - penalty
                     }
                     // Cả 2 lần nghe lại đều lỗi (hết lượt Groq / mạng) → không bỏ câu, để Gemini nghe thay
@@ -190,7 +207,11 @@ class AiService(private val httpClient: OkHttpClient, private val settings: Sett
         if (quick) return Heard("", "", "whisper")
         // Gemini nghe thẳng âm thanh
         if (s.geminiKey.isBlank()) throw AiException("no key", "Cần Groq key hoặc Gemini key để dịch tự động.")
-        val system = """Bạn nhận 1 đoạn ghi âm ngắn trong cuộc nói chuyện giữa người Việt và người Hàn.
+        val system = if (com.hankukko.huyfan.Lang.isEn) """Bạn nhận 1 đoạn ghi âm ngắn trong cuộc nói chuyện giữa người Việt và người nói tiếng Anh.
+Chép lại CHÍNH XÁC lời nói (đúng ngôn ngữ gốc, có dấu, có dấu câu) và cho biết ngôn ngữ: "vi" (tiếng Việt) hoặc "en" (tiếng Anh).
+Người nói CHỈ dùng tiếng Việt hoặc tiếng Anh: nghe giống ngôn ngữ khác thì chọn ngôn ngữ gần nhất trong 2 ngôn ngữ này và chép bằng ngôn ngữ đó, KHÔNG dịch.
+Không có lời nói rõ ràng (chỉ tiếng ồn, nhạc, im lặng) → lang = "none", text = "". Tuyệt đối không bịa.
+Chỉ trả JSON: {"lang":"vi","text":""}""" else """Bạn nhận 1 đoạn ghi âm ngắn trong cuộc nói chuyện giữa người Việt và người Hàn.
 Chép lại CHÍNH XÁC lời nói (đúng ngôn ngữ gốc, có dấu, có dấu câu) và cho biết ngôn ngữ: "vi" (tiếng Việt) hoặc "ko" (tiếng Hàn).
 Người nói CHỈ dùng tiếng Việt hoặc tiếng Hàn: nghe giống tiếng Anh/ngôn ngữ khác thì đó là tiếng Việt hoặc tiếng Hàn phát âm chưa rõ → chọn ngôn ngữ gần nhất và chép bằng ngôn ngữ đó, KHÔNG dịch, KHÔNG chép tiếng Anh.
 Không có lời nói rõ ràng (chỉ tiếng ồn, nhạc, im lặng) → lang = "none", text = "". Tuyệt đối không bịa.
@@ -207,6 +228,10 @@ Chỉ trả JSON: {"lang":"vi","text":""}"""
             return Heard("", "", "gemini")
         }
         val hangul = text.count { it in '\uAC00'..'\uD7A3' }
+        if (com.hankukko.huyfan.Lang.isEn) {
+            val en = lang.startsWith("en") || (!lang.startsWith("vi") && !vietMark.containsMatchIn(text))
+            return Heard(if (en) "ko" else "vi", text, "gemini")
+        }
         return Heard(if (lang.startsWith("ko") || hangul * 2 >= text.count { it.isLetter() }) "ko" else "vi", text, "gemini")
     }
 

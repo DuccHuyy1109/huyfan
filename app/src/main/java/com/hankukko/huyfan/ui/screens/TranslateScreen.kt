@@ -60,7 +60,7 @@ fun TranslateScreen(onConversation: () -> Unit, onAuto: () -> Unit) {
         item {
             Column(Modifier.padding(start = 4.dp)) {
                 Text("Phiên dịch", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-                Text("🇻🇳 Việt ⇄ Hàn 🇰🇷", style = MaterialTheme.typography.bodySmall, color = x.muted)
+                Text(if (com.hankukko.huyfan.Lang.isEn) "🇻🇳 Việt ⇄ Anh 🇬🇧" else "🇻🇳 Việt ⇄ Hàn 🇰🇷", style = MaterialTheme.typography.bodySmall, color = x.muted)
             }
         }
         item {

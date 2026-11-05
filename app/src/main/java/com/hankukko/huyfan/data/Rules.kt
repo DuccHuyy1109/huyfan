@@ -40,7 +40,7 @@ object RuleBook {
     private var cache: List<RuleCategory>? = null
 
     fun load(context: Context): List<RuleCategory> = cache ?: synchronized(this) {
-        cache ?: parse(context.assets.open("rules_vi.json").bufferedReader().use { it.readText() }).also { cache = it }
+        cache ?: parse(context.assets.open(if (com.hankukko.huyfan.Lang.isEn) "rules_en.json" else "rules_vi.json").bufferedReader().use { it.readText() }).also { cache = it }
     }
 
     private fun parse(json: String): List<RuleCategory> {

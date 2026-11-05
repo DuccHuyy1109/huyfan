@@ -46,6 +46,7 @@ object RuleLinks {
 
     /** Hiện tượng biến âm khi đọc 1 từ/cụm từ (tối đa vài mục, không trùng). */
     fun soundRules(text: String): List<RuleLink> {
+        if (com.hankukko.huyfan.Lang.isEn) return emptyList() // liên kết quy tắc chỉ có cho tiếng Hàn
         val out = LinkedHashMap<String, String>()
         text.split(' ', '.', ',', '?', '!').filter { it.isNotBlank() }.forEach { word ->
             val s = word.map { syl(it) }
@@ -102,7 +103,7 @@ object RuleLinks {
         }
     }
 
-    fun forVocab(ko: String): List<RuleLink> = listOfNotNull(irregular(ko)) + soundRules(ko)
+    fun forVocab(ko: String): List<RuleLink> = if (com.hankukko.huyfan.Lang.isEn) emptyList() else listOfNotNull(irregular(ko)) + soundRules(ko)
 
     // ---------------------------------------------------------------- Ngữ pháp
     private fun gkey(p: String) = p.replace(Regex("[\\s\\-~()/·.]"), "")
@@ -132,6 +133,7 @@ object RuleLinks {
     )
 
     fun forGrammar(pattern: String, form: String = ""): List<RuleLink> {
+        if (com.hankukko.huyfan.Lang.isEn) return emptyList() // liên kết quy tắc chỉ có cho tiếng Hàn
         val k = gkey(pattern)
         if (k.isEmpty()) return emptyList()
         val out = LinkedHashMap<String, String>()

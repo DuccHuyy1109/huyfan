@@ -214,7 +214,7 @@ fun ReviewScreen(
         item { DueHero(due) { due?.let { if (it.count > 0) onStart(dueSession(it)) } } }
 
         // ---------- Luyện nói ----------
-        if (!com.hankukko.huyfan.Lang.isEn) item {
+        item {
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 PracticeTile(
                     "Phát âm", "Chấm điểm", Icons.Rounded.GraphicEq, Brand.Teal,

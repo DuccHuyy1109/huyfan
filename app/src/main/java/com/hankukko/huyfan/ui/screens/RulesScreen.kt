@@ -277,7 +277,7 @@ fun RulesScreen(vm: MainViewModel, onAsk: (String) -> Unit) {
                     contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 24.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    item { IntroCard(onAsk = { onAsk("Cho tôi lộ trình học ngữ pháp tiếng Hàn từ cơ bản, nên học nguyên tắc nào trước?") }) }
+                    item { IntroCard(onAsk = { onAsk("Cho tôi lộ trình học ngữ pháp ${com.hankukko.huyfan.Lang.current.nameVi} từ cơ bản, nên học nguyên tắc nào trước?") }) }
                     items(all, key = { it.id }) { c ->
                         val i = all.indexOf(c)
                         CategoryCard(c, categoryColors[i % categoryColors.size]) { openId = c.id }
@@ -355,7 +355,7 @@ fun RuleChips(links: List<RuleLink>, onOpen: (String) -> Unit, modifier: Modifie
 }
 
 private fun askText(r: Rule): String =
-    "Giải thích kỹ hơn nguyên tắc tiếng Hàn: “${r.title}” (${r.summary}). Cho thêm vài ví dụ dễ hiểu nhé. " +
+    "Giải thích kỹ hơn nguyên tắc ${com.hankukko.huyfan.Lang.current.nameVi}: “${r.title}” (${r.summary}). Cho thêm vài ví dụ dễ hiểu nhé. " +
         "Đây là câu hỏi về nguyên tắc chung, chỉ cần giải thích, không cần thêm từ vựng hay ngữ pháp vào sổ."
 
 @Composable
@@ -370,11 +370,11 @@ private fun IntroCard(onAsk: () -> Unit) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(Icons.Rounded.AutoStories, null, tint = Color.White, modifier = Modifier.size(22.dp))
             Spacer(Modifier.width(8.dp))
-            Text("Cẩm nang tiếng Hàn", color = Color.White, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            Text("Cẩm nang ${com.hankukko.huyfan.Lang.current.nameVi}", color = Color.White, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
         }
         Spacer(Modifier.height(6.dp))
         Text(
-            "Cấu trúc, tiểu từ, bất quy tắc, biến âm – chạm ví dụ để nghe.",
+            if (com.hankukko.huyfan.Lang.isEn) "Thì, mạo từ, giới từ, phát âm – chạm ví dụ để nghe." else "Cấu trúc, tiểu từ, bất quy tắc, biến âm – chạm ví dụ để nghe.",
             color = Color.White.copy(alpha = 0.92f), style = MaterialTheme.typography.bodyMedium,
         )
         Spacer(Modifier.height(10.dp))
