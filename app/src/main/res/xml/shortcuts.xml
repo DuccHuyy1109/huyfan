@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_quick_ask"
+        android:shortcutId="ask"
+        android:shortcutLongLabel="@string/sc_ask_long"
+        android:shortcutShortLabel="@string/sc_ask_short">
+        <intent
+            android:action="com.hankukko.huyfan.ASK"
+            android:targetClass="com.hankukko.huyfan.ui.AssistActivity"
+            android:targetPackage="com.hankukko.huyfan" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="standby"
+        android:shortcutLongLabel="@string/sc_standby_long"
+        android:shortcutShortLabel="@string/sc_standby_short">
+        <intent
+            android:action="com.hankukko.huyfan.TOGGLE_STANDBY"
+            android:targetClass="com.hankukko.huyfan.ui.ActionActivity"
+            android:targetPackage="com.hankukko.huyfan" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="vocab"
+        android:shortcutLongLabel="@string/sc_vocab_long"
+        android:shortcutShortLabel="@string/sc_vocab_short">
+        <intent
+            android:action="com.hankukko.huyfan.OPEN_VOCAB"
+            android:targetClass="com.hankukko.huyfan.ui.MainActivity"
+            android:targetPackage="com.hankukko.huyfan" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="review"
+        android:shortcutLongLabel="@string/sc_review_long"
+        android:shortcutShortLabel="@string/sc_review_short">
+        <intent
+            android:action="com.hankukko.huyfan.OPEN_REVIEW"
+            android:targetClass="com.hankukko.huyfan.ui.MainActivity"
+            android:targetPackage="com.hankukko.huyfan" />
+    </shortcut>
+</shortcuts>

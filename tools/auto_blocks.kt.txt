@@ -1,0 +1,133 @@
+/** Các câu liền nhau cùng 1 ngôn ngữ gom thành 1 khối (giống dịch trực tiếp của Google Dịch). */
+private data class Block(val key: Long, val side: Side?, val lines: List<AutoLine>) {
+    val done: List<AutoLine> get() = lines.filter { it.stage == AutoLine.Stage.DONE && it.error == null }
+    val translation: String get() = done.joinToString("\n") { sentence(it.translation) }
+    val original: String get() = done.joinToString("\n") { sentence(it.fixed.ifBlank { it.heard }) }
+}
+
+/** Ngừng nói = hết câu → thêm dấu chấm nếu thiếu. */
+private fun sentence(t: String): String {
+    val s = t.trim()
+    return if (s.isEmpty() || s.last() in ".!?…。~") s else "$s."
+}
+
+private fun blocksOf(lines: List<AutoLine>): List<Block> {
+    val out = mutableListOf<Block>()
+    for (l in lines) {
+        val last = out.lastOrNull()
+        // Câu chưa rõ ngôn ngữ (đang nghe) tạm nối vào khối hiện tại
+        if (last != null && (l.side == null || last.side == null || l.side == last.side)) {
+            out[out.lastIndex] = last.copy(side = last.side ?: l.side, lines = last.lines + l)
+        } else {
+            out += Block(l.id, l.side, listOf(l))
+        }
+    }
+    return out
+}
+
+@Composable
+private fun BlockCard(b: Block, onSpeak: () -> Unit, onCopy: () -> Unit, onBig: () -> Unit) {
+    val x = LocalExtra.current
+    val color = when (b.side) {
+        Side.VI -> Brand.Blue
+        Side.KO -> Brand.Teal
+        null -> x.muted
+    }
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .animateContentSize()
+            .clip(RoundedCornerShape(24.dp))
+            .background(x.card)
+            .border(1.dp, color.copy(alpha = 0.32f), RoundedCornerShape(24.dp))
+            .padding(start = 18.dp, end = 8.dp, top = 8.dp, bottom = 16.dp)
+    ) {
+        // Tiêu đề: chiều dịch + thao tác
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    when (b.side) { Side.VI -> "Việt"; Side.KO -> "Hàn"; null -> "…" },
+                    style = MaterialTheme.typography.labelLarge, color = x.muted,
+                )
+                Text("  →  ", style = MaterialTheme.typography.labelLarge, color = color, fontWeight = FontWeight.Bold)
+                Text(
+                    when (b.side) { Side.VI -> "Hàn"; Side.KO -> "Việt"; null -> "…" },
+                    style = MaterialTheme.typography.labelLarge, color = color, fontWeight = FontWeight.Bold,
+                )
+            }
+            if (b.done.isNotEmpty()) {
+                RoundAction(Icons.Rounded.ContentCopy, "Sao chép", x.muted, onCopy)
+                RoundAction(Icons.AutoMirrored.Rounded.VolumeUp, "Nghe", color, onSpeak)
+                RoundAction(Icons.Rounded.Fullscreen, "Phóng to", x.muted, onBig)
+            }
+        }
+        Spacer(Modifier.height(6.dp))
+        // Mỗi câu 1 dòng: xong → chỉ bản dịch; đang dịch → song ngữ
+        b.lines.forEach { l -> SentenceRow(l, color) }
+    }
+}
+
+@Composable
+private fun RoundAction(icon: androidx.compose.ui.graphics.vector.ImageVector, desc: String, tint: Color, onClick: () -> Unit) {
+    Box(
+        Modifier
+            .padding(start = 6.dp)
+            .size(38.dp)
+            .clip(CircleShape)
+            .background(tint.copy(alpha = 0.10f))
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) { Icon(icon, desc, tint = tint, modifier = Modifier.size(19.dp)) }
+}
+
+@Composable
+private fun SentenceRow(l: AutoLine, color: Color) {
+    val x = LocalExtra.current
+    var showOriginal by remember(l.id) { mutableStateOf(false) }
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .padding(end = 10.dp, top = 4.dp, bottom = 4.dp)
+            .animateContentSize()
+    ) {
+        when {
+            l.error != null -> Text(l.error, color = Brand.Red, style = MaterialTheme.typography.bodySmall)
+            l.stage == AutoLine.Stage.HEARING -> Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularProgressIndicator(Modifier.size(14.dp), strokeWidth = 2.dp, color = color)
+                Spacer(Modifier.width(8.dp))
+                Text("…", color = x.muted, style = MaterialTheme.typography.titleLarge)
+            }
+            l.stage == AutoLine.Stage.TRANSLATING -> {
+                // Đang dịch: song ngữ – câu gốc + chỗ chờ bản dịch
+                Text(
+                    sentence(l.heard), color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.75f),
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 4.dp)) {
+                    Box(Modifier.width(3.dp).height(18.dp).clip(CircleShape).background(color))
+                    Spacer(Modifier.width(8.dp))
+                    CircularProgressIndicator(Modifier.size(13.dp), strokeWidth = 2.dp, color = color)
+                    Spacer(Modifier.width(6.dp))
+                    Text("đang dịch…", color = color, style = MaterialTheme.typography.labelMedium)
+                }
+            }
+            else -> {
+                // Xong: chỉ hiện bản dịch (chạm để xem lại câu gốc)
+                Text(
+                    sentence(l.translation),
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.clickable { showOriginal = !showOriginal },
+                )
+                if (showOriginal) {
+                    Text(sentence(l.fixed.ifBlank { l.heard }), color = x.muted, style = MaterialTheme.typography.bodyMedium)
+                    if (l.changed) {
+                        Text(
+                            "✏️ nghe được: “${l.heard}”", color = x.muted, style = MaterialTheme.typography.labelSmall,
+                            textDecoration = TextDecoration.LineThrough,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

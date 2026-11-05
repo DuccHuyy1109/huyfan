@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path
+        name="exports"
+        path="exports/" />
+    <!-- Ảnh chụp tạm để hỏi HUY FAN (sau khi nén sẽ chuyển vào thư mục ảnh chat riêng) -->
+    <cache-path
+        name="camera"
+        path="camera/" />
+</paths>

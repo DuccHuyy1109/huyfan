@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HUY FAN</string>
+    <string name="assist_label">HUY FAN</string>
+    <string name="quick_ask_label">Hỏi HUY FAN</string>
+    <string name="tile_standby">HUY FAN chờ</string>
+    <string name="tile_ask">Hỏi HUY FAN</string>
+    <string name="widget_label">HUY FAN</string>
+    <string name="widget_desc">Hỏi nhanh và bật/tắt chế độ chờ</string>
+    <string name="widget_word_label">Từ của ngày</string>
+    <string name="widget_word_desc">Mỗi ngày 1 từ trong sổ – nghe, lật xem nghĩa, ôn thẻ đến hạn</string>
+    <string name="sc_ask_short">Hỏi ngay</string>
+    <string name="sc_ask_long">Hỏi HUY FAN ngay</string>
+    <string name="sc_standby_short">Bật/tắt chờ</string>
+    <string name="sc_standby_long">Bật/tắt chế độ chờ HUY FAN</string>
+    <string name="sc_vocab_short">Sổ từ</string>
+    <string name="sc_vocab_long">Sổ từ vựng hôm nay</string>
+    <string name="sc_review_short">Ôn tập</string>
+    <string name="sc_review_long">Ôn tập bằng flashcard</string>
+    <string name="a11y_label">HUY FAN – Bong bóng trên màn hình khoá</string>
+    <string name="a11y_summary">Hiện bong bóng HUY FAN cả khi máy đang khoá</string>
+    <string name="a11y_desc">Android chỉ cho dịch vụ Trợ năng hiện lên trên màn hình khoá. HUY FAN dùng quyền này DUY NHẤT để vẽ bong bóng chat nổi, chạm vào là hỏi ngay mà không cần mở khoá. Không đọc nội dung màn hình, không thao tác thay bạn.</string>
+</resources>

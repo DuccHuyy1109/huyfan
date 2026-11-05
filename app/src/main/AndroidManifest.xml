@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Android 11+: cần khai báo để thấy dịch vụ nhận diện giọng nói & đọc văn bản -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <application
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:name=".HuyFanApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HuyFan"
+        tools:targetApi="35">
+
+        <!-- App đầy đủ: trò chuyện, sổ từ, ôn tập, lịch sử, cài đặt -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+
+        <!-- Bảng trợ lý bật lên (kiểu Google Assistant/Bixby). Hiện được trên màn hình khoá. -->
+        <activity
+            android:name=".ui.AssistActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/assist_label"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.hankukko.huyfan.assist"
+            android:theme="@style/Theme.HuyFan.Assist"
+            android:turnScreenOn="true"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="UnusedAttribute">
+            <!-- Cho phép chọn làm "Ứng dụng trợ lý kỹ thuật số" (giữ phím sườn / vuốt góc) -->
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- Giữ nút trên tai nghe Bluetooth -->
+            <intent-filter>
+                <action android:name="android.intent.action.VOICE_COMMAND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Biểu tượng thứ 2 "Hỏi HUY FAN": mở thẳng chế độ nghe. Gán cho phím sườn Samsung. -->
+        <activity-alias
+            android:name=".QuickAsk"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_quick_ask"
+            android:label="@string/quick_ask_label"
+            android:roundIcon="@mipmap/ic_quick_ask"
+            android:targetActivity=".ui.AssistActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- Activity trong suốt, chỉ để bật/tắt chế độ chờ từ tile/widget/shortcut -->
+        <activity
+            android:name=".ui.ActionActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.HuyFan.Transparent" />
+
+        <service
+            android:name=".service.StandbyService"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <service
+            android:name=".service.StandbyTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_stat_huyfan"
+            android:label="@string/tile_standby"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.TOGGLEABLE_TILE"
+                android:value="true" />
+        </service>
+
+        <service
+            android:name=".service.AskTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_mic_white"
+            android:label="@string/tile_ask"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Bong bóng hiện cả trên màn hình khoá (lớp nổi Trợ năng) -->
+        <service
+            android:name=".service.BubbleAccessibilityService"
+            android:exported="true"
+            android:label="@string/a11y_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/bubble_accessibility" />
+        </service>
+
+        <receiver
+            android:name=".service.ReminderReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.hankukko.huyfan.REMIND" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".service.WordWidget"
+            android:exported="true"
+            android:label="@string/widget_word_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_word_info" />
+        </receiver>
+
+        <receiver
+            android:name=".service.HuyFanWidget"
+            android:exported="true"
+            android:label="@string/widget_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+</manifest>

@@ -1,0 +1,166 @@
+/**
+ * HUY FAN · Đồng bộ sổ từ vựng & ngữ pháp tiếng Hàn lên Google Sheets (phiên bản 2)
+ *
+ * Cách cài (làm 1 lần):
+ *  1. Mở https://sheets.new tạo 1 Google Sheet mới (đặt tên tuỳ ý, vd "HUY FAN - Từ vựng").
+ *  2. Menu Tiện ích mở rộng → Apps Script. Xoá hết code mẫu, dán toàn bộ đoạn này vào → bấm Lưu.
+ *  3. Bấm Triển khai → Tùy chọn triển khai mới → biểu tượng bánh răng → chọn "Ứng dụng web".
+ *       - Thực thi với tư cách: Tôi
+ *       - Người có quyền truy cập: Bất kỳ ai
+ *     Bấm Triển khai → Cấp quyền truy cập (nếu Google cảnh báo, chọn Nâng cao → Đi tới dự án).
+ *  4. Sao chép "URL ứng dụng web" (kết thúc bằng /exec) → dán vào app HUY FAN:
+ *     Cài đặt → Google Sheets → Link Apps Script → bấm "Gửi thử".
+ *
+ * Đã cài bản cũ? Dán đè mã này → Lưu → Triển khai → Quản lý triển khai → ✏️ (Chỉnh sửa)
+ *   → Phiên bản: "Phiên bản mới" → Triển khai. Link /exec giữ nguyên, không cần dán lại.
+ *
+ * File có 2 trang tính, tạo sẵn ngay lần kết nối đầu tiên:
+ *   - "Từ vựng": mỗi từ 1 dòng, có cột Ngày để lọc/ôn theo ngày.
+ *   - "Ngữ pháp": mỗi đuôi câu/ngữ pháp 1 dòng.
+ * Mục trùng (cùng ID) sẽ được cập nhật, không nhân đôi. Cột "Ôn tiếp" cho biết ngày cần ôn lại.
+ * App có thể kéo toàn bộ dữ liệu về (Khôi phục) khi cài sang máy mới.
+ */
+
+const VERSION = 2;
+const SHEET_NAME = 'Từ vựng';
+const SECRET = ''; // (tuỳ chọn) đặt mã bí mật ở đây và nhập y hệt vào app
+const HEADERS = ['ID', 'Ngày', 'Giờ', 'Tiếng Việt', 'Tiếng Hàn', 'Phiên âm', 'Hán Hàn', 'Hán Việt',
+  'Từ loại', 'Câu mẫu', 'Nghĩa câu mẫu', 'Ghi chú', 'Cấu tạo', 'Ôn tiếp', 'Khoảng ôn (ngày)', 'SRS'];
+const KEYS = ['uid', 'date', 'time', 'vi', 'ko', 'romaja', 'hanja', 'han_viet',
+  'pos', 'example_ko', 'example_vi', 'note', 'breakdown', 'next_review', 'interval', 'srs'];
+const GRAMMAR_SHEET = 'Ngữ pháp';
+const GRAMMAR_HEADERS = ['ID', 'Ngày', 'Giờ', 'Đuôi câu', 'Nghĩa', 'Dạng', 'Từ kết hợp',
+  'Câu mẫu', 'Nghĩa câu mẫu', 'Ghi chú', 'Cấu tạo', 'Ôn tiếp', 'Khoảng ôn (ngày)', 'SRS'];
+const GRAMMAR_KEYS = ['uid', 'date', 'time', 'pattern', 'meaning', 'form', 'combine',
+  'example_ko', 'example_vi', 'note', 'breakdown', 'next_review', 'interval', 'srs'];
+
+function doGet() {
+  return out_({ ok: true, app: 'HUY FAN', sheet: SHEET_NAME, version: VERSION });
+}
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    const data = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    if (SECRET && data.token !== SECRET) return out_({ ok: false, error: 'Sai mã bí mật' });
+
+    // Luôn có đủ 2 trang tính: Từ vựng + Ngữ pháp
+    const sh = sheet_(SHEET_NAME, HEADERS);
+    const gs = sheet_(GRAMMAR_SHEET, GRAMMAR_HEADERS);
+
+    // Khôi phục: trả toàn bộ dữ liệu về app
+    if (data.action === 'export') {
+      return out_({ ok: true, version: VERSION, items: rows_(sh, KEYS), grammar: rows_(gs, GRAMMAR_KEYS) });
+    }
+
+    const added = upsert_(sh, KEYS, data.items || []);
+    const gAdded = upsert_(gs, GRAMMAR_KEYS, data.grammar || []);
+
+    // Xoá (tìm ở cả 2 trang tính)
+    let removed = 0;
+    const deletes = data.deletes || [];
+    if (deletes.length) {
+      [sh, gs].forEach(function (s2) {
+        const map = idMap_(s2);
+        deletes.map(function (id) { return map[id]; })
+          .filter(function (r) { return !!r; })
+          .sort(function (a, b) { return b - a; })
+          .forEach(function (r) { s2.deleteRow(r); removed++; });
+      });
+    }
+    return out_({ ok: true, version: VERSION, added: added.added + gAdded.added, updated: added.updated + gAdded.updated, removed: removed });
+  } catch (err) {
+    return out_({ ok: false, error: String(err) });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** Thêm mới hoặc cập nhật theo ID. */
+function upsert_(sh, keys, list) {
+  const res = { added: 0, updated: 0 };
+  if (!list.length) return res;
+  const ids = idMap_(sh);
+  const newRows = [];
+  list.forEach(function (it) {
+    const row = keys.map(function (k) { const v = it[k]; return v == null ? '' : String(v); });
+    if (ids[it.uid]) {
+      sh.getRange(ids[it.uid], 1, 1, row.length).setValues([row]);
+      res.updated++;
+    } else {
+      newRows.push(row);
+    }
+  });
+  if (newRows.length) {
+    sh.getRange(sh.getLastRow() + 1, 1, newRows.length, keys.length).setNumberFormat('@').setValues(newRows);
+    res.added = newRows.length;
+  }
+  return res;
+}
+
+/** Đọc toàn bộ dòng dữ liệu thành mảng object theo khoá. */
+function rows_(sh, keys) {
+  const n = sh.getLastRow() - 1;
+  if (n <= 0) return [];
+  return sh.getRange(2, 1, n, keys.length).getValues()
+    .filter(function (r) { return !!r[0]; })
+    .map(function (r) {
+      const o = {};
+      keys.forEach(function (k, i) { o[k] = text_(r[i], k); });
+      return o;
+    });
+}
+
+/** Ô bị Google tự đổi thành ngày/giờ → đưa về chữ. */
+function text_(v, key) {
+  if (v && typeof v.getTime === 'function') {
+    const tz = Session.getScriptTimeZone();
+    return Utilities.formatDate(v, tz, key === 'time' ? 'HH:mm' : 'yyyy-MM-dd');
+  }
+  return v == null ? '' : String(v);
+}
+
+function sheet_(name, headers) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(name);
+  if (!sh) {
+    sh = ss.insertSheet(name, name === SHEET_NAME ? 0 : 1);
+    header_(sh, name, headers);
+    sh.setFrozenRows(1);
+    sh.hideColumns(1);
+    sh.setColumnWidth(2, 95);
+    sh.setColumnWidth(3, 55);
+    sh.setColumnWidths(4, headers.length - 3, 170);
+    // Xoá trang tính trống mặc định ("Trang tính1"/"Sheet1") cho gọn
+    ss.getSheets().forEach(function (o) {
+      if (o !== sh && /^(Sheet ?1|Trang tính ?1)$/i.test(o.getName()) && o.getLastRow() === 0 && ss.getSheets().length > 1) {
+        ss.deleteSheet(o);
+      }
+    });
+  } else if (sh.getRange(1, headers.length, 1, 1).getValues()[0][0] !== headers[headers.length - 1]) {
+    // Sheet tạo bởi bản cũ → bổ sung các cột mới (lịch ôn)
+    header_(sh, name, headers);
+  }
+  return sh;
+}
+
+function header_(sh, name, headers) {
+  sh.getRange(1, 1, 1, headers.length).setValues([headers])
+    .setFontWeight('bold').setBackground(name === SHEET_NAME ? '#4f7bff' : '#a45cff').setFontColor('#ffffff');
+  sh.hideColumns(headers.length); // cột SRS: dữ liệu kỹ thuật cho app
+}
+
+function idMap_(sh) {
+  const n = sh.getLastRow() - 1;
+  const map = {};
+  if (n <= 0) return map;
+  sh.getRange(2, 1, n, 1).getValues().forEach(function (r, i) {
+    if (r[0]) map[r[0]] = i + 2;
+  });
+  return map;
+}
+
+function out_(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}

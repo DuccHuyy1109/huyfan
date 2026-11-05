@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Chữ ㅎ (của 한국어) cách điệu -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M47,30h14a3,3 0,0 1,0 6h-14a3,3 0,0 1,0 -6zM38,41h32a3.25,3.25 0,0 1,0 6.5h-32a3.25,3.25 0,0 1,0 -6.5zM54,51a13,13 0,1 1,0 26a13,13 0,1 1,0 -26zM54,57a7,7 0,1 0,0 14a7,7 0,1 0,0 -14z" />
+    <path
+        android:fillColor="#FFFF4D6D"
+        android:pathData="M72,25.5a4.5,4.5 0,1 1,0 9a4.5,4.5 0,1 1,0 -9z" />
+</vector>

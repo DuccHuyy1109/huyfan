@@ -1,0 +1,723 @@
+[
+  {
+    "id": "cau-truc",
+    "icon": "structure",
+    "title": "Cấu trúc câu & cách dịch",
+    "subtitle": "Trật tự S–O–V, các bước dịch Việt → Hàn",
+    "rules": [
+      {
+        "id": "sov",
+        "title": "Trật tự câu: Chủ ngữ – Tân ngữ – Động từ",
+        "summary": "Động từ/tính từ luôn đứng CUỐI câu.",
+        "body": "• Tiếng Việt: Chủ ngữ + Động từ + Tân ngữ (Tôi ăn cơm).\n• Tiếng Hàn: Chủ ngữ + Tân ngữ + Động từ (저는 밥을 먹어요).\n• Vai trò của từng từ được đánh dấu bằng TIỂU TỪ phía sau (은/는, 이/가, 을/를…), nên trật tự các thành phần trước động từ khá linh hoạt, nhưng động từ thì luôn ở cuối.",
+        "table": [["Tiếng Việt", "Tiếng Hàn"], ["Tôi ăn cơm", "저는 밥을 먹어요"], ["Em học tiếng Hàn", "저는 한국어를 공부해요"], ["Mẹ mua táo ở chợ", "엄마가 시장에서 사과를 사요"]],
+        "examples": [
+          {"ko": "저는 커피를 마셔요.", "vi": "Tôi uống cà phê."},
+          {"ko": "동생이 책을 읽어요.", "vi": "Em tôi đọc sách."}
+        ]
+      },
+      {
+        "id": "dich-5-buoc",
+        "title": "5 bước dịch câu Việt → Hàn",
+        "summary": "Tìm động từ → chủ ngữ → tân ngữ → thời gian/nơi chốn → đuôi câu.",
+        "body": "1) Tìm động từ/tính từ chính → đặt ở CUỐI câu.\n2) Tìm chủ ngữ → thêm 은/는 (chủ đề) hoặc 이/가 (chủ ngữ).\n3) Tìm tân ngữ (cái bị tác động) → thêm 을/를.\n4) Thời gian → thêm 에 (내일, 오늘, 지금 không cần 에); nơi chốn → 에 (đi đến/ở) hoặc 에서 (làm việc tại).\n5) Chia đuôi câu theo THÌ (hiện tại/quá khứ/tương lai) và MỨC LỊCH SỰ (-아요/어요, -ㅂ니다/습니다…).\nThứ tự hay dùng: [Chủ ngữ] + [Thời gian] + [Nơi chốn] + [Tân ngữ] + [Động từ].",
+        "table": [["Bước", "Câu: “Ngày mai tôi học tiếng Hàn ở thư viện”"], ["1. Động từ", "học → 공부하다"], ["2. Chủ ngữ", "tôi → 저는"], ["3. Tân ngữ", "tiếng Hàn → 한국어를"], ["4. Thời gian/nơi chốn", "ngày mai → 내일; ở thư viện (làm việc tại) → 도서관에서"], ["5. Đuôi câu", "tương lai, lịch sự → 공부할 거예요"]],
+        "examples": [
+          {"ko": "저는 내일 도서관에서 한국어를 공부할 거예요.", "vi": "Ngày mai tôi sẽ học tiếng Hàn ở thư viện."}
+        ]
+      },
+      {
+        "id": "dinh-ngu",
+        "title": "Định ngữ đứng TRƯỚC danh từ",
+        "summary": "Việt: “áo đẹp” → Hàn: “đẹp áo” (예쁜 옷).",
+        "body": "• Tiếng Việt: danh từ + từ bổ nghĩa (áo đẹp, người tôi gặp hôm qua).\n• Tiếng Hàn: từ bổ nghĩa + danh từ.\n• Tính từ + -(으)ㄴ: 예쁘다 → 예쁜 옷, 좋다 → 좋은 사람.\n• Động từ hiện tại + -는: 먹는 음식 (món đang ăn).\n• Động từ quá khứ + -(으)ㄴ: 어제 만난 사람 (người gặp hôm qua).\n• Động từ tương lai + -(으)ㄹ: 내일 할 일 (việc sẽ làm ngày mai).\n• Sở hữu: Danh từ + 의 + danh từ (나의 책 = 내 책: sách của tôi) – thứ tự ngược tiếng Việt.",
+        "table": [["Tiếng Việt", "Tiếng Hàn"], ["áo đẹp", "예쁜 옷"], ["món tôi thích", "제가 좋아하는 음식"], ["người gặp hôm qua", "어제 만난 사람"], ["sách của bạn tôi", "제 친구의 책"]],
+        "examples": [
+          {"ko": "이것은 제가 좋아하는 노래예요.", "vi": "Đây là bài hát tôi thích."},
+          {"ko": "어제 본 영화가 재미있었어요.", "vi": "Bộ phim xem hôm qua hay lắm."}
+        ]
+      },
+      {
+        "id": "cau-hoi",
+        "title": "Câu hỏi & từ để hỏi",
+        "summary": "Giữ nguyên trật tự, đổi ngữ điệu/đuôi câu; từ để hỏi đặt đúng vị trí thông tin.",
+        "body": "• Câu hỏi có/không: giữ câu, lên giọng cuối câu: 밥을 먹어요? / trang trọng: 먹습니까?\n• Từ để hỏi đứng ở vị trí của thông tin cần hỏi, không đưa lên đầu câu như tiếng Anh.\n• Với từ để hỏi làm chủ ngữ, dùng 이/가: 누가 왔어요? (Ai đến?) – 누구 + 가 = 누가; 뭐 + 가 = 뭐가.",
+        "table": [["Từ để hỏi", "Nghĩa"], ["누구 (누가)", "ai"], ["뭐 / 무엇", "cái gì"], ["언제", "khi nào"], ["어디", "ở đâu"], ["왜", "tại sao"], ["어떻게", "như thế nào"], ["몇", "mấy (+ đơn vị đếm)"], ["얼마", "bao nhiêu (tiền)"], ["어느", "nào"]],
+        "examples": [
+          {"ko": "어디에 가요?", "vi": "Bạn đi đâu vậy?"},
+          {"ko": "이거 얼마예요?", "vi": "Cái này bao nhiêu tiền?"},
+          {"ko": "왜 한국어를 배워요?", "vi": "Sao bạn học tiếng Hàn?"}
+        ]
+      },
+      {
+        "id": "la-co",
+        "title": "Câu “là”, “có/không có”",
+        "summary": "N + 이에요/예요 (là); 있어요/없어요 (có/không có, ở/không ở).",
+        "body": "• Là: danh từ có patchim + 이에요, không patchim + 예요: 학생이에요, 의사예요. Trang trọng: 입니다.\n• Không phải là: N + 이/가 아니에요: 학생이 아니에요.\n• Có / ở: 있어요; không có / không ở: 없어요. Chủ thể dùng 이/가, nơi chốn dùng 에: 집에 고양이가 있어요.",
+        "table": [["Mẫu", "Ví dụ"], ["N이에요 (có patchim)", "선생님이에요"], ["N예요 (không patchim)", "친구예요"], ["N이/가 아니에요", "한국 사람이 아니에요"], ["N이/가 있어요/없어요", "시간이 없어요"]],
+        "examples": [
+          {"ko": "저는 베트남 사람이에요.", "vi": "Tôi là người Việt Nam."},
+          {"ko": "오늘은 시간이 없어요.", "vi": "Hôm nay tôi không có thời gian."}
+        ]
+      },
+      {
+        "id": "luoc-chu-ngu",
+        "title": "Lược bỏ chủ ngữ & cách xưng hô",
+        "summary": "Người Hàn hay bỏ “tôi/bạn” khi đã rõ; tránh dùng 당신.",
+        "body": "• Khi ngữ cảnh rõ, chủ ngữ thường bị bỏ: (저는) 배고파요 = Tôi đói.\n• 당신 nghe xa cách/hoặc dùng giữa vợ chồng, KHÔNG dùng để gọi người lạ. Thay bằng tên + 씨, chức danh (선생님, 사장님), hoặc bỏ hẳn.\n• Khiêm nhường: 저 (tôi), 제 (của tôi), 저희 (chúng tôi). Thân mật: 나, 내, 우리.\n• Tiếng Hàn hay dùng 우리 (chúng ta) thay cho “của tôi”: 우리 엄마, 우리 회사.",
+        "examples": [
+          {"ko": "배고파요. 밥 먹을래요?", "vi": "(Tôi) đói rồi. (Bạn) ăn cơm không?"},
+          {"ko": "민수 씨, 어디 가세요?", "vi": "Minsu ơi, anh đi đâu thế?"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tieu-tu",
+    "icon": "particle",
+    "title": "Tiểu từ (trợ từ)",
+    "subtitle": "은/는, 이/가, 을/를, 에, 에서, (으)로…",
+    "rules": [
+      {
+        "id": "eun-neun",
+        "title": "은/는 – tiểu từ chủ đề",
+        "summary": "Có patchim + 은, không patchim + 는. Nói về chủ đề / đối lập.",
+        "body": "• Đánh dấu CHỦ ĐỀ câu (“còn về… thì”), giới thiệu bản thân, nói sự thật chung.\n• Dùng để SO SÁNH, ĐỐI LẬP: 저는 커피를 좋아하고 동생은 차를 좋아해요.\n• Thông tin đã biết/được nhắc tới trước đó.",
+        "table": [["Danh từ", "+ 은/는"], ["책 (có patchim)", "책은"], ["저 (không patchim)", "저는"], ["오늘", "오늘은"]],
+        "examples": [
+          {"ko": "저는 학생이에요.", "vi": "Tôi là học sinh."},
+          {"ko": "오늘은 날씨가 좋아요.", "vi": "Hôm nay thì thời tiết đẹp."}
+        ]
+      },
+      {
+        "id": "i-ga",
+        "title": "이/가 – tiểu từ chủ ngữ",
+        "summary": "Có patchim + 이, không patchim + 가. Nhấn mạnh chủ thể, thông tin mới.",
+        "body": "• Đánh dấu CHỦ NGỮ, thông tin MỚI, trả lời câu hỏi “ai/cái gì”.\n• Bắt buộc với: 있다/없다, 되다, 아니다, tính từ chỉ trạng thái (좋다, 아프다…), câu phụ trong câu ghép.\n• 저 + 가 = 제가, 나 + 가 = 내가, 누구 + 가 = 누가.",
+        "table": [["Danh từ", "+ 이/가"], ["사람 (có patchim)", "사람이"], ["친구", "친구가"], ["저", "제가"], ["누구", "누가"]],
+        "examples": [
+          {"ko": "누가 왔어요? – 민수가 왔어요.", "vi": "Ai đến vậy? – Minsu đến."},
+          {"ko": "머리가 아파요.", "vi": "Tôi đau đầu."}
+        ]
+      },
+      {
+        "id": "eun-vs-i",
+        "title": "Phân biệt 은/는 và 이/가",
+        "summary": "은/는: chủ đề, đối lập, đã biết. 이/가: chủ ngữ, mới, nhấn mạnh “ai/cái gì”.",
+        "body": "• 저는 민수예요 (giới thiệu: Tôi thì là Minsu).\n• 제가 민수예요 (trả lời “Ai là Minsu?” – CHÍNH TÔI là Minsu).\n• Câu hỏi dùng 이/가 thì trả lời cũng thường dùng 이/가.\n• Mẹo: lần đầu nhắc → 이/가, nhắc lại sau → 은/는: 옛날에 공주가 살았어요. 공주는 아주 예뻤어요.",
+        "examples": [
+          {"ko": "이 사과는 맛있어요.", "vi": "Quả táo này thì ngon (nói về quả táo)."},
+          {"ko": "이 사과가 맛있어요.", "vi": "Quả táo NÀY ngon (chứ không phải quả khác)."}
+        ]
+      },
+      {
+        "id": "eul-reul",
+        "title": "을/를 – tiểu từ tân ngữ",
+        "summary": "Có patchim + 을, không patchim + 를. Đứng sau đối tượng bị tác động.",
+        "body": "• Đánh dấu tân ngữ của động từ: ăn CƠM, xem PHIM, học TIẾNG HÀN.\n• Khẩu ngữ thường lược bỏ: 밥 먹었어요?\n• Một số động từ dùng 을/를 khác tiếng Việt: 친구를 만나요 (gặp bạn), 버스를 타요 (đi xe buýt), 한국어를 잘해요.",
+        "table": [["Danh từ", "+ 을/를"], ["밥", "밥을"], ["영화", "영화를"], ["한국어", "한국어를"]],
+        "examples": [
+          {"ko": "주말에 친구를 만나요.", "vi": "Cuối tuần tôi gặp bạn."},
+          {"ko": "버스를 타고 회사에 가요.", "vi": "Tôi đi xe buýt đến công ty."}
+        ]
+      },
+      {
+        "id": "e-eseo",
+        "title": "에 và 에서",
+        "summary": "에: thời điểm, nơi ĐẾN, nơi TỒN TẠI. 에서: nơi HÀNH ĐỘNG diễn ra, “từ” đâu.",
+        "body": "• N + 에: thời gian (세 시에, 월요일에), nơi đến với 가다/오다 (학교에 가요), nơi tồn tại với 있다/없다/살다 (집에 있어요).\n• N + 에서: nơi diễn ra hành động (도서관에서 공부해요), điểm xuất phát (베트남에서 왔어요).\n• Không dùng 에 sau: 오늘, 내일, 어제, 지금.\n• Mẹo: có hành động “làm gì đó tại” → 에서; chỉ “ở/đến” → 에.",
+        "table": [["Câu", "Tiểu từ"], ["Tôi ở nhà", "집에 있어요"], ["Tôi học ở nhà", "집에서 공부해요"], ["Tôi đi đến trường", "학교에 가요"], ["Tôi đến từ Hà Nội", "하노이에서 왔어요"]],
+        "examples": [
+          {"ko": "아침 일곱 시에 일어나요.", "vi": "Tôi dậy lúc 7 giờ sáng."},
+          {"ko": "카페에서 친구를 기다려요.", "vi": "Tôi đợi bạn ở quán cà phê."}
+        ]
+      },
+      {
+        "id": "ege-hante",
+        "title": "에게 / 한테 / 께 – “cho, với (ai)”",
+        "summary": "Đi với người/động vật. 한테: khẩu ngữ; 께: kính ngữ. “Từ ai”: 에게서/한테서.",
+        "body": "• Dùng cho người/con vật nhận hành động: 친구에게 선물을 줘요.\n• 한테 thân mật hơn 에게; 께 kính trọng (할머니께 드려요).\n• Nhận TỪ ai: 에게서 / 한테서 (친구한테서 편지를 받았어요).\n• Với đồ vật/nơi chốn dùng 에: 꽃에 물을 줘요.",
+        "examples": [
+          {"ko": "엄마한테 전화했어요.", "vi": "Tôi đã gọi điện cho mẹ."},
+          {"ko": "선생님께 질문을 드렸어요.", "vi": "Tôi đã hỏi thầy giáo (kính ngữ)."}
+        ]
+      },
+      {
+        "id": "wa-gwa",
+        "title": "와/과, 하고, (이)랑 – “và, với”",
+        "summary": "와/과: viết, trang trọng; 하고: nói thường; (이)랑: thân mật.",
+        "body": "• 와 sau từ không patchim, 과 sau từ có patchim: 친구와 / 동생과.\n• 하고 dùng cho mọi từ: 빵하고 우유.\n• 랑 (không patchim), 이랑 (có patchim): 언니랑, 동생이랑.\n• Đi cùng ai: N와/과 같이/함께 (친구와 같이 가요).",
+        "examples": [
+          {"ko": "빵하고 우유를 샀어요.", "vi": "Tôi đã mua bánh mì và sữa."},
+          {"ko": "친구랑 같이 영화를 봤어요.", "vi": "Tôi xem phim cùng bạn."}
+        ]
+      },
+      {
+        "id": "euro",
+        "title": "(으)로 – phương tiện, hướng, chất liệu",
+        "summary": "Có patchim + 으로; không patchim hoặc patchim ㄹ + 로.",
+        "body": "• Phương tiện, công cụ: 버스로, 젓가락으로 (bằng đũa), 한국어로 (bằng tiếng Hàn).\n• Hướng đi: 오른쪽으로 가세요.\n• Chất liệu: 쌀로 만들어요.\n• Chọn lựa: 커피로 주세요 (cho tôi cà phê).\n• Ngoại lệ: patchim ㄹ dùng 로 – 지하철로, 연필로.",
+        "examples": [
+          {"ko": "지하철로 학교에 가요.", "vi": "Tôi đi học bằng tàu điện ngầm."},
+          {"ko": "한국어로 말해 주세요.", "vi": "Hãy nói bằng tiếng Hàn giúp tôi."}
+        ]
+      },
+      {
+        "id": "do-man",
+        "title": "도, 만, 의, 부터/까지, 보다, 처럼",
+        "summary": "cũng / chỉ / của / từ…đến / hơn / như.",
+        "body": "• 도 = cũng (thay cho 은/는, 이/가, 을/를): 저도 학생이에요.\n• 만 = chỉ: 물만 마셔요.\n• 의 = của (đọc là [에]): 친구의 집; 나의 → 내, 저의 → 제.\n• 부터 … 까지 = từ (thời gian) … đến: 아홉 시부터 여섯 시까지.\n• 에서 … 까지 = từ (nơi chốn) … đến: 서울에서 부산까지.\n• 보다 = hơn: 형보다 키가 커요.\n• 처럼 / 같이 = như: 가수처럼 노래해요.",
+        "examples": [
+          {"ko": "저도 커피만 마셔요.", "vi": "Tôi cũng chỉ uống cà phê."},
+          {"ko": "서울에서 부산까지 세 시간 걸려요.", "vi": "Từ Seoul đến Busan mất 3 tiếng."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "kinh-ngu",
+    "icon": "polite",
+    "title": "Đuôi câu & kính ngữ",
+    "subtitle": "Các mức lịch sự, -아요/어요, -(으)시-, từ kính ngữ",
+    "rules": [
+      {
+        "id": "muc-do",
+        "title": "3 mức độ lịch sự hay dùng",
+        "summary": "Trang trọng -ㅂ니다/습니다 · Lịch sự -아요/어요 · Thân mật (반말) -아/어.",
+        "body": "• 합쇼체 (trang trọng): tin tức, phát biểu, công việc: 감사합니다, 먹습니다, 갑니까?\n• 해요체 (lịch sự, thân thiện): dùng nhiều nhất hằng ngày với người lạ, lớn tuổi hơn: 고마워요, 먹어요, 가요?\n• 반말 (thân mật): với bạn bè thân, người nhỏ tuổi hơn: 고마워, 먹어, 가?\n• Người mới học nên dùng 해요체 trong hầu hết tình huống.",
+        "table": [["Mức", "가다 (đi) / 먹다 (ăn)"], ["Trang trọng", "갑니다 / 먹습니다"], ["Lịch sự", "가요 / 먹어요"], ["Thân mật", "가 / 먹어"]],
+        "examples": [
+          {"ko": "처음 뵙겠습니다. 만나서 반갑습니다.", "vi": "Rất hân hạnh được gặp (trang trọng)."},
+          {"ko": "만나서 반가워요.", "vi": "Rất vui được gặp bạn (lịch sự)."},
+          {"ko": "반가워!", "vi": "Vui quá! (thân mật)"}
+        ]
+      },
+      {
+        "id": "a-eo-yo",
+        "title": "Chia -아요/어요/해요",
+        "summary": "Nguyên âm cuối gốc là ㅏ/ㅗ → 아요; còn lại → 어요; 하다 → 해요.",
+        "body": "Bỏ 다 để lấy gốc động từ, nhìn NGUYÊN ÂM của âm tiết cuối gốc:\n• ㅏ hoặc ㅗ → + 아요: 앉다 → 앉아요, 좋다 → 좋아요.\n• Nguyên âm khác → + 어요: 먹다 → 먹어요, 읽다 → 읽어요.\n• 하다 → 해요: 공부하다 → 공부해요.\nRút gọn khi gốc kết thúc bằng nguyên âm:\n• ㅏ + 아요 → ㅏ요: 가다 → 가요, 자다 → 자요.\n• ㅗ + 아요 → ㅘ요: 오다 → 와요, 보다 → 봐요.\n• ㅜ + 어요 → ㅝ요: 배우다 → 배워요, 주다 → 줘요.\n• ㅣ + 어요 → ㅕ요: 마시다 → 마셔요, 기다리다 → 기다려요.\n• ㅓ, ㅐ, ㅔ + 어요 → bỏ 어: 서다 → 서요, 보내다 → 보내요.\n• ㅚ + 어요 → ㅙ요: 되다 → 돼요.\n• ㅡ: xem bất quy tắc 으.",
+        "table": [["Nguyên thể", "-아요/어요"], ["가다", "가요"], ["오다", "와요"], ["먹다", "먹어요"], ["마시다", "마셔요"], ["배우다", "배워요"], ["되다", "돼요"], ["일하다", "일해요"]],
+        "examples": [
+          {"ko": "주말에 뭐 해요?", "vi": "Cuối tuần bạn làm gì?"},
+          {"ko": "친구를 기다려요.", "vi": "Tôi đang đợi bạn."}
+        ]
+      },
+      {
+        "id": "b-seumnida",
+        "title": "Chia -ㅂ니다/습니다",
+        "summary": "Gốc không patchim + ㅂ니다; có patchim + 습니다. Hỏi: -ㅂ니까/습니까?",
+        "body": "• Không patchim: 가다 → 갑니다, 하다 → 합니다, 이다 → 입니다.\n• Có patchim: 먹다 → 먹습니다, 있다 → 있습니다.\n• Gốc có patchim ㄹ: bỏ ㄹ rồi + ㅂ니다: 살다 → 삽니다, 만들다 → 만듭니다.\n• Câu hỏi: 갑니까? 먹습니까?\n• Lưu ý phát âm: 합니다 đọc [함니다] (mũi hoá).",
+        "examples": [
+          {"ko": "감사합니다.", "vi": "Cảm ơn (trang trọng)."},
+          {"ko": "회의는 세 시에 시작합니다.", "vi": "Cuộc họp bắt đầu lúc 3 giờ."}
+        ]
+      },
+      {
+        "id": "eusi",
+        "title": "Kính ngữ chủ thể -(으)시-",
+        "summary": "Tôn trọng người làm hành động: gốc + (으)시 + đuôi. 가세요, 읽으세요.",
+        "body": "• Không patchim + 시: 가다 → 가세요 (hiện tại), 가셨어요 (quá khứ).\n• Có patchim + 으시: 읽다 → 읽으세요, 읽으셨어요.\n• Patchim ㄹ: bỏ ㄹ + 시: 살다 → 사세요.\n• Không dùng -(으)시- cho chính mình.\n• -(으)세요 cũng là câu đề nghị lịch sự: 앉으세요 (mời ngồi).",
+        "table": [["Nguyên thể", "Kính ngữ hiện tại / quá khứ"], ["가다", "가세요 / 가셨어요"], ["읽다", "읽으세요 / 읽으셨어요"], ["하다", "하세요 / 하셨어요"], ["살다", "사세요 / 사셨어요"]],
+        "examples": [
+          {"ko": "할머니께서 신문을 읽으세요.", "vi": "Bà đang đọc báo."},
+          {"ko": "여기 앉으세요.", "vi": "Mời ngồi ở đây."}
+        ]
+      },
+      {
+        "id": "tu-kinh-ngu",
+        "title": "Từ kính ngữ đặc biệt",
+        "summary": "Một số từ có dạng kính ngữ riêng, không chỉ thêm -(으)시-.",
+        "body": "• Dùng khi nói về/ với người lớn tuổi, cấp trên, khách hàng.\n• Tiểu từ kính ngữ: 이/가 → 께서, 은/는 → 께서는, 에게 → 께.\n• Khiêm nhường khi nói về mình: 나 → 저, 우리 → 저희, 주다 → 드리다, 묻다 → 여쭙다, 데리고 가다 → 모시고 가다.",
+        "table": [["Thường", "Kính ngữ"], ["먹다 (ăn)", "드시다 / 잡수시다"], ["자다 (ngủ)", "주무시다"], ["있다 (ở)", "계시다"], ["말하다 (nói)", "말씀하시다"], ["죽다 (chết)", "돌아가시다"], ["아프다 (ốm)", "편찮으시다"], ["집 (nhà)", "댁"], ["밥 (cơm)", "진지"], ["나이 (tuổi)", "연세"], ["이름 (tên)", "성함"], ["생일 (sinh nhật)", "생신"], ["사람 (người)", "분"], ["주다 (cho)", "드리다 (khiêm nhường)"]],
+        "examples": [
+          {"ko": "아버지께서 주무세요.", "vi": "Bố đang ngủ."},
+          {"ko": "할아버지, 진지 드세요.", "vi": "Ông ơi, mời ông dùng cơm."}
+        ]
+      },
+      {
+        "id": "menh-lenh",
+        "title": "Đề nghị, yêu cầu, rủ rê",
+        "summary": "-(으)세요 · -아/어 주세요 · -지 마세요 · -(으)ㅂ시다 · -(으)ㄹ까요?",
+        "body": "• Hãy…: -(으)세요 (가세요, 드세요) – trang trọng: -(으)십시오.\n• Làm giúp tôi: -아/어 주세요 (도와주세요, 사진 좀 찍어 주세요).\n• Đừng…: -지 마세요 (가지 마세요).\n• Cùng… nhé: -(으)ㅂ시다 (갑시다) – mềm hơn: -아/어요 (같이 가요).\n• Rủ / hỏi ý: -(으)ㄹ까요? (같이 먹을까요?)",
+        "examples": [
+          {"ko": "조금만 천천히 말해 주세요.", "vi": "Hãy nói chậm một chút giúp tôi."},
+          {"ko": "여기에서 사진을 찍지 마세요.", "vi": "Đừng chụp ảnh ở đây."},
+          {"ko": "같이 점심 먹을까요?", "vi": "Mình cùng ăn trưa nhé?"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chia-dong-tu",
+    "icon": "verb",
+    "title": "Chia động từ & thì",
+    "subtitle": "Quá khứ, tương lai, tiếp diễn, phủ định, muốn, có thể, phải",
+    "rules": [
+      {
+        "id": "qua-khu",
+        "title": "Quá khứ -았/었/했어요",
+        "summary": "Cùng quy tắc chọn 아/어 như -아요/어요, thay bằng 았어요/었어요.",
+        "body": "• ㅏ/ㅗ → 았어요: 가다 → 갔어요, 보다 → 봤어요.\n• Khác → 었어요: 먹다 → 먹었어요, 마시다 → 마셨어요.\n• 하다 → 했어요: 공부했어요.\n• Danh từ: N였어요 (không patchim) / N이었어요 (có patchim): 학생이었어요.\n• Trang trọng: 갔습니다, 먹었습니다.",
+        "table": [["Nguyên thể", "Quá khứ"], ["가다", "갔어요"], ["오다", "왔어요"], ["먹다", "먹었어요"], ["배우다", "배웠어요"], ["하다", "했어요"]],
+        "examples": [
+          {"ko": "어제 친구를 만났어요.", "vi": "Hôm qua tôi đã gặp bạn."},
+          {"ko": "저는 작년에 한국에 왔어요.", "vi": "Tôi đến Hàn Quốc năm ngoái."}
+        ]
+      },
+      {
+        "id": "tuong-lai",
+        "title": "Tương lai -(으)ㄹ 거예요 / -겠-",
+        "summary": "Có patchim + 을 거예요, không patchim + ㄹ 거예요 (sẽ, định).",
+        "body": "• Dự định/phỏng đoán: 갈 거예요, 먹을 거예요, 비가 올 거예요 (chắc sẽ mưa).\n• Patchim ㄹ: 살다 → 살 거예요.\n• -겠-: ý chí mạnh/khẳng định trang trọng (열심히 하겠습니다), phỏng đoán lịch sự (맛있겠어요 – trông ngon quá).\n• Đọc: 할 거예요 [할 꺼예요].",
+        "examples": [
+          {"ko": "내일 영화를 볼 거예요.", "vi": "Ngày mai tôi sẽ xem phim."},
+          {"ko": "열심히 하겠습니다!", "vi": "Tôi sẽ cố gắng hết sức!"}
+        ]
+      },
+      {
+        "id": "tiep-dien",
+        "title": "Đang làm: -고 있다",
+        "summary": "Gốc động từ + 고 있어요: hành động đang diễn ra.",
+        "body": "• 공부하고 있어요 (đang học), 기다리고 있어요 (đang đợi).\n• Quá khứ tiếp diễn: -고 있었어요 (lúc đó đang…).\n• Kính ngữ: -고 계세요.\n• Trạng thái mặc/đeo: 입고 있어요 (đang mặc).",
+        "examples": [
+          {"ko": "지금 밥을 먹고 있어요.", "vi": "Bây giờ tôi đang ăn cơm."},
+          {"ko": "그때 샤워하고 있었어요.", "vi": "Lúc đó tôi đang tắm."}
+        ]
+      },
+      {
+        "id": "phu-dinh",
+        "title": "Phủ định: 안 / -지 않다, 못 / -지 못하다",
+        "summary": "안: không (chủ động không làm). 못: không thể (do khả năng/hoàn cảnh).",
+        "body": "• Ngắn: 안 + V (안 가요); dài: V-지 않아요 (가지 않아요).\n• Không thể: 못 + V (못 가요); dài: V-지 못해요.\n• Động từ 하다 ghép danh từ: chen 안/못 giữa: 공부 안 해요, 운동 못 해요 (KHÔNG nói 안 공부해요).\n• Tính từ dùng 안, không dùng 못: 안 비싸요.\n• Đặc biệt: 있다 ↔ 없다, 알다 ↔ 모르다, 이다 ↔ 아니다.",
+        "table": [["Câu", "Phủ định"], ["가요", "안 가요 / 가지 않아요"], ["먹어요", "안 먹어요 / 먹지 않아요"], ["수영해요", "수영 안 해요"], ["(không thể) 가요", "못 가요 / 가지 못해요"]],
+        "examples": [
+          {"ko": "저는 고기를 안 먹어요.", "vi": "Tôi không ăn thịt."},
+          {"ko": "바빠서 못 갔어요.", "vi": "Bận quá nên không đi được."}
+        ]
+      },
+      {
+        "id": "muon-co-the-phai",
+        "title": "Muốn / có thể / phải",
+        "summary": "-고 싶다 · -(으)ㄹ 수 있다/없다 · -아/어야 하다/되다",
+        "body": "• Muốn: V-고 싶어요 (ngôi 1, 2); người thứ 3: V-고 싶어해요.\n• Có thể / không thể: V-(으)ㄹ 수 있어요 / 없어요 (갈 수 있어요, 먹을 수 없어요).\n• Biết làm (kỹ năng): V-(으)ㄹ 줄 알아요 / 몰라요.\n• Phải: V-아/어야 해요 (= 돼요): 가야 해요, 먹어야 해요, 공부해야 해요.\n• Không cần: V-지 않아도 돼요; được phép: V-아/어도 돼요.",
+        "examples": [
+          {"ko": "한국에 가고 싶어요.", "vi": "Tôi muốn đi Hàn Quốc."},
+          {"ko": "한국어를 할 수 있어요?", "vi": "Bạn nói được tiếng Hàn không?"},
+          {"ko": "내일 일찍 일어나야 해요.", "vi": "Ngày mai tôi phải dậy sớm."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bat-quy-tac",
+    "icon": "irregular",
+    "title": "Bất quy tắc",
+    "subtitle": "ㅂ, ㄷ, ㅅ, ㅎ, 르, ㄹ, 으 – kèm ngoại lệ",
+    "rules": [
+      {
+        "id": "bqt-b",
+        "title": "Bất quy tắc ㅂ",
+        "summary": "Patchim ㅂ + nguyên âm → ㅂ biến thành 우 (riêng 돕다, 곱다 → 오).",
+        "body": "• Gặp đuôi bắt đầu bằng nguyên âm (-아요/어요, -(으)니까, -(으)면, -(으)ㄴ…), ㅂ → 우.\n• 우 + 어요 → 워요: 덥다 → 더워요.\n• Hầu hết TÍNH TỪ có patchim ㅂ đều bất quy tắc.\n• Ngoại lệ (giữ ㅂ, chia bình thường): 입다 (mặc), 잡다 (bắt), 좁다 (hẹp), 씹다 (nhai), 업다 (cõng), 뽑다 (nhổ).",
+        "table": [["Nguyên thể", "-어요 / -(으)ㄴ / -(으)면"], ["덥다 (nóng)", "더워요 / 더운 / 더우면"], ["춥다 (lạnh)", "추워요 / 추운 / 추우면"], ["쉽다 (dễ)", "쉬워요 / 쉬운"], ["어렵다 (khó)", "어려워요 / 어려운"], ["맵다 (cay)", "매워요 / 매운"], ["돕다 (giúp)", "도와요 / 도운"], ["입다 (mặc) – ngoại lệ", "입어요 / 입은"]],
+        "examples": [
+          {"ko": "오늘 너무 추워요.", "vi": "Hôm nay lạnh quá."},
+          {"ko": "이 음식은 매워요.", "vi": "Món này cay."}
+        ]
+      },
+      {
+        "id": "bqt-d",
+        "title": "Bất quy tắc ㄷ",
+        "summary": "Patchim ㄷ + nguyên âm → ㄷ biến thành ㄹ.",
+        "body": "• 듣다 → 들어요, 걷다 → 걸어요, 묻다 (hỏi) → 물어요, 싣다 → 실어요, 깨닫다 → 깨달아요.\n• Gặp phụ âm thì giữ ㄷ: 듣고, 듣지만.\n• Ngoại lệ (giữ ㄷ): 받다 (nhận) → 받아요, 닫다 (đóng) → 닫아요, 믿다 (tin) → 믿어요, 묻다 (chôn) → 묻어요, 얻다 → 얻어요.",
+        "table": [["Nguyên thể", "-어요 / -(으)면"], ["듣다 (nghe)", "들어요 / 들으면"], ["걷다 (đi bộ)", "걸어요 / 걸으면"], ["묻다 (hỏi)", "물어요 / 물으면"], ["받다 (nhận) – ngoại lệ", "받아요 / 받으면"]],
+        "examples": [
+          {"ko": "매일 음악을 들어요.", "vi": "Ngày nào tôi cũng nghe nhạc."},
+          {"ko": "길을 물어봤어요.", "vi": "Tôi đã hỏi đường."}
+        ]
+      },
+      {
+        "id": "bqt-s",
+        "title": "Bất quy tắc ㅅ",
+        "summary": "Patchim ㅅ + nguyên âm → ㅅ mất đi (KHÔNG rút gọn nguyên âm).",
+        "body": "• 낫다 (khỏi bệnh) → 나아요, 짓다 (xây) → 지어요, 붓다 (rót, sưng) → 부어요, 잇다 (nối) → 이어요.\n• Sau khi mất ㅅ, KHÔNG rút gọn: 나아요 (không phải 나요).\n• Ngoại lệ (giữ ㅅ): 씻다 (rửa) → 씻어요, 웃다 (cười) → 웃어요, 벗다 (cởi) → 벗어요, 빼앗다 → 빼앗아요.",
+        "table": [["Nguyên thể", "-아요/어요 / -(으)면"], ["낫다", "나아요 / 나으면"], ["짓다", "지어요 / 지으면"], ["붓다", "부어요 / 부으면"], ["씻다 – ngoại lệ", "씻어요 / 씻으면"]],
+        "examples": [
+          {"ko": "감기가 다 나았어요.", "vi": "Tôi khỏi cảm hẳn rồi."},
+          {"ko": "집을 지었어요.", "vi": "Đã xây nhà."}
+        ]
+      },
+      {
+        "id": "bqt-h",
+        "title": "Bất quy tắc ㅎ",
+        "summary": "Tính từ màu sắc & 이렇다/그렇다/어떻다: ㅎ mất; + 아/어 → ㅐ (하얗다 → 하얘요).",
+        "body": "• + -아요/어요: ㅎ mất và nguyên âm biến thành ㅐ (ㅑ → ㅒ): 빨갛다 → 빨개요, 파랗다 → 파래요, 노랗다 → 노래요, 까맣다 → 까매요, 하얗다 → 하얘요, 그렇다 → 그래요, 어떻다 → 어때요.\n• + -(으)ㄴ, -(으)면: ㅎ mất, bỏ 으: 빨간, 그런, 어떤, 빨가면.\n• Ngoại lệ (giữ ㅎ): 좋다 → 좋아요, 놓다 → 놓아요, 넣다 → 넣어요, 낳다 → 낳아요, 많다, 싫다.",
+        "table": [["Nguyên thể", "-아요/어요 / -(으)ㄴ"], ["빨갛다 (đỏ)", "빨개요 / 빨간"], ["노랗다 (vàng)", "노래요 / 노란"], ["하얗다 (trắng)", "하얘요 / 하얀"], ["어떻다 (thế nào)", "어때요 / 어떤"], ["좋다 – ngoại lệ", "좋아요 / 좋은"]],
+        "examples": [
+          {"ko": "이 옷 어때요?", "vi": "Cái áo này thế nào?"},
+          {"ko": "하늘이 파래요.", "vi": "Bầu trời xanh."}
+        ]
+      },
+      {
+        "id": "bqt-reu",
+        "title": "Bất quy tắc 르",
+        "summary": "Gốc kết thúc 르 + 아/어 → ㄹ라 / ㄹ러 (thêm ㄹ vào âm trước).",
+        "body": "• Âm trước 르 có nguyên âm ㅏ/ㅗ → ㄹ라: 모르다 → 몰라요, 다르다 → 달라요, 빠르다 → 빨라요, 고르다 → 골라요, 오르다 → 올라요.\n• Nguyên âm khác → ㄹ러: 부르다 → 불러요, 기르다 → 길러요, 흐르다 → 흘러요.\n• Gặp phụ âm thì bình thường: 모르고, 모르지만, 모르면.\n• Ngoại lệ: 따르다, 치르다 → 따라요, 치러요 (chỉ mất 으); 이르다 (đến), 푸르다 → 이르러요, 푸르러요 (bất quy tắc 러).",
+        "table": [["Nguyên thể", "-아요/어요 / quá khứ"], ["모르다 (không biết)", "몰라요 / 몰랐어요"], ["빠르다 (nhanh)", "빨라요 / 빨랐어요"], ["부르다 (gọi, hát)", "불러요 / 불렀어요"], ["다르다 (khác)", "달라요 / 달랐어요"]],
+        "examples": [
+          {"ko": "저는 잘 몰라요.", "vi": "Tôi không rõ lắm."},
+          {"ko": "노래를 불러 주세요.", "vi": "Hãy hát cho tôi nghe."}
+        ]
+      },
+      {
+        "id": "bqt-l",
+        "title": "Patchim ㄹ (ㄹ 탈락)",
+        "summary": "Gốc có ㄹ gặp ㄴ, ㅂ, ㅅ → ㄹ mất. Gặp -(으)… → bỏ luôn 으.",
+        "body": "• + ㄴ: 살다 → 사는 (đang sống), 만들다 → 만드는, 알다 → 아는, 알다 + -네요 → 아네요.\n• + ㅂ: 살다 → 삽니다, 만들다 → 만듭니다.\n• + ㅅ: 살다 → 사세요, 알다 → 아세요.\n• Với đuôi -(으)…: dùng dạng không có 으: 살면, 사니까, 만들면, 놀러 가요.\n• Còn lại chia bình thường: 살아요, 만들어요, 알아요, 살고.",
+        "table": [["Nguyên thể", "-는 / -ㅂ니다 / -세요 / -면"], ["살다 (sống)", "사는 / 삽니다 / 사세요 / 살면"], ["만들다 (làm)", "만드는 / 만듭니다 / 만드세요 / 만들면"], ["알다 (biết)", "아는 / 압니다 / 아세요 / 알면"], ["놀다 (chơi)", "노는 / 놉니다 / 노세요 / 놀면"]],
+        "examples": [
+          {"ko": "어디에 사세요?", "vi": "Anh/chị sống ở đâu ạ?"},
+          {"ko": "제가 아는 사람이에요.", "vi": "Là người tôi quen."}
+        ]
+      },
+      {
+        "id": "bqt-eu",
+        "title": "Gốc kết thúc 으 (으 탈락)",
+        "summary": "으 + 아/어 → 으 mất; chọn 아/어 theo nguyên âm của âm tiết TRƯỚC 으.",
+        "body": "• Một âm tiết: 쓰다 → 써요, 크다 → 커요, 끄다 → 꺼요, 뜨다 → 떠요.\n• Hai âm tiết trở lên: nhìn nguyên âm trước 으:\n  – ㅏ/ㅗ → 아요: 바쁘다 → 바빠요, 아프다 → 아파요, 고프다 → 고파요.\n  – khác → 어요: 기쁘다 → 기뻐요, 예쁘다 → 예뻐요, 슬프다 → 슬퍼요.\n• Quá khứ tương tự: 바빴어요, 예뻤어요.",
+        "table": [["Nguyên thể", "-아요/어요"], ["쓰다 (viết, đắng)", "써요"], ["크다 (to)", "커요"], ["바쁘다 (bận)", "바빠요"], ["아프다 (đau)", "아파요"], ["예쁘다 (đẹp)", "예뻐요"], ["배고프다 (đói)", "배고파요"]],
+        "examples": [
+          {"ko": "요즘 너무 바빠요.", "vi": "Dạo này bận quá."},
+          {"ko": "배가 고파요.", "vi": "Tôi đói bụng."}
+        ]
+      },
+      {
+        "id": "bqt-khac",
+        "title": "Một số bất quy tắc khác",
+        "summary": "우 (푸다 → 퍼요), 러 (이르다 → 이르러요), 하다 → 해/하여.",
+        "body": "• 우 bất quy tắc: chỉ có 푸다 (múc) → 퍼요, 펐어요.\n• 러 bất quy tắc: 이르다 (đến nơi), 푸르다 (xanh), 누르다 (vàng úa) → 이르러요, 푸르러요.\n• 하다: 하 + 여 → 해 (văn viết giữ 하여): 공부해요 / 공부하여.\n• 이다 sau danh từ không patchim rút gọn: 의사이에요 → 의사예요.",
+        "examples": [
+          {"ko": "국을 펐어요.", "vi": "Đã múc canh."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bien-am",
+    "icon": "sound",
+    "title": "Biến âm khi đọc",
+    "subtitle": "Nối âm, mũi hoá, căng âm, bật hơi, vòm hoá…",
+    "rules": [
+      {
+        "id": "7-am-cuoi",
+        "title": "7 âm cuối đại diện (받침)",
+        "summary": "Mọi patchim khi đứng cuối/trước phụ âm chỉ đọc thành 7 âm: ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ.",
+        "body": "• Âm cuối tiếng Hàn không bật hơi (giống âm cuối tiếng Việt nhưng nhẹ, không nổ).\n• Khi patchim đứng cuối từ hoặc trước phụ âm, nhiều chữ đọc giống nhau.",
+        "table": [["Patchim", "Đọc là"], ["ㄱ, ㄲ, ㅋ", "[ㄱ] – k"], ["ㄴ", "[ㄴ] – n"], ["ㄷ, ㅅ, ㅆ, ㅈ, ㅊ, ㅌ, ㅎ", "[ㄷ] – t"], ["ㄹ", "[ㄹ] – l"], ["ㅁ", "[ㅁ] – m"], ["ㅂ, ㅍ", "[ㅂ] – p"], ["ㅇ", "[ㅇ] – ng"]],
+        "examples": [
+          {"ko": "부엌", "vi": "Bếp – đọc [부억]", "read": "[부억]"},
+          {"ko": "옷", "vi": "Áo – đọc [옫]", "read": "[옫]"},
+          {"ko": "앞", "vi": "Phía trước – đọc [압]", "read": "[압]"},
+          {"ko": "낮", "vi": "Ban ngày – đọc [낟]", "read": "[낟]"}
+        ]
+      },
+      {
+        "id": "noi-am",
+        "title": "Nối âm (연음)",
+        "summary": "Patchim + âm tiết bắt đầu bằng ㅇ (nguyên âm) → patchim chuyển sang âm sau.",
+        "body": "• 음악 → [으막], 한국어 → [한구거], 옷이 → [오시], 읽어요 → [일거요].\n• Patchim ㅇ KHÔNG nối: 고양이 → [고양이].\n• Patchim ㅎ + nguyên âm → ㅎ mất: 좋아요 → [조아요].\n• Patchim kép: âm thứ 2 chuyển sang: 앉아요 → [안자요], 읽어요 → [일거요], 값이 → [갑씨].",
+        "table": [["Viết", "Đọc"], ["음악", "[으막]"], ["한국어", "[한구거]"], ["옷을", "[오슬]"], ["앉아요", "[안자요]"], ["좋아요", "[조아요]"]],
+        "examples": [
+          {"ko": "한국어를 배워요.", "vi": "Học tiếng Hàn – [한구거를]", "read": "[한구거를 배워요]"},
+          {"ko": "음악을 들어요.", "vi": "Nghe nhạc – [으마글 드러요]", "read": "[으마글 드러요]"}
+        ]
+      },
+      {
+        "id": "mui-hoa",
+        "title": "Mũi hoá (비음화)",
+        "summary": "Âm cuối [ㄱ][ㄷ][ㅂ] + ㄴ/ㅁ → đổi thành [ㅇ][ㄴ][ㅁ].",
+        "body": "• [ㄱ] + ㄴ, ㅁ → ㅇ: 국물 → [궁물], 작년 → [장년], 한국말 → [한궁말].\n• [ㄷ] + ㄴ, ㅁ → ㄴ: 받는 → [반는], 옛날 → [옌날], 거짓말 → [거진말].\n• [ㅂ] + ㄴ, ㅁ → ㅁ: 합니다 → [함니다], 입니다 → [임니다], 앞문 → [암문].\n• Đây là lý do mọi đuôi -ㅂ니다/습니다 đều đọc [-ㅁ니다].",
+        "table": [["Viết", "Đọc"], ["감사합니다", "[감사함니다]"], ["학년", "[항년]"], ["옛날", "[옌날]"], ["십만", "[심만]"]],
+        "examples": [
+          {"ko": "감사합니다.", "vi": "Cảm ơn – [감사함니다]", "read": "[감사함니다]"},
+          {"ko": "한국말을 잘해요.", "vi": "Giỏi tiếng Hàn – [한궁마를]", "read": "[한궁마를 잘해요]"}
+        ]
+      },
+      {
+        "id": "l-thanh-n",
+        "title": "ㄹ đọc thành [ㄴ]",
+        "summary": "ㄹ sau ㅁ, ㅇ → [ㄴ]; sau [ㄱ][ㄷ][ㅂ] → [ㄴ] rồi mũi hoá luôn âm trước.",
+        "body": "• ㅁ, ㅇ + ㄹ → ㄴ: 음료 → [음뇨], 종로 → [종노], 정류장 → [정뉴장], 심리 → [심니].\n• [ㄱ], [ㅂ] + ㄹ → ㄹ thành ㄴ, rồi âm trước bị mũi hoá: 국립 → [궁닙], 독립 → [동닙], 협력 → [혐녁], 백로 → [뱅노].",
+        "table": [["Viết", "Đọc"], ["음료수", "[음뇨수]"], ["대통령", "[대통녕]"], ["국립", "[궁닙]"], ["협력", "[혐녁]"]],
+        "examples": [
+          {"ko": "음료수 주세요.", "vi": "Cho tôi nước giải khát – [음뇨수]", "read": "[음뇨수 주세요]"}
+        ]
+      },
+      {
+        "id": "luu-am-hoa",
+        "title": "Lưu âm hoá (유음화)",
+        "summary": "ㄴ + ㄹ hoặc ㄹ + ㄴ → đọc thành [ㄹㄹ].",
+        "body": "• ㄴ + ㄹ: 신라 → [실라], 연락 → [열락], 한라산 → [할라산], 편리 → [펼리].\n• ㄹ + ㄴ: 설날 → [설랄], 칼날 → [칼랄], 일년 → [일련].\n• Ngoại lệ (ㄹ → ㄴ): một số từ ghép Hán Hàn: 의견란 → [의견난], 생산량 → [생산냥], 입원료 → [이붠뇨].",
+        "table": [["Viết", "Đọc"], ["연락", "[열락]"], ["설날", "[설랄]"], ["편리하다", "[펼리하다]"]],
+        "examples": [
+          {"ko": "나중에 연락할게요.", "vi": "Lát nữa tôi liên lạc nhé – [열라칼께요]", "read": "[나중에 열라칼께요]"}
+        ]
+      },
+      {
+        "id": "cang-am",
+        "title": "Căng âm hoá (경음화)",
+        "summary": "Âm cuối [ㄱ][ㄷ][ㅂ] + ㄱ ㄷ ㅂ ㅅ ㅈ → đọc thành âm căng ㄲ ㄸ ㅃ ㅆ ㅉ.",
+        "body": "• 학교 → [학꾜], 식당 → [식땅], 입구 → [입꾸], 숙제 → [숙쩨], 듣고 → [듣꼬], 잡지 → [잡찌].\n• Sau đuôi định ngữ -(으)ㄹ: 할 거예요 → [할 꺼예요], 갈 수 있어요 → [갈 쑤 이써요], 먹을 게 → [머글 께].\n• Gốc động từ có patchim ㄴ, ㅁ + ㄱ ㄷ ㅅ ㅈ: 신고 → [신꼬], 앉다 → [안따], 삼고 → [삼꼬].\n• Một số từ Hán Hàn với ㄹ + ㄷ ㅅ ㅈ: 발달 → [발딸], 일시 → [일씨], 갈등 → [갈뜽].",
+        "table": [["Viết", "Đọc"], ["학교", "[학꾜]"], ["식당", "[식땅]"], ["숙제", "[숙쩨]"], ["할 거예요", "[할 꺼예요]"]],
+        "examples": [
+          {"ko": "학교 식당에서 먹어요.", "vi": "Ăn ở căng tin trường – [학꾜 식땅에서]", "read": "[학꾜 식땅에서 머거요]"}
+        ]
+      },
+      {
+        "id": "bat-hoi",
+        "title": "Bật hơi hoá (격음화)",
+        "summary": "ㄱ ㄷ ㅂ ㅈ gặp ㅎ (trước hoặc sau) → thành ㅋ ㅌ ㅍ ㅊ.",
+        "body": "• [ㄱ] + ㅎ → ㅋ: 축하 → [추카], 생각하다 → [생가카다], 백화점 → [배콰점].\n• [ㄷ] + ㅎ → ㅌ: 못하다 → [모타다], 깨끗하다 → [깨끄타다].\n• [ㅂ] + ㅎ → ㅍ: 입학 → [이팍], 급히 → [그피].\n• ㅈ + ㅎ → ㅊ: 맞히다 → [마치다].\n• ㅎ + ㄱ ㄷ ㅈ → ㅋ ㅌ ㅊ: 좋다 → [조타], 놓고 → [노코], 많지 → [만치], 싫다 → [실타].",
+        "table": [["Viết", "Đọc"], ["축하해요", "[추카해요]"], ["입학", "[이팍]"], ["좋다", "[조타]"], ["못해요", "[모태요]"]],
+        "examples": [
+          {"ko": "생일 축하해요!", "vi": "Chúc mừng sinh nhật – [추카해요]", "read": "[생일 추카해요]"},
+          {"ko": "그렇게 생각해요.", "vi": "Tôi nghĩ vậy – [생가캐요]", "read": "[그러케 생가캐요]"}
+        ]
+      },
+      {
+        "id": "vom-hoa",
+        "title": "Vòm hoá (구개음화)",
+        "summary": "Patchim ㄷ, ㅌ + 이 → đọc thành [지], [치].",
+        "body": "• ㄷ + 이 → 지: 굳이 → [구지], 해돋이 → [해도지], 맏이 → [마지].\n• ㅌ + 이 → 치: 같이 → [가치], 끝이 → [끄치], 밭이 → [바치].\n• ㄷ + 히 → 치: 닫히다 → [다치다], 묻히다 → [무치다].",
+        "table": [["Viết", "Đọc"], ["같이", "[가치]"], ["굳이", "[구지]"], ["닫히다", "[다치다]"]],
+        "examples": [
+          {"ko": "같이 가요!", "vi": "Đi cùng nhau đi – [가치 가요]", "read": "[가치 가요]"}
+        ]
+      },
+      {
+        "id": "bo-h",
+        "title": "ㅎ bị lược / đọc nhẹ",
+        "summary": "Patchim ㅎ + nguyên âm → mất ㅎ. ㅎ sau ㄴ ㄹ ㅁ ㅇ thường đọc rất nhẹ.",
+        "body": "• ㅎ, ㄶ, ㅀ + nguyên âm: 좋아요 → [조아요], 많이 → [마니], 싫어요 → [시러요], 넣어요 → [너어요].\n• ㅎ đầu âm tiết sau ㄴ ㄹ ㅁ ㅇ (khẩu ngữ đọc nhanh): 전화 → [저놔], 은행 → [으냉], 결혼 → [겨론], 영화 → [영와].\n• ㅎ + ㄴ → [ㄴㄴ]: 놓는 → [논는].",
+        "table": [["Viết", "Đọc"], ["많이", "[마니]"], ["싫어요", "[시러요]"], ["전화", "[저놔]"]],
+        "examples": [
+          {"ko": "많이 드세요.", "vi": "Ăn nhiều vào nhé – [마니 드세요]", "read": "[마니 드세요]"}
+        ]
+      },
+      {
+        "id": "patchim-kep",
+        "title": "Patchim kép (겹받침)",
+        "summary": "Trước phụ âm/cuối từ chỉ đọc 1 phụ âm; trước nguyên âm thì âm thứ 2 nối sang.",
+        "body": "• Đọc âm ĐẦU: ㄳ, ㄵ, ㄶ, ㄼ, ㄽ, ㄾ, ㅀ, ㅄ – 넋 [넉], 앉다 [안따], 여덟 [여덜], 값 [갑], 없다 [업따].\n• Đọc âm SAU: ㄺ, ㄻ, ㄿ – 닭 [닥], 삶 [삼], 읊다 [읍따].\n• Ngoại lệ: 밟다 → [밥따]; 넓죽하다 → [넙쭈카다]; ㄺ trước ㄱ đọc [ㄹ]: 읽고 → [일꼬], 맑게 → [말께].\n• Trước nguyên âm: 앉아 [안자], 닭이 [달기], 없어요 [업써요], 읽어요 [일거요].",
+        "table": [["Viết", "Đọc"], ["없다", "[업따]"], ["읽다", "[익따]"], ["읽고", "[일꼬]"], ["밟다", "[밥따]"], ["없어요", "[업써요]"]],
+        "examples": [
+          {"ko": "시간이 없어요.", "vi": "Không có thời gian – [업써요]", "read": "[시가니 업써요]"},
+          {"ko": "책을 읽고 있어요.", "vi": "Đang đọc sách – [일꼬 이써요]", "read": "[채글 일꼬 이써요]"}
+        ]
+      },
+      {
+        "id": "them-n",
+        "title": "Thêm âm ㄴ (ㄴ 첨가)",
+        "summary": "Từ ghép: phần sau bắt đầu bằng 이 야 여 요 유 → thêm [ㄴ].",
+        "body": "• 꽃잎 → [꼰닙], 한여름 → [한녀름], 식용유 → [시굥뉴], 맨입 → [맨닙], 무슨 일 → [무슨닐].\n• Nếu âm trước là ㄹ thì thêm thành [ㄹ]: 할 일 → [할릴], 서울역 → [서울력], 볼일 → [볼릴].\n• Hay gặp ở từ ghép và cụm từ đọc liền.",
+        "table": [["Viết", "Đọc"], ["무슨 일", "[무슨닐]"], ["서울역", "[서울력]"], ["꽃잎", "[꼰닙]"]],
+        "examples": [
+          {"ko": "무슨 일이에요?", "vi": "Có chuyện gì vậy? – [무슨니리에요]", "read": "[무슨니리에요]"}
+        ]
+      },
+      {
+        "id": "doc-ui",
+        "title": "Cách đọc 의 và một số nguyên âm",
+        "summary": "의: đầu từ [의], giữa/cuối từ [이], tiểu từ sở hữu [에].",
+        "body": "• Đầu từ: 의사 [의사], 의자 [의자].\n• Sau phụ âm hoặc không ở đầu: 희망 [히망], 회의 [회이], 주의 [주이].\n• Tiểu từ sở hữu 의: [에] – 나의 책 [나에 책].\n• 예/례 sau phụ âm thường đọc [에]: 시계 [시게], 혜택 [헤택] (giữ 예 khi đứng đầu: 예약 [예약]).\n• ㅐ và ㅔ khẩu ngữ hiện đại gần như đọc giống nhau.",
+        "examples": [
+          {"ko": "회의가 있어요.", "vi": "Có cuộc họp – [회이가 이써요]", "read": "[회이가 이써요]"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "so-dem",
+    "icon": "number",
+    "title": "Số đếm & đơn vị",
+    "subtitle": "Số Hán Hàn, số thuần Hàn, giờ, tuổi, đơn vị đếm",
+    "rules": [
+      {
+        "id": "so-han-han",
+        "title": "Số Hán Hàn (일, 이, 삼…)",
+        "summary": "Dùng cho ngày tháng năm, tiền, phút, giây, số điện thoại, tầng, số phòng, đo lường.",
+        "body": "• 1 일, 2 이, 3 삼, 4 사, 5 오, 6 육, 7 칠, 8 팔, 9 구, 10 십, 100 백, 1.000 천, 10.000 만, 100.000.000 억.\n• Ghép: 11 십일, 25 이십오, 365 삼백육십오, 10.000 = 만 (không nói 일만).\n• Tiếng Hàn đếm theo VẠN (만): 100.000 = 십만, 1.000.000 = 백만.\n• Tháng 6 = 유월, tháng 10 = 시월 (đặc biệt).\n• Số điện thoại: 0 = 공, gạch nối đọc 에: 010-1234 → 공일공에 일이삼사.",
+        "table": [["Số", "Đọc"], ["15", "십오"], ["2026 (năm)", "이천이십육 년"], ["50.000 won", "오만 원"], ["Tầng 3", "삼 층"], ["30 phút", "삼십 분"]],
+        "examples": [
+          {"ko": "오늘은 십일월 삼 일이에요.", "vi": "Hôm nay là ngày 3 tháng 11."},
+          {"ko": "이거 만 오천 원이에요.", "vi": "Cái này 15.000 won."}
+        ]
+      },
+      {
+        "id": "so-thuan-han",
+        "title": "Số thuần Hàn (하나, 둘, 셋…)",
+        "summary": "Dùng để đếm đồ vật, người, tuổi, giờ, số lần. Chỉ dùng đến 99.",
+        "body": "• 1 하나, 2 둘, 3 셋, 4 넷, 5 다섯, 6 여섯, 7 일곱, 8 여덟, 9 아홉, 10 열, 20 스물, 30 서른, 40 마흔, 50 쉰, 60 예순, 70 일흔, 80 여든, 90 아흔.\n• Đứng trước đơn vị đếm thì đổi: 하나 → 한, 둘 → 두, 셋 → 세, 넷 → 네, 스물 → 스무: 한 개, 두 명, 세 시, 스무 살.\n• Từ 100 trở lên dùng số Hán Hàn.",
+        "table": [["Cách nói", "Nghĩa"], ["사과 한 개", "1 quả táo"], ["친구 두 명", "2 người bạn"], ["세 시", "3 giờ"], ["스무 살", "20 tuổi"], ["다섯 번", "5 lần"]],
+        "examples": [
+          {"ko": "커피 두 잔 주세요.", "vi": "Cho tôi 2 cốc cà phê."},
+          {"ko": "저는 스물다섯 살이에요.", "vi": "Tôi 25 tuổi."}
+        ]
+      },
+      {
+        "id": "gio",
+        "title": "Nói giờ",
+        "summary": "GIỜ dùng số thuần Hàn + 시; PHÚT dùng số Hán Hàn + 분.",
+        "body": "• 3:20 → 세 시 이십 분.\n• 30 phút = 반: 두 시 반 (2 rưỡi).\n• Sáng/chiều: 오전/오후 (오후 세 시 = 3 giờ chiều); 아침, 점심, 저녁, 밤.\n• Kém: 열 시 오 분 전 (10 giờ kém 5).",
+        "table": [["Giờ", "Đọc"], ["1:00", "한 시"], ["4:30", "네 시 반"], ["7:15", "일곱 시 십오 분"], ["12:50", "열두 시 오십 분"]],
+        "examples": [
+          {"ko": "지금 몇 시예요? – 오후 두 시 반이에요.", "vi": "Mấy giờ rồi? – 2 rưỡi chiều."}
+        ]
+      },
+      {
+        "id": "don-vi",
+        "title": "Đơn vị đếm hay dùng",
+        "summary": "Danh từ + SỐ + đơn vị: 사과 세 개, 학생 다섯 명.",
+        "body": "• Trật tự: [Danh từ] + [số] + [đơn vị] – ngược tiếng Việt (3 quả táo → 사과 세 개).\n• Hỏi số lượng: 몇 + đơn vị: 몇 개? 몇 명? 몇 살?",
+        "table": [["Đơn vị", "Dùng cho"], ["개", "cái, chiếc (đồ vật chung)"], ["명 / 분", "người / vị (kính trọng)"], ["마리", "con (động vật)"], ["권", "quyển (sách)"], ["잔", "cốc, ly"], ["병", "chai"], ["장", "tờ, tấm (giấy, vé, ảnh)"], ["대", "chiếc (xe, máy móc)"], ["벌", "bộ (quần áo)"], ["켤레", "đôi (giày, tất)"], ["살", "tuổi"], ["번", "lần"], ["층", "tầng (số Hán Hàn)"], ["원", "won (số Hán Hàn)"]],
+        "examples": [
+          {"ko": "고양이 두 마리를 키워요.", "vi": "Tôi nuôi 2 con mèo."},
+          {"ko": "표 세 장 주세요.", "vi": "Cho tôi 3 vé."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "noi-cau",
+    "icon": "link",
+    "title": "Liên kết câu",
+    "subtitle": "-고, -지만, -아서/어서, -(으)니까, -(으)면, -는데…",
+    "rules": [
+      {
+        "id": "lien-ket-co-ban",
+        "title": "Các vĩ tố nối câu cơ bản",
+        "summary": "Nối 2 mệnh đề thành 1 câu – gắn vào gốc động từ/tính từ của vế trước.",
+        "body": "• -고: và, rồi (liệt kê, trình tự): 밥을 먹고 학교에 가요.\n• -지만: nhưng: 비싸지만 맛있어요.\n• -아서/어서: vì… nên (KHÔNG dùng với mệnh lệnh/rủ rê; không chia quá khứ ở vế trước); hoặc “rồi” khi 2 hành động liên quan: 가게에 가서 샀어요.\n• -(으)니까: vì (dùng được với mệnh lệnh/rủ rê): 추우니까 코트를 입으세요.\n• -(으)면: nếu: 시간이 있으면 같이 가요.\n• -는데 / -(으)ㄴ데: bối cảnh, “mà, nhưng”: 배고픈데 밥 먹을까요?\n• -(으)려고: để, định: 한국어를 배우려고 학원에 다녀요.\n• -(으)러 가다/오다: đi/đến để: 밥 먹으러 가요.\n• -기 때문에 / N 때문에: bởi vì (trang trọng hơn).\n• -(으)면서: vừa… vừa: 음악을 들으면서 공부해요.\n• -다가: đang… thì (chuyển hành động): 집에 가다가 친구를 만났어요.\n• -아/어도: dù… cũng: 비가 와도 가요.\n• -(으)ㄹ 때: khi; -기 전에: trước khi; -(으)ㄴ 후에: sau khi.",
+        "table": [["Vĩ tố", "Nghĩa"], ["-고", "và, rồi"], ["-지만", "nhưng"], ["-아서/어서", "vì…nên / rồi"], ["-(으)니까", "vì (đi được với mệnh lệnh)"], ["-(으)면", "nếu"], ["-는데", "mà, nhưng (bối cảnh)"], ["-(으)려고", "để, định"], ["-(으)면서", "vừa…vừa"], ["-아/어도", "dù…cũng"], ["-(으)ㄹ 때", "khi"]],
+        "examples": [
+          {"ko": "피곤해서 일찍 잤어요.", "vi": "Mệt nên tôi ngủ sớm."},
+          {"ko": "시간이 있으면 같이 커피 마셔요.", "vi": "Nếu có thời gian thì cùng uống cà phê nhé."},
+          {"ko": "비싸지만 품질이 좋아요.", "vi": "Đắt nhưng chất lượng tốt."}
+        ]
+      },
+      {
+        "id": "aseo-vs-nikka",
+        "title": "Phân biệt -아서/어서 và -(으)니까",
+        "summary": "Vế sau là mệnh lệnh/rủ rê → bắt buộc -(으)니까.",
+        "body": "• -아서/어서: lý do tự nhiên, khách quan; dùng khi xin lỗi/cảm ơn: 늦어서 죄송합니다, 도와줘서 고마워요.\n• -(으)니까: lý do chủ quan, nhấn mạnh; dùng được với -(으)세요, -(으)ㅂ시다, -(으)ㄹ까요: 비가 오니까 우산을 가져가세요.\n• SAI: 비가 와서 우산을 가져가세요 ✗.",
+        "examples": [
+          {"ko": "늦어서 미안해요.", "vi": "Xin lỗi vì đến muộn."},
+          {"ko": "날씨가 좋으니까 산책할까요?", "vi": "Trời đẹp nên mình đi dạo nhé?"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "han-han",
+    "icon": "hanja",
+    "title": "Mẹo Hán Hàn ↔ Hán Việt",
+    "subtitle": "Đoán nghĩa từ Hán Hàn qua âm Hán Việt",
+    "rules": [
+      {
+        "id": "tuong-ung-am-cuoi",
+        "title": "Tương ứng âm cuối",
+        "summary": "Hán Việt -c/-ch ↔ ㄱ · -t ↔ ㄹ · -p ↔ ㅂ · -m ↔ ㅁ · -n ↔ ㄴ · -ng/-nh ↔ ㅇ.",
+        "body": "• Khoảng 60% từ vựng tiếng Hàn là từ Hán Hàn – người Việt có lợi thế lớn vì có âm Hán Việt tương ứng.\n• Âm cuối tương ứng khá đều đặn, nhìn âm cuối là đoán được.",
+        "table": [["Hán Việt", "Hán Hàn – ví dụ"], ["-c, -ch", "ㄱ: 학 học, 국 quốc, 각 các, 석 thạch"], ["-t", "ㄹ: 일 nhất/nhật, 월 nguyệt, 실 thất/thực, 발 phát"], ["-p", "ㅂ: 입 nhập, 업 nghiệp, 법 pháp, 십 thập"], ["-m", "ㅁ: 심 tâm, 남 nam, 감 cảm, 금 kim"], ["-n", "ㄴ: 산 sơn, 안 an, 문 văn/môn, 인 nhân"], ["-ng, -nh", "ㅇ: 공 công, 동 đông, 생 sinh, 정 tình/chính"]],
+        "examples": [
+          {"ko": "학생", "vi": "học sinh (學生)"},
+          {"ko": "법률", "vi": "pháp luật (法律)"},
+          {"ko": "감정", "vi": "cảm tình / cảm xúc (感情)"}
+        ]
+      },
+      {
+        "id": "tuong-ung-am-dau",
+        "title": "Tương ứng phụ âm đầu",
+        "summary": "h ↔ ㅎ/ㄱ · ph ↔ ㅂ · v ↔ ㅁ/ㅇ · đ ↔ ㄷ · nh ↔ ㅇ · th ↔ ㅅ/ㄷ · gi/d ↔ ㄱ/ㅇ…",
+        "body": "• Không đều đặn như âm cuối nhưng có xu hướng rõ.\n• Kết hợp với nghĩa trong ngữ cảnh để đoán.",
+        "table": [["Hán Việt", "Hán Hàn – ví dụ"], ["h-", "ㅎ/ㄱ: 학 học, 한 hàn, 화 hoá, 가 gia/hà"], ["kh-", "ㄱ/ㅋ: 기 khí, 공 không, 쾌 khoái"], ["ph-", "ㅂ: 법 pháp, 방 phương, 부 phụ/phú"], ["v-", "ㅁ/ㅇ: 문 văn, 무 vũ/vô, 위 vị/vi"], ["đ-", "ㄷ: 대 đại, 도 đạo, 동 động"], ["nh-", "ㅇ: 인 nhân, 일 nhất/nhật, 연 nhiên"], ["th-", "ㅅ/ㄷ: 시 thời/thị, 수 thủ/thuỷ, 대 thái"], ["gi-, d-", "ㄱ/ㅇ: 가 gia, 교 giáo, 유 du/do"]],
+        "examples": [
+          {"ko": "대학교", "vi": "đại học hiệu (大學校) – trường đại học"},
+          {"ko": "문화", "vi": "văn hoá (文化)"},
+          {"ko": "인생", "vi": "nhân sinh (人生) – cuộc đời"}
+        ]
+      },
+      {
+        "id": "can-than-nghia",
+        "title": "Cẩn thận: nghĩa có thể lệch",
+        "summary": "Cùng chữ Hán nhưng nghĩa dùng trong tiếng Hàn có thể khác tiếng Việt.",
+        "body": "• 공부 (công phu) = học bài – không phải “công phu” võ thuật.\n• 애인 (ái nhân) = người yêu.\n• 생선 (sinh tiên) = cá (dùng làm thức ăn).\n• 약속 (ước thúc) = cuộc hẹn, lời hứa.\n• 인기 (nhân khí) = sự nổi tiếng, được yêu thích.\n• 안녕 (an ninh) = bình an → lời chào.\n• Nhiều từ thuần Hàn không có Hán tự: 사랑 (tình yêu), 하늘 (bầu trời), 고맙다 (cảm ơn).",
+        "examples": [
+          {"ko": "도서관에서 공부해요.", "vi": "Tôi học bài ở thư viện."},
+          {"ko": "그 가수는 인기가 많아요.", "vi": "Ca sĩ đó rất nổi tiếng."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hangul",
+    "icon": "alphabet",
+    "title": "Bảng chữ cái Hangul",
+    "subtitle": "Nguyên âm, phụ âm, ghép âm tiết",
+    "rules": [
+      {
+        "id": "nguyen-am",
+        "title": "Nguyên âm (21)",
+        "summary": "10 nguyên âm cơ bản + 11 nguyên âm ghép.",
+        "body": "• Cơ bản: ㅏ a, ㅑ ya, ㅓ ơ, ㅕ yơ, ㅗ ô, ㅛ yô, ㅜ u, ㅠ yu, ㅡ ư, ㅣ i.\n• Ghép: ㅐ e, ㅒ ye, ㅔ ê, ㅖ yê, ㅘ oa, ㅙ oe, ㅚ uê, ㅝ uơ, ㅞ uê, ㅟ uy, ㅢ ưi.\n• Thêm 1 nét (ㅑ ㅕ ㅛ ㅠ) = thêm âm “y” phía trước.",
+        "table": [["Chữ", "Đọc gần giống"], ["아", "a"], ["어", "ơ"], ["오", "ô"], ["우", "u"], ["으", "ư"], ["이", "i"], ["애 / 에", "e / ê"], ["와", "oa"], ["워", "uơ"], ["의", "ưi"]],
+        "examples": [
+          {"ko": "아이", "vi": "đứa trẻ"},
+          {"ko": "우유", "vi": "sữa"},
+          {"ko": "여우", "vi": "con cáo"}
+        ]
+      },
+      {
+        "id": "phu-am",
+        "title": "Phụ âm (19)",
+        "summary": "14 phụ âm cơ bản + 5 phụ âm căng (ㄲ ㄸ ㅃ ㅆ ㅉ).",
+        "body": "• Thường: ㄱ k/g, ㄴ n, ㄷ t/d, ㄹ r/l, ㅁ m, ㅂ p/b, ㅅ s, ㅇ (câm ở đầu, “ng” ở cuối), ㅈ ch/j.\n• Bật hơi: ㅊ ch', ㅋ kh, ㅌ th, ㅍ ph, ㅎ h.\n• Căng (đọc mạnh, không bật hơi): ㄲ kk, ㄸ tt, ㅃ pp, ㅆ ss, ㅉ jj.\n• ㄱ ㄷ ㅂ ㅈ đầu từ nghe gần k t p ch; giữa hai nguyên âm nghe gần g d b j.",
+        "table": [["Nhóm", "Ví dụ: 가 · 카 · 까"], ["Thường", "가 (ka/ga)"], ["Bật hơi", "카 (kha)"], ["Căng", "까 (kka)"]],
+        "examples": [
+          {"ko": "바다", "vi": "biển"},
+          {"ko": "토끼", "vi": "con thỏ"},
+          {"ko": "코끼리", "vi": "con voi"}
+        ]
+      },
+      {
+        "id": "ghep-am-tiet",
+        "title": "Ghép âm tiết",
+        "summary": "Phụ âm đầu + nguyên âm (+ patchim). Nguyên âm đứng đầu phải có ㅇ câm.",
+        "body": "• Nguyên âm dọc (ㅏ ㅓ ㅣ…) viết BÊN PHẢI phụ âm: 가, 너, 이.\n• Nguyên âm ngang (ㅗ ㅜ ㅡ…) viết BÊN DƯỚI phụ âm: 고, 누, 으.\n• Patchim (phụ âm cuối) viết dưới cùng: 각, 산, 공, 닭.\n• Âm tiết bắt đầu bằng nguyên âm phải thêm ㅇ: 아, 오, 이.",
+        "examples": [
+          {"ko": "한국", "vi": "Hàn Quốc: ㅎ+ㅏ+ㄴ / ㄱ+ㅜ+ㄱ"},
+          {"ko": "사랑", "vi": "tình yêu: ㅅ+ㅏ / ㄹ+ㅏ+ㅇ"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "loi-sai",
+    "icon": "mistake",
+    "title": "Lỗi người Việt hay gặp",
+    "subtitle": "Tránh những lỗi phổ biến khi nói và dịch",
+    "rules": [
+      {
+        "id": "loi-pho-bien",
+        "title": "Những lỗi thường gặp",
+        "summary": "Dịch từng chữ theo trật tự tiếng Việt, quên tiểu từ, nhầm 에/에서, dùng 당신…",
+        "body": "• Dịch theo trật tự Việt: “Tôi ăn cơm” ✗ 저는 먹어요 밥 → ✓ 저는 밥을 먹어요.\n• Đặt định ngữ sau danh từ: ✗ 옷 예쁜 → ✓ 예쁜 옷.\n• Nhầm 에 / 에서: ✗ 도서관에 공부해요 → ✓ 도서관에서 공부해요.\n• Dùng 당신 để gọi người khác → nên gọi tên + 씨, chức danh, hoặc bỏ chủ ngữ.\n• Chen 안 sai chỗ: ✗ 안 공부해요 → ✓ 공부 안 해요.\n• Dùng -아서/어서 với mệnh lệnh: ✗ 추워서 코트를 입으세요 → ✓ 추우니까 코트를 입으세요.\n• Đọc bật âm cuối như tiếng Việt, không biến âm: 합니다 phải đọc [함니다].\n• Nhầm ㅓ (ơ) với ㅗ (ô), ㅡ (ư) với ㅜ (u).\n• Dùng 반말 với người lạ/lớn tuổi → luôn bắt đầu bằng 해요체.\n• Quên số thuần Hàn khi nói giờ/tuổi: ✗ 삼 시 → ✓ 세 시; ✗ 이십 살 → ✓ 스무 살.",
+        "examples": [
+          {"ko": "저는 도서관에서 공부해요.", "vi": "Tôi học ở thư viện. (đúng)"},
+          {"ko": "지금 세 시예요.", "vi": "Bây giờ là 3 giờ. (đúng)"}
+        ]
+      }
+    ]
+  }
+]
