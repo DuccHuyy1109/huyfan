@@ -60,6 +60,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.shape.CircleShape
+import com.hankukko.huyfan.ui.theme.Brand
+import androidx.compose.material.icons.automirrored.rounded.MenuBook
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.draw.clip
@@ -135,7 +140,10 @@ class AssistActivity : ComponentActivity() {
         onBackPressedDispatcher.addCallback(this) { close() }
 
         startedAt.longValue = System.currentTimeMillis() - 1500
-        if (savedInstanceState == null) begin(intent)
+        if (savedInstanceState == null) {
+            // Vừa đổi ngôn ngữ học từ bong bóng → mở lại với cuộc trò chuyện mới, chưa bật mic
+            if (com.hankukko.huyfan.Lang.afterSwitch(this, intent)) container.engine.newSession() else begin(intent)
+        }
 
         setContent {
             val settings by container.settingsState.collectAsStateWithLifecycle()
@@ -337,18 +345,33 @@ private fun AssistSheet(
                 Spacer(Modifier.width(8.dp))
                 Text("HUY FAN", style = MaterialTheme.typography.titleMedium.merge(BrandTextStyle))
                 Spacer(Modifier.width(8.dp))
-                // Chip trạng thái tự co lại → nút Chi tiết / Mở app / Đóng luôn đủ chỗ
+                // Trạng thái gọn: chấm màu + chữ viết tắt (SS = sẵn sàng, ĐN = đang nghe…)
                 Box(Modifier.weight(1f).clipToBounds()) {
-                    Pill(phaseLabel(state.phase, state.listenLang == LANG_KO))
+                    PhaseBadge(state.phase, state.listenLang == LANG_KO)
                 }
                 val st by c.settingsState.collectAsStateWithLifecycle()
-                com.hankukko.huyfan.ui.components.DetailToggle(
-                    st.detailedAnswers, compact = true,
-                    onToggle = {
-                        lastTouch = System.currentTimeMillis()
-                        kotlinx.coroutines.MainScope().launch { c.settings.update { it.copy(detailedAnswers = !it.detailedAnswers) } }
-                    },
-                )
+                // Chi tiết: chỉ icon quyển sách (sáng = bật)
+                Box(
+                    Modifier
+                        .size(34.dp)
+                        .clip(CircleShape)
+                        .then(if (st.detailedAnswers) Modifier.background(Brand.gradient) else Modifier.background(Brand.Violet.copy(alpha = 0.12f)))
+                        .clickable {
+                            lastTouch = System.currentTimeMillis()
+                            kotlinx.coroutines.MainScope().launch { c.settings.update { it.copy(detailedAnswers = !it.detailedAnswers) } }
+                        },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        Icons.AutoMirrored.Rounded.MenuBook,
+                        if (st.detailedAnswers) "Trả lời chi tiết: bật" else "Trả lời chi tiết: tắt",
+                        tint = if (st.detailedAnswers) androidx.compose.ui.graphics.Color.White else Brand.Violet,
+                        modifier = Modifier.size(18.dp),
+                    )
+                }
+                Spacer(Modifier.width(6.dp))
+                // Đổi ngôn ngữ học (🇰🇷 ⇄ 🇬🇧)
+                com.hankukko.huyfan.ui.components.LangSwitchButton(AssistActivity::class.java, compact = true, onBeforeSwitch = { engine.cancel() })
                 IconButton(onClick = { onOpenApp(Tab.CHAT, null) }) { Icon(Icons.Rounded.OpenInFull, "Mở app", modifier = Modifier.size(20.dp)) }
                 IconButton(onClick = onClose) { Icon(Icons.Rounded.Close, "Đóng") }
             }
@@ -368,7 +391,7 @@ private fun AssistSheet(
                             state.partial.ifBlank {
                                 when (state.phase) {
                                     Phase.GREETING -> "HUY FAN đây!"
-                                    Phase.LISTENING -> if (state.listenLang == LANG_KO) "말씀하세요…" else "Nói đi ông, tui nghe nè…"
+                                    Phase.LISTENING -> if (state.listenLang == LANG_KO) (if (com.hankukko.huyfan.Lang.isEn) "Speak English…" else "말씀하세요…") else "Nói đi ông, tui nghe nè…"
                                     else -> "Chạm mic để hỏi"
                                 }
                             },
@@ -485,11 +508,13 @@ private fun AssistSheet(
                     onClick = onMic, size = 64.dp,
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                com.hankukko.huyfan.ui.screens.TranslateModeButton(
-                    onConversation = { engine.cancel(); interpreter = true },
-                    onAuto = { engine.cancel(); autoInterpreter = true },
-                )
-                Spacer(Modifier.width(8.dp))
+                if (!com.hankukko.huyfan.Lang.isEn) {
+                    com.hankukko.huyfan.ui.screens.TranslateModeButton(
+                        onConversation = { engine.cancel(); interpreter = true },
+                        onAuto = { engine.cancel(); autoInterpreter = true },
+                    )
+                    Spacer(Modifier.width(8.dp))
+                }
                 Box(
                     Modifier
                         .size(40.dp)
@@ -506,4 +531,29 @@ private fun AssistSheet(
     }
     if (interpreter) com.hankukko.huyfan.ui.screens.InterpreterDialog(onDismiss = { interpreter = false; lastTouch = System.currentTimeMillis() })
     if (autoInterpreter) com.hankukko.huyfan.ui.screens.AutoInterpreterDialog(onDismiss = { autoInterpreter = false; lastTouch = System.currentTimeMillis() })
+}
+
+
+/** Trạng thái viết tắt + chấm màu: SS sẵn sàng · ĐN đang nghe · XL đang xử lý · TL đang trả lời. */
+@Composable
+private fun PhaseBadge(phase: Phase, ko: Boolean) {
+    val (short, color) = when (phase) {
+        Phase.IDLE -> "SS" to Brand.Green
+        Phase.GREETING -> "HF" to Brand.Violet
+        Phase.LISTENING -> (if (ko) "ĐN·" + com.hankukko.huyfan.Lang.current.id.uppercase() else "ĐN") to Brand.Pink
+        Phase.THINKING -> "XL" to Brand.Amber
+        Phase.SPEAKING -> "TL" to Brand.Cyan
+    }
+    Row(
+        Modifier
+            .semantics { contentDescription = phaseLabel(phase, ko) }
+            .clip(CircleShape)
+            .background(color.copy(alpha = 0.14f))
+            .padding(horizontal = 9.dp, vertical = 5.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(Modifier.size(7.dp).clip(CircleShape).background(color))
+        Spacer(Modifier.width(5.dp))
+        Text(short, color = color, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, maxLines = 1)
+    }
 }

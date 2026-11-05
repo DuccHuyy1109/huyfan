@@ -47,7 +47,8 @@ data class EngineState(
 }
 
 const val LANG_VI = "vi-VN"
-const val LANG_KO = "ko-KR"
+/** Mã nhận giọng của ngôn ngữ đang học (ko-KR hoặc en-US). Tên giữ nguyên cho code cũ. */
+val LANG_KO: String get() = com.hankukko.huyfan.Lang.current.sttLocale
 
 sealed interface EngineEvent {
     data class OpenVocab(val todayOnly: Boolean) : EngineEvent

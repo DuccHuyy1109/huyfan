@@ -214,7 +214,7 @@ fun ReviewScreen(
         item { DueHero(due) { due?.let { if (it.count > 0) onStart(dueSession(it)) } } }
 
         // ---------- Luyện nói ----------
-        item {
+        if (!com.hankukko.huyfan.Lang.isEn) item {
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 PracticeTile(
                     "Phát âm", "Chấm điểm", Icons.Rounded.GraphicEq, Brand.Teal,
@@ -658,8 +658,8 @@ fun StudyConfigEditor(config: StudyConfig, onChange: (StudyConfig) -> Unit) {
             modifier = Modifier.padding(horizontal = 0.dp),
         )
         Text(
-            if (config.reverse) "Thẻ chỉ hiện nghĩa + dạng → nói/viết ra từ tiếng Hàn."
-            else "Thẻ hiện từ tiếng Hàn → nói/viết ra nghĩa tiếng Việt.",
+            if (config.reverse) "Thẻ chỉ hiện nghĩa + dạng → nói/viết ra từ ${com.hankukko.huyfan.Lang.current.nameVi}."
+            else "Thẻ hiện từ ${com.hankukko.huyfan.Lang.current.nameVi} → nói/viết ra nghĩa tiếng Việt.",
             style = MaterialTheme.typography.bodySmall, color = x.muted,
         )
         Spacer(Modifier.height(10.dp))
@@ -682,8 +682,8 @@ fun StudyConfigEditor(config: StudyConfig, onChange: (StudyConfig) -> Unit) {
         Spacer(Modifier.height(6.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text("Tự đọc tiếng Hàn", style = MaterialTheme.typography.bodyLarge)
-                Text("Đọc khi thẻ hiện mặt tiếng Hàn", style = MaterialTheme.typography.bodySmall, color = x.muted)
+                Text("Tự đọc ${com.hankukko.huyfan.Lang.current.nameVi}", style = MaterialTheme.typography.bodyLarge)
+                Text("Đọc khi thẻ hiện mặt ${com.hankukko.huyfan.Lang.current.nameVi}", style = MaterialTheme.typography.bodySmall, color = x.muted)
             }
             androidx.compose.material3.Switch(checked = config.autoSpeak, onCheckedChange = { onChange(config.copy(autoSpeak = it)) })
         }
@@ -704,7 +704,7 @@ private fun OriginBadge(hanja: String, hanViet: String, loan: String, loanRead: 
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            if (isHan) "HÁN HÀN" else "TỪ MƯỢN", color = color,
+            if (isHan) "HÁN HÀN" else if (com.hankukko.huyfan.Lang.isEn) "CÁCH ĐỌC" else "TỪ MƯỢN", color = color,
             style = MaterialTheme.typography.labelSmall.copy(letterSpacing = 1.2.sp, fontWeight = FontWeight.Bold),
         )
         Spacer(Modifier.width(10.dp))
@@ -859,7 +859,7 @@ private fun ColumnScope.StudyCardView(
         DrawPad(
             prompt = question,
             hint = if (koFront) "Viết nghĩa tiếng Việt · đúng từ $drawPercent% thì lật thẻ"
-            else "Viết từ tiếng Hàn · đúng từ $drawPercent% thì lật thẻ",
+            else "Viết từ ${com.hankukko.huyfan.Lang.current.nameVi} · đúng từ $drawPercent% thì lật thẻ",
             busy = inkBusy,
             busyText = inkBusyText,
             result = inkResult,
@@ -956,7 +956,7 @@ private fun ColumnScope.StudyCardView(
                 }
                 Spacer(Modifier.height(18.dp))
                 Text(
-                    if (koFront) "Chạm để lật · hoặc bấm mic nói nghĩa" else "Nói từ tiếng Hàn · hoặc chạm để lật",
+                    if (koFront) "Chạm để lật · hoặc bấm mic nói nghĩa" else "Nói từ ${com.hankukko.huyfan.Lang.current.nameVi} · hoặc chạm để lật",
                     color = Color.White.copy(alpha = 0.6f), style = MaterialTheme.typography.labelMedium,
                 )
             }
@@ -969,9 +969,9 @@ private fun ColumnScope.StudyCardView(
                     Text(if (koFront) v.vi else v.ko, fontSize = 30.sp, fontWeight = FontWeight.ExtraBold, textAlign = TextAlign.Center, lineHeight = 36.sp,
                         color = if (koFront) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.primary)
                     if (!koFront && v.romaja.isNotBlank()) Text(v.romaja, color = x.muted, fontStyle = FontStyle.Italic)
-                    if (v.hanja.isNotBlank() || v.loan.isNotBlank()) {
+                    if (v.hanja.isNotBlank() || v.loan.isNotBlank() || (com.hankukko.huyfan.Lang.isEn && v.loanRead.isNotBlank())) {
                         Spacer(Modifier.height(10.dp))
-                        OriginBadge(v.hanja, v.hanViet, v.loan, v.loanRead)
+                        if (com.hankukko.huyfan.Lang.isEn) OriginBadge("", "", v.loanRead) else OriginBadge(v.hanja, v.hanViet, v.loan, v.loanRead)
                     }
                     if (v.breakdown.isNotBlank()) {
                         Spacer(Modifier.height(6.dp))
@@ -1026,7 +1026,7 @@ private fun ColumnScope.StudyCardView(
 
     // Kết quả so khớp giọng nói / chữ đang nghe
     val info = when {
-        listening -> (engineState.partial.ifBlank { if (koFront) "Nói nghĩa tiếng Việt…" else "Nói từ tiếng Hàn…" }) to null
+        listening -> (engineState.partial.ifBlank { if (koFront) "Nói nghĩa tiếng Việt…" else "Nói từ ${com.hankukko.huyfan.Lang.current.nameVi}…" }) to null
         feedback != null -> feedback!!.first to feedback!!.second
         else -> null
     }

@@ -101,7 +101,7 @@ fun Context.copyToClipboard(text: String) {
 fun phaseLabel(phase: Phase, ko: Boolean): String = when (phase) {
     Phase.IDLE -> "Sẵn sàng"
     Phase.GREETING -> "HUY FAN đây!"
-    Phase.LISTENING -> if (ko) "Đang nghe tiếng Hàn…" else "Đang nghe…"
+    Phase.LISTENING -> if (ko) "Đang nghe ${com.hankukko.huyfan.Lang.current.nameVi}…" else "Đang nghe…"
     Phase.THINKING -> "Đang nghĩ…"
     Phase.SPEAKING -> "Đang trả lời…"
 }
@@ -148,7 +148,12 @@ fun ChatScreen(
                 .padding(horizontal = 16.dp, vertical = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            BrandTitle(subtitle = "Trợ lý tiếng Hàn", modifier = Modifier.weight(1f))
+            BrandTitle(subtitle = "Trợ lý ${com.hankukko.huyfan.Lang.current.nameVi}", modifier = Modifier.weight(1f))
+            Spacer(Modifier.width(6.dp))
+            com.hankukko.huyfan.ui.components.LangSwitchButton(
+                com.hankukko.huyfan.ui.MainActivity::class.java, compact = true,
+                onBeforeSwitch = { vm.engine.cancel() },
+            )
             Spacer(Modifier.width(6.dp))
             StandbyChip(on = standby, onClick = onToggleStandby)
             IconButton(onClick = onOpenHistory) {
@@ -260,7 +265,7 @@ fun ChatScreen(
                 Column(Modifier.weight(1f)) {
                     Text(phaseLabel(state.phase, state.listenLang == LANG_KO), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
                     Text(
-                        state.partial.ifBlank { if (state.listenLang == LANG_KO) "말씀하세요…" else "Nói đi ông…" },
+                        state.partial.ifBlank { if (state.listenLang == LANG_KO) (if (com.hankukko.huyfan.Lang.isEn) "Speak English…" else "말씀하세요…") else "Nói đi ông…" },
                         style = MaterialTheme.typography.bodyLarge,
                         color = if (state.partial.isBlank()) x.muted else MaterialTheme.colorScheme.onSurface,
                         maxLines = 3,
@@ -392,7 +397,7 @@ fun LangToggle(ko: Boolean, onClick: () -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            if (ko) "한" else "VI",
+            if (ko) com.hankukko.huyfan.Lang.current.short else "VI",
             fontWeight = FontWeight.Black,
             fontSize = if (ko) 16.sp else 12.sp,
             color = if (ko) Brand.Red else MaterialTheme.colorScheme.primary,
@@ -446,7 +451,7 @@ private fun Welcome(
         Spacer(Modifier.height(12.dp))
         VoiceOrb(phase, level, size = 170.dp)
         Text(
-            if (name.isBlank()) "Hey bro! 안녕!" else "Hey ${name.trim()}! 안녕!",
+            if (name.isBlank()) "Hey bro! ${com.hankukko.huyfan.Lang.current.greeting}" else "Hey ${name.trim()}! ${com.hankukko.huyfan.Lang.current.greeting}",
             style = MaterialTheme.typography.headlineMedium,
             textAlign = TextAlign.Center,
         )
@@ -487,7 +492,13 @@ private fun Welcome(
         Spacer(Modifier.height(18.dp))
         Text("Thử hỏi", style = MaterialTheme.typography.labelLarge, color = x.muted, modifier = Modifier.fillMaxWidth())
         Spacer(Modifier.height(8.dp))
-        val suggestions = listOf(
+        val suggestions = if (com.hankukko.huyfan.Lang.isEn) listOf(
+            "Rửa bát tiếng Anh là gì?",
+            "Dịch: Hôm nay tôi mệt quá",
+            "Giải thích thì hiện tại hoàn thành",
+            "Kiểm tra tôi các từ hôm nay",
+            "Xem danh sách từ hôm nay",
+        ) else listOf(
             "Rửa bát tiếng Hàn là gì?",
             "Dịch: Hôm nay tôi mệt quá",
             "Giải thích ngữ pháp -고 싶다",

@@ -176,7 +176,7 @@ fun VocabScreen(
     val vocabList = remember(all, filter, q) {
         all.filtered(filter).filter {
             q.isEmpty() || it.ko.contains(q) || it.vi.lowercase().contains(q) || it.romaja.lowercase().contains(q) ||
-                it.hanViet.lowercase().contains(q) || it.hanja.contains(q) || it.loan.lowercase().contains(q)
+                it.hanViet.lowercase().contains(q) || it.hanja.contains(q) || it.loan.lowercase().contains(q) || it.loanRead.lowercase().contains(q) || it.ko.lowercase().contains(q)
         }
     }
     val grammarList = remember(allGrammar, filter, q) {
@@ -239,7 +239,8 @@ fun VocabScreen(
         }
 
         Segmented(
-            BookTab.entries, tab,
+            // Tiếng Anh không có tab Từ mượn (Hán Hàn / ngoại lai là của tiếng Hàn)
+            if (com.hankukko.huyfan.Lang.isEn) listOf(BookTab.VOCAB, BookTab.GRAMMAR) else BookTab.entries, tab,
             { t ->
                 when (t) {
                     BookTab.VOCAB -> "${t.label} (${all.size})"
@@ -256,7 +257,7 @@ fun VocabScreen(
                 placeholder = {
                     Text(
                         when (tab) {
-                            BookTab.VOCAB -> "Tìm tiếng Việt, tiếng Hàn, Hán Việt…"
+                            BookTab.VOCAB -> if (com.hankukko.huyfan.Lang.isEn) "Tìm tiếng Việt, tiếng Anh, cách đọc…" else "Tìm tiếng Việt, tiếng Hàn, Hán Việt…"
                             BookTab.GRAMMAR -> "Tìm đuôi câu, nghĩa, dạng…"
                             BookTab.HANJA -> "Tìm chữ Hán, Hán Việt, từ gốc…"
                         }
@@ -295,7 +296,7 @@ fun VocabScreen(
                     if (query.isNotBlank()) "Không tìm thấy" else "Sổ còn trống",
                     when {
                         query.isNotBlank() -> "Thử từ khoá khác nha."
-                        tab == BookTab.VOCAB -> "Hỏi HUY FAN “… tiếng Hàn là gì?” – từ sẽ tự lưu vào đây theo ngày."
+                        tab == BookTab.VOCAB -> "Hỏi HUY FAN “… ${com.hankukko.huyfan.Lang.current.nameVi} là gì?” – từ sẽ tự lưu vào đây theo ngày."
                         else -> "Hỏi HUY FAN “-고 싶다 là gì?” – ngữ pháp sẽ tự lưu vào đây."
                     },
                 )
@@ -533,7 +534,8 @@ private fun WordCard(
                     modifier = Modifier.clip(CircleShape).clickable(onClick = onHanja),
                 )
             }
-            if (w.hanja.isBlank() && w.loan.isNotBlank()) Pill("từ mượn · ${w.loan}" + (if (w.loanRead.isNotBlank()) " · ${w.loanRead}" else ""), color = Brand.Cyan)
+            if (com.hankukko.huyfan.Lang.isEn && w.loanRead.isNotBlank()) Pill("đọc · ${w.loanRead}", color = Brand.Cyan)
+            if (!com.hankukko.huyfan.Lang.isEn && w.hanja.isBlank() && w.loan.isNotBlank()) Pill("từ mượn · ${w.loan}" + (if (w.loanRead.isNotBlank()) " · ${w.loanRead}" else ""), color = Brand.Cyan)
             if (w.pos.isNotBlank()) Pill(w.pos, color = Brand.Violet)
             if (w.lookupCount > 1) Pill("tra ${w.lookupCount} lần", color = Brand.Red)
             DuePill(w.dueAt, w.createdAt)

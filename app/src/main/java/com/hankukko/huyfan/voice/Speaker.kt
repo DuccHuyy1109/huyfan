@@ -56,7 +56,8 @@ class Speaker(
     val readyState: StateFlow<Boolean> = _ready
 
     private val vi = Locale("vi", "VN")
-    private val ko = Locale.KOREA
+    /** Giọng của ngôn ngữ đang học (Hàn hoặc Anh) */
+    private val ko = com.hankukko.huyfan.Lang.current.ttsLocale
 
     /** 1 bộ đọc gắn với 1 ngôn ngữ. */
     private inner class Engine(val locale: Locale) {
@@ -166,7 +167,7 @@ class Speaker(
         }
     }
 
-    private fun locale(korean: Boolean) = if (korean) "ko" else "vi"
+    private fun locale(korean: Boolean) = if (korean) ko.language else "vi"
 
     /** Trả về (có giọng Việt, có giọng Hàn). */
     fun languageSupport(): Pair<Boolean, Boolean> = viE.available() to koE.available()
@@ -272,7 +273,7 @@ class Speaker(
             val r = if (v != null) t.setVoice(v) else t.setLanguage(e.locale)
             Log.i(TAG, "preview ${e.locale.language} '$voice' set=$r features=${v?.features}")
             t.setSpeechRate(settings.value.speechRate)
-            t.speak(if (korean) "안녕하세요! 만나서 반가워요." else "Xin chào, HUY FAN đây. Hôm nay học gì nào?", TextToSpeech.QUEUE_FLUSH, null, "preview")
+            t.speak(if (korean) (if (com.hankukko.huyfan.Lang.isEn) "Hello! Nice to meet you." else "안녕하세요! 만나서 반가워요.") else "Xin chào, HUY FAN đây. Hôm nay học gì nào?", TextToSpeech.QUEUE_FLUSH, null, "preview")
             // Trả lại giọng đang chọn cho lần đọc sau
             main.postDelayed({ e.applyVoice() }, 300)
         }
@@ -404,8 +405,32 @@ class Speaker(
 
         fun clean(text: String): String = text.replace(noise, " ").replace(Regex("\\s+"), " ").trim()
 
-        /** Tách văn bản thành các đoạn (nội dung, là tiếng Hàn?). */
+        private val quoted = Regex("[\"“”]([^\"“”]{1,200})[\"“”]")
+        private val vietWord = Regex("[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]", RegexOption.IGNORE_CASE)
+
+        /** Tiếng Anh: AI đặt từ/câu tiếng Anh trong ngoặc kép → đọc đoạn đó bằng giọng Anh. */
+        private fun segmentEnglish(text: String): List<Pair<String, Boolean>> {
+            val out = mutableListOf<Pair<String, Boolean>>()
+            var last = 0
+            for (m in quoted.findAll(text)) {
+                val before = text.substring(last, m.range.first).trim()
+                if (before.any { it.isLetterOrDigit() }) out += before to false
+                val en = m.groupValues[1].trim()
+                if (en.any { it.isLetterOrDigit() }) out += en to true
+                last = m.range.last + 1
+            }
+            val tail = text.substring(last).trim()
+            if (tail.any { it.isLetterOrDigit() }) out += tail to false
+            // Cả câu không dấu tiếng Việt, nhiều chữ Latin (vd câu tiếng Anh thuần) → đọc giọng Anh
+            if (out.size == 1 && !out[0].second && !vietWord.containsMatchIn(out[0].first) &&
+                out[0].first.count { it in 'a'..'z' || it in 'A'..'Z' } >= 4
+            ) return listOf(out[0].first to true)
+            return out
+        }
+
+        /** Tách văn bản thành các đoạn (nội dung, là ngôn ngữ đang học?). */
         fun segment(text: String): List<Pair<String, Boolean>> {
+            if (com.hankukko.huyfan.Lang.isEn) return segmentEnglish(text)
             val out = mutableListOf<Pair<String, Boolean>>()
             var last = 0
             for (m in hangulRun.findAll(text)) {

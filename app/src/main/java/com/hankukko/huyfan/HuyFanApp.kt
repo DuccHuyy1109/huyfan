@@ -13,6 +13,8 @@ class HuyFanApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        // Ngôn ngữ đang học quyết định CSDL + cài đặt riêng → phải đọc trước khi tạo container
+        Lang.init(this)
         container = AppContainer(this)
         Notifications.createChannels(this)
         registerActivityLifecycleCallbacks(ForegroundTracker)

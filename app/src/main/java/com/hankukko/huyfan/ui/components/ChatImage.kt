@@ -174,12 +174,10 @@ fun AttachImageButton(
 }
 
 /** Gợi ý câu hỏi nhanh khi đã đính kèm ảnh. */
-val IMAGE_QUICK_ASKS = listOf(
-    "Dịch chữ tiếng Hàn trong ảnh",
-    "Cái này tiếng Hàn là gì?",
-    "Giải thích ngữ pháp trong ảnh",
-    "Đọc to chữ Hàn trong ảnh giúp tôi",
-)
+val IMAGE_QUICK_ASKS: List<String>
+    get() = com.hankukko.huyfan.Lang.current.nameVi.let { l ->
+        listOf("Dịch chữ $l trong ảnh", "Cái này $l là gì?", "Giải thích ngữ pháp trong ảnh", "Đọc to chữ $l trong ảnh giúp tôi")
+    }
 
 /** Thanh ảnh đang đính kèm (chưa gửi) + câu hỏi gợi ý. */
 @Composable

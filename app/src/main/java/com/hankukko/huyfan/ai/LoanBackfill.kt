@@ -34,7 +34,7 @@ CHỈ trả về JSON đúng dạng: {"items":[{"ko":"컴퓨터","loan":"compute
 
     suspend fun run(c: AppContainer) {
         val prefs = c.app.getSharedPreferences("huyfan_maint", Context.MODE_PRIVATE)
-        if (prefs.getBoolean(KEY, false)) return
+        if (com.hankukko.huyfan.Lang.isEn || prefs.getBoolean(KEY, false)) return
         if (!c.settings.get().hasAiKey) return
         // Chưa rõ có phải từ mượn, hoặc là từ mượn mà chưa có cách đọc
         val words = c.vocab.allNow()

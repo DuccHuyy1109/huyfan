@@ -24,15 +24,18 @@ object NotebookAnswer {
             .replace('đ', 'd')
 
     // "rửa bát tiếng hàn là gì", "cái thìa trong tiếng hàn nói thế nào", "tiếng hàn của con mèo là gì"
+    private val en = com.hankukko.huyfan.Lang.isEn
+    private val langWord = if (en) "tiếng anh(?: mỹ| anh)?" else "tiếng hàn(?: quốc)?"
     private val viAsk = Regex(
-        "^(?:(?:cho (?:tôi|tui|mình|em) hỏi|hỏi|ê|ơi|huy fan|huy phan)\\s+)?(.+?)\\s+(?:trong |bằng |sang )?tiếng hàn(?: quốc)?" +
+        "^(?:(?:cho (?:tôi|tui|mình|em) hỏi|hỏi|ê|ơi|huy fan|huy phan)\\s+)?(.+?)\\s+(?:trong |bằng |sang )?" + langWord +
             "(?:\\s+(?:là gì|là gì vậy|là gì thế|là gì nhỉ|là chi|nói (?:thế nào|như thế nào|sao|là gì)|gọi là gì|viết (?:thế nào|sao)|là sao))?(?:\\s+(?:vậy|nhỉ|nhé|nha|ông|bro|ạ))*$"
     )
-    private val viAskOf = Regex("^tiếng hàn (?:của )?(.+?) (?:là gì|nói thế nào|là sao)(?:\\s+(?:vậy|nhỉ|nha|ạ))*$")
+    private val viAskOf = Regex("^" + (if (en) "tiếng anh" else "tiếng hàn") + " (?:của )?(.+?) (?:là gì|nói thế nào|là sao)(?:\\s+(?:vậy|nhỉ|nha|ạ))*$")
     private val viAskFolded = Regex(fold(viAsk.pattern))
     private val viAskOfFolded = Regex(fold(viAskOf.pattern))
     private val koAsk = Regex(
-        "^([가-힣][가-힣 ]{0,20})\\s*(?:là gì|nghĩa là gì|có nghĩa là gì|nghĩa là sao|nghĩa gì|là sao|tiếng việt là gì|dịch là gì)(?:\\s+(?:vậy|nhỉ|nha|ạ|ông|bro))*$"
+        (if (en) "^([a-z][a-z' -]{0,30}?)\\s*" else "^([가-힣][가-힣 ]{0,20})\\s*") +
+            "(?:là gì|nghĩa là gì|có nghĩa là gì|nghĩa là sao|nghĩa gì|là sao|tiếng việt là gì|dịch là gì)(?:\\s+(?:vậy|nhỉ|nha|ạ|ông|bro))*$"
     )
 
     fun match(text: String, vocab: List<VocabEntity>, style: TalkStyle): AssistantReply? {
@@ -41,8 +44,8 @@ object NotebookAnswer {
         if (q.length > 60) return null
         val hit: List<VocabEntity> = run {
             koAsk.matchEntire(q)?.let { m ->
-                val key = keyOf(m.groupValues[1])
-                return@run vocab.filter { keyOf(it.ko) == key }
+                val key = keyOf(m.groupValues[1]).lowercase()
+                return@run vocab.filter { keyOf(it.ko).lowercase() == key }
             }
             // So khớp nghĩa: đúng nguyên văn trước
             val exactTerm = (viAsk.matchEntire(q) ?: viAskOf.matchEntire(q))?.groupValues?.get(1)?.trim()
@@ -71,7 +74,7 @@ object NotebookAnswer {
         }
         val learned = Dates.dayLabel(v.day).substringBefore(" ·").lowercase()
         val reply = buildString {
-            append(v.vi.replaceFirstChar { it.uppercase() }).append(" là ").append(v.ko).append(" nha ").append(you).append("! ")
+            append(v.vi.replaceFirstChar { it.uppercase() }).append(" là ").append(if (en) "\"${v.ko}\"" else v.ko).append(" nha ").append(you).append("! ")
             append(
                 when {
                     lookups >= 4 -> "Từ này $you tra $lookups lần rồi đó, ôn kỹ nha."

@@ -249,7 +249,7 @@ fun SettingsScreen(
             Column(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 Pill("HUY FAN v${BuildConfig.VERSION_NAME}", color = Brand.Violet)
                 Spacer(Modifier.height(6.dp))
-                Text("Học tiếng Hàn mỗi ngày – 화이팅!", style = MaterialTheme.typography.bodySmall, color = x.muted)
+                Text(if (com.hankukko.huyfan.Lang.isEn) "Học tiếng Anh mỗi ngày – Let's go!" else "Học tiếng Hàn mỗi ngày – 화이팅!", style = MaterialTheme.typography.bodySmall, color = x.muted)
             }
         }
     }
@@ -290,8 +290,8 @@ fun SettingsScreen(
                     )
                 }
                 StatusRow(
-                    "Giọng đọc Việt & Hàn",
-                    "Tiếng Việt: ${if (vi) "có" else "thiếu"} · Tiếng Hàn: ${if (ko) "có" else "thiếu"}" +
+                    "Giọng đọc Việt & ${com.hankukko.huyfan.Lang.current.nameVi.removePrefix("tiếng ").replaceFirstChar { it.uppercase() }}",
+                    "Tiếng Việt: ${if (vi) "có" else "thiếu"} · ${com.hankukko.huyfan.Lang.current.title}: ${if (ko) "có" else "thiếu"}" +
                         if (vi && ko) "" else " – bấm Tải giọng (nên dùng Google TTS)",
                     vi && ko, fixLabel = "Tải giọng",
                 ) { context.tryStart(vm.ttsInstallIntent()) }
@@ -531,7 +531,7 @@ fun SettingsScreen(
                 Segmented(TtsMode.entries, s.ttsMode, { it.label }, { m -> vm.updateSettings { it.copy(ttsMode = m) } })
                 if (s.ttsMode == TtsMode.AI) {
                     Text(
-                        "Giọng AI tự nhiên, đọc liền Việt + Hàn. Lỗi mạng thì dùng giọng máy.",
+                        "Giọng AI tự nhiên, đọc liền Việt + ${com.hankukko.huyfan.Lang.current.nameVi.removePrefix("tiếng ")}. Lỗi mạng thì dùng giọng máy.",
                         style = MaterialTheme.typography.bodySmall, color = x.muted,
                         modifier = Modifier.padding(horizontal = 16.dp),
                     )
@@ -589,12 +589,12 @@ fun SettingsScreen(
                     },
                 )
                 DropdownField(
-                    "Bộ đọc tiếng Hàn", s.koTtsEngine,
+                    "Bộ đọc ${com.hankukko.huyfan.Lang.current.nameVi}", s.koTtsEngine,
                     listOf("" to "Tự động (ưu tiên Google)") + engines,
                     onSelect = { e -> vm.updateSettings { it.copy(koTtsEngine = e, koVoice = "") } },
                 )
                 DropdownField(
-                    "Giọng tiếng Hàn", s.koVoice,
+                    "Giọng ${com.hankukko.huyfan.Lang.current.nameVi}", s.koVoice,
                     listOf("" to "Mặc định của bộ đọc") + koVoices.map { it.name to it.label },
                     onSelect = { v -> vm.updateSettings { it.copy(koVoice = v) } },
                     trailingAction = {

@@ -238,7 +238,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         fun build(context: Context): AppDatabase =
-            Room.databaseBuilder(context, AppDatabase::class.java, "huyfan.db")
+            Room.databaseBuilder(context, AppDatabase::class.java, com.hankukko.huyfan.Lang.current.dbName)
                 .build()
     }
 }

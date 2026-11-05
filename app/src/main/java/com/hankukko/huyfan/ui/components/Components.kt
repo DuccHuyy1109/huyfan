@@ -264,8 +264,8 @@ fun VocabTable(
                 .padding(horizontal = 10.dp, vertical = 7.dp)
         ) {
             HeaderCell("Tiếng Việt", W_VI)
-            HeaderCell("Tiếng Hàn", W_KO)
-            HeaderCell("Gốc từ", W_HAN)
+            HeaderCell(com.hankukko.huyfan.Lang.current.title, W_KO)
+            HeaderCell(if (com.hankukko.huyfan.Lang.isEn) "Đọc" else "Gốc từ", W_HAN)
             HeaderCell("Câu mẫu", W_EX)
         }
         items.forEachIndexed { i, it ->
@@ -307,7 +307,10 @@ fun VocabTable(
                             .padding(end = 6.dp)
                             .then(if (onHanja != null && it.hanja.isNotBlank()) Modifier.clickable { onHanja(it) } else Modifier)
                     ) {
-                        if (it.hanja.isNotBlank()) {
+                        if (com.hankukko.huyfan.Lang.isEn) {
+                            // Tiếng Anh: cách đọc kiểu Việt (IPA đã hiện dưới từ)
+                            Text(it.loanRead.ifBlank { "—" }, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold, color = if (it.loanRead.isBlank()) x.muted else Brand.Cyan)
+                        } else if (it.hanja.isNotBlank()) {
                             Text(it.hanja, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
                             if (it.hanViet.isNotBlank()) {
                                 Text(it.hanViet, style = MaterialTheme.typography.labelSmall, color = Brand.Amber, fontStyle = FontStyle.Italic)

@@ -150,6 +150,8 @@ class MainActivity : ComponentActivity() {
         handleIntent(intent)
 
         if (savedInstanceState == null) {
+            // Vừa đổi ngôn ngữ học → cuộc trò chuyện mới, bật lại chế độ chờ nếu trước đó đang bật
+            if (com.hankukko.huyfan.Lang.afterSwitch(this, intent)) vm.newChat()
             if (!hasMic()) requestPermissions()
             lifecycleScope.launch {
                 val s = container.settings.get()
@@ -410,7 +412,8 @@ private fun NeonNavBar(current: Tab, onSelect: (Tab) -> Unit) {
             .padding(horizontal = 2.dp, vertical = 7.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Tab.entries.filter { it.inBar }.forEach { t ->
+        // Tiếng Anh: Phiên dịch & Nguyên tắc làm ở đợt sau → tạm ẩn
+        Tab.entries.filter { it.inBar && !(com.hankukko.huyfan.Lang.isEn && (it == Tab.TRANSLATE || it == Tab.RULES)) }.forEach { t ->
             NeonNavItem(t, current == t || (t == Tab.CHAT && current == Tab.HISTORY), Modifier.weight(1f)) { onSelect(t) }
         }
     }
